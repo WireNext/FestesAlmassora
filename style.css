@@ -1,5 +1,5 @@
 :root {
-  --color-principal: #d9b15d;
+  --color-principal: rgb(66, 173, 66);
 }
 
 body {
@@ -52,7 +52,7 @@ main {
 }
 
 .dia-header:hover {
-  background: #c4a24f;
+  background: #8bdf64;
 }
 
 .dia-actes {

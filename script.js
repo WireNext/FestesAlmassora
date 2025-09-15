@@ -1,7 +1,6 @@
-// 📅 Programació (exemple)
 const programacio = [
   {
-    dia: "2025-05-10",
+    dia: "2025-09-15",
     titol: "Dissabte 10 de maig",
     actes: [
       { hora: "10:00", nom: "Cercavila amb la banda municipal" },
