@@ -1,23 +1,102 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Festes d'Almassora</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JA CASI EN FESTES 🐂</title>
+  <link rel="icon" href="rellotge.png" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ocupar tota la pantalla */
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    #countdown {
+      margin-bottom: 20px;
+    }
+
+img {
+  width: 100%;
+  max-width: 700px;  /* Màxim en pantalles grans */
+  height: auto;
+  margin: 20px 0;
+  display: block;
+  object-fit: contain;
+}
+
+    p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    #timer {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* 📱 Ajustos per a mòbils */
+    @media (max-width: 600px) {
+      #timer {
+        font-size: 1.2em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Festes d'Almassora</h1>
-    <p>Programació oficial</p>
-  </header>
+  <p>Queden</p>
+  <section id="countdown">
+    <h2>
+      <div id="timer">
+        <span id="days"></span> dies 
+        <span id="hours"></span> hores 
+        <span id="minutes"></span> minuts 
+        <span id="seconds"></span> segons
+      </div>
+    </h2>
+  <p>per al xupinazo 2025</p>
+  </section>
 
-  <main id="programacio"></main>
+  <img src="Castell-Bous.webp" alt="Castell amb bous">
 
-  <footer>
-    <p>© 2025 Festes d'Almassora</p>
-  </footer>
+  <script>
+    // 📅 Data d'inici de les festes
+    const eventDate = new Date("October 4, 2025 00:00:00").getTime();
 
-  <script src="script.js"></script>
+    const timerFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      if (distance < 0) {
+        clearInterval(timerFunction);
+        document.getElementById("timer").innerText = "¡JA ESTAN ACÍ LES FESTES!";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
