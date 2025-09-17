@@ -91,3 +91,23 @@ footer {
     font-size: 1rem;
   }
 }
+
+    /* Sección de cuenta atrás */
+    #countdown {
+      background: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      color: #333;
+    }
+
+    #countdown h2 {
+      margin-bottom: 15px;
+    }
+
+    #timer {
+      font-size: 1.5em;
+    }
