@@ -56,25 +56,28 @@ programacio.forEach(dia => {
   }
 });
 
-    // 📅 Data d'inici de les festes
-    const eventDate = new Date("October 4, 2025 00:00:00").getTime();
 
-    const timerFunction = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
+// 📅 Data d'inici de les festes
+const eventDate = new Date("September 18, 2025 17:51:00").getTime();
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+const timerFunction = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      if (distance < 0) {
-        clearInterval(timerFunction);
-        document.getElementById("timer").innerText = "¡JA ESTAN ACÍ LES FESTES!";
-      }
-    }, 1000);
+  document.getElementById("days").innerText = days;
+  document.getElementById("hours").innerText = hours;
+  document.getElementById("minutes").innerText = minutes;
+  document.getElementById("seconds").innerText = seconds;
+
+  if (distance < 0) {
+    clearInterval(timerFunction);
+
+    // 🔻 Ocultar tota la secció del compte enrere
+    document.getElementById("countdown").style.display = "none";
+  }
+}, 1000);
