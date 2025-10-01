@@ -1,20 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Mapa de paradas</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-  <style>
-    #map { height: 100vh; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Mapa busos Almassora</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- MarkerCluster CSS (opcional si usas clustering) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+    <style>
+        /* Ajustar el tamaño del mapa */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+
+        /* Estilos para popup de próximas salidas */
+        .parpadeo {
+            animation: parpadeo 1s infinite;
+            color: red;
+            font-weight: bold;
+        }
+
+        @keyframes parpadeo {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
 </head>
 <body>
-  <div id="map"></div>
 
-  <!-- Carga Leaflet primero -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <!-- Luego Leaflet MarkerCluster -->
-  <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-  <!-- Por último tu script -->
-  <script src="script_bus.js"></script>
+    <div id="map"></div>
+    <div id="routes-info"></div> <!-- Para lista de rutas y paradas -->
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- MarkerCluster JS (opcional) -->
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+    <!-- Tu script JS -->
+    <script src="script_bus.js"></script>
+
 </body>
+</html>
