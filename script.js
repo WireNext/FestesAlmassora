@@ -613,7 +613,7 @@ programacio.forEach(dia => {
 
 
 // 📅 Data d'inici de les festes
-const eventDate = new Date("October 3, 2025 00:00:00").getTime();
+const eventDate = new Date("October 4, 2025 00:00:00").getTime();
 
 const timerFunction = setInterval(function() {
   const now = new Date().getTime();
