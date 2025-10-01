@@ -111,3 +111,25 @@ footer {
     #timer {
       font-size: 1.5em;
     }
+
+    .menu {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  gap: 20px;
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #e63946; /* cambia de color al pasar el ratón */
+}
