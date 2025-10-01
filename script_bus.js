@@ -1,16 +1,22 @@
+// =======================
+// Cargar datos GTFS desde TXT
+// =======================
 async function cargarDatosGTFS() {
   try {
-    const baseURL = 'gtfs/';
-    const [routes, trips, stops, stopTimes, calendarDates, shapes] = await Promise.all([
-      fetch(baseURL + 'routes.json').then(r => r.json()),
-      fetch(baseURL + 'trips.json').then(r => r.json()),
-      fetch(baseURL + 'stops.json').then(r => r.json()),
-      fetch(baseURL + 'stop_times.json').then(r => r.json()),
-      fetch(baseURL + 'calendar_dates.json').then(r => r.json()),
-      fetch(baseURL + 'shapes.json').then(r => r.json())
-    ]);
+    const baseURL = 'gtfs/'; // carpeta con los TXT
+    const archivos = ["routes", "trips", "stops", "stop_times", "calendar_dates", "shapes"];
 
-    console.log("✅ Datos cargados");
+    const resultados = await Promise.all(
+      archivos.map(async (nombre) => {
+        const res = await fetch(baseURL + nombre + ".txt");
+        const text = await res.text();
+        return parseCSV(text, nombre);
+      })
+    );
+
+    const [routes, trips, stops, stopTimes, calendarDates, shapes] = resultados;
+
+    console.log("✅ Datos cargados desde TXT");
     iniciarMapa(stops, stopTimes, trips, routes, shapes);
 
   } catch (e) {
@@ -19,6 +25,36 @@ async function cargarDatosGTFS() {
   }
 }
 
+// =======================
+// Parsear CSV a objetos
+// =======================
+function parseCSV(text, nombreArchivo) {
+  const lines = text.trim().split('\n');
+  const headers = lines.shift().split(',');
+
+  const data = lines.map(line => {
+    const values = line.split(',');
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = values[i]);
+    return obj;
+  });
+
+  // Para shapes, convertimos en objeto indexado por shape_id
+  if (nombreArchivo === "shapes") {
+    const shapesObj = {};
+    data.forEach(row => {
+      if (!shapesObj[row.shape_id]) shapesObj[row.shape_id] = [];
+      shapesObj[row.shape_id].push(row);
+    });
+    return shapesObj;
+  }
+
+  return data;
+}
+
+// =======================
+// Función para inicializar el mapa
+// =======================
 function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
   const map = L.map('map').setView([39.9864, -0.0513], 14);
 
@@ -47,7 +83,7 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
     popupAnchor: [0, -30]
   });
 
-  // Añadimos estilos para parpadeo
+  // Estilos para parpadeo
   const style = document.createElement('style');
   style.innerHTML = `
     @keyframes parpadeo {
@@ -74,10 +110,8 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
         .map(st => {
           const trip = trips.find(t => t.trip_id === st.trip_id);
           if (!trip) return null;
-
           const ruta = routes.find(r => r.route_id === trip.route_id);
           if (!ruta) return null;
-
           return {
             linea: ruta.route_short_name || '',
             nombre: ruta.route_long_name || '',
@@ -117,7 +151,6 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
       let html = `<strong>${stop.stop_name}</strong><br><ul>`;
 
       proximosMinutos.forEach(h => {
-        // Si quedan 1 minuto o menos, añadimos la clase parpadeo
         if (h.diffMin <= 1) {
           html += `<li><b>${h.linea}</b> ${h.nombre}: <span class="parpadeo">en ${Math.round(h.diffMin)} min</span></li>`;
         } else {
@@ -130,7 +163,6 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
       });
 
       html += '</ul>';
-
       marker.setPopupContent(html);
     });
 
@@ -139,10 +171,9 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
 
   map.addLayer(clusterGroup);
 
-  // Dibujar shapes (corregido para formato objeto)
+  // Dibujar shapes
   for (const shapeId in shapes) {
     const puntos = shapes[shapeId];
-
     puntos.sort((a, b) => parseInt(a.shape_pt_sequence) - parseInt(b.shape_pt_sequence));
 
     const latlngs = puntos.map(pt => [
@@ -158,4 +189,7 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
   }
 }
 
+// =======================
+// Llamar a la función al cargar el script
+// =======================
 cargarDatosGTFS();
