@@ -273,29 +273,14 @@ function displayStopTimes(agency, routeId, containerElement) {
 // 11. Iniciar app
 // =============================
 async function startApp() {
-    await loadGTFSData('metrovalencia');
-    await loadGTFSData('tramcastellon');
     await loadGTFSData('almassora');
-    await loadGTFSData('tramalc');
 
     const map = initMap();
 
     // Filtrado flexible: puedes poner varias agencias y rutas
-    const tramFilter = { agencies: ['5107', '5999'], routes: ['510703', '59990010', '59990020', '59990030', '59990040'] }; // ejemplo
-    drawStopsOnMap(map, 'metrovalencia');
-    drawStopsOnMap(map, 'tramcastellon', tramFilter);
     drawStopsOnMap(map, 'almassora');
-    drawStopsOnMap(map, 'tramalc');
 
-    drawRoutes(map, 'metrovalencia');
-    drawRoutes(map, 'tramcastellon', tramFilter);
     drawRoutes(map, 'almassora');
-    drawRoutes(map, 'tramalc');
-
-    displayRoutesInfo('metrovalencia');
-    displayRoutesInfo('tramcastellon', tramFilter);
-    displayRoutesInfo('almassora');
-    displayRoutesInfo('tramalc');
 
     await loadIncidencias();
 }
