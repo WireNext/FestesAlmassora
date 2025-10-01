@@ -67,7 +67,7 @@ async function loadGTFSData(agency) {
 // 4. Inicializar mapa
 // =============================
 function initMap() {
-    const map = L.map('map').setView([39.9829, -0.0353], 14);
+    const map = L.map('map').setView([39.9479, -0.0634], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
