@@ -133,3 +133,24 @@ footer {
 .menu a:hover {
   color: #e63946; /* cambia de color al pasar el ratón */
 }
+
+/* Quita los estilos por defecto de la lista */
+.menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;              /* Activa flexbox */
+  justify-content: center;    /* Centra horizontalmente */
+  gap: 20px;                  /* Espacio entre elementos */
+}
+
+.menu li a {
+  text-decoration: none;
+  color: black;   /* Cambia según tu diseño */
+  font-weight: bold;
+}
+
+nav {
+  width: 100%;
+}
