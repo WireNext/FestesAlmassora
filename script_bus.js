@@ -39,7 +39,7 @@ function updateIconSize(map, marker) {
 // =============================
 async function loadGTFSData(agency) {
     const dataDir = `./data/${agency}/`;
-    const files = ['routes.txt', 'trips.txt', 'stops.txt', 'stop_times.txt', 'shapes.txt'];
+    const files = ['routes.txt', 'trips.txt', 'stops.txt', 'stop_times.txt', 'shapes.txt', 'calendar.txt'];
 
     for (const file of files) {
         try {
@@ -93,8 +93,21 @@ function drawStopsOnMap(map, agency, filter = {}) {
     const trips = gtfsData[agency].trips || [];
     const stopTimes = gtfsData[agency].stop_times || [];
     const filteredRoutes = filterRoutes(agency, filter);
-    const allowedTrips = trips.filter(t => filteredRoutes.some(r => r.route_id === t.route_id));
-    const allowedStopTimes = stopTimes.filter(st => allowedTrips.some(t => t.trip_id === st.trip_id));
+
+    // 👇 Filtrar trips activos según calendar
+    const calendar = gtfsData[agency].calendar || [];
+    const activeServiceIds = calendar
+        .filter(s => isServiceActive(s))
+        .map(s => s.service_id);
+
+    const allowedTrips = trips.filter(
+        t => filteredRoutes.some(r => r.route_id === t.route_id) &&
+             activeServiceIds.includes(t.service_id)
+    );
+
+    const allowedStopTimes = stopTimes.filter(st =>
+        allowedTrips.some(t => t.trip_id === st.trip_id)
+    );
 
     stops.forEach(stop => {
         const stopTimesForStop = allowedStopTimes.filter(st => st.stop_id === stop.stop_id);
@@ -269,20 +282,31 @@ function displayStopTimes(agency, routeId, containerElement) {
     containerElement.appendChild(stopList);
 }
 
+function isServiceActive(service, fecha = new Date()) {
+    const yyyymmdd = fecha.toISOString().slice(0,10).replace(/-/g, ""); // YYYYMMDD
+
+    // Verificar rango de fechas
+    if (yyyymmdd < service.start_date || yyyymmdd > service.end_date) {
+        return false;
+    }
+
+    // Día de la semana (0=domingo, 1=lunes, ..., 6=sábado)
+    const dow = fecha.getDay();
+    const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+
+    return service[weekdays[dow]] === "1";
+}
+
+
 // =============================
 // 11. Iniciar app
 // =============================
 async function startApp() {
     await loadGTFSData('almassora');
-
     const map = initMap();
-
-    // Filtrado flexible: puedes poner varias agencias y rutas
     drawStopsOnMap(map, 'almassora');
-
     drawRoutes(map, 'almassora');
-
-    await loadIncidencias();
 }
+
 
 startApp();
