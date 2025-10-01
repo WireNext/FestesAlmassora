@@ -26,16 +26,25 @@ async function cargarDatosGTFS() {
 }
 
 // =======================
-// Parsear CSV a objetos
+// Parsear CSV a objetos (maneja comas dentro de comillas)
 // =======================
 function parseCSV(text, nombreArchivo) {
   const lines = text.trim().split('\n');
-  const headers = lines.shift().split(',');
+
+  // Extraer cabeceras
+  const headers = lines.shift().match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
 
   const data = lines.map(line => {
-    const values = line.split(',');
+    const values = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
     const obj = {};
-    headers.forEach((h, i) => obj[h] = values[i]);
+    headers.forEach((h, i) => {
+      let val = values[i] || '';
+      val = val.trim();
+      if (val.startsWith('"') && val.endsWith('"')) {
+        val = val.slice(1, -1); // quitar comillas
+      }
+      obj[h] = val;
+    });
     return obj;
   });
 
@@ -56,7 +65,7 @@ function parseCSV(text, nombreArchivo) {
 // Función para inicializar el mapa
 // =======================
 function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
-  const map = L.map('map').setView([39.9864, -0.0513], 14);
+  const map = L.map('map').setView([39.9829, -0.0353], 14);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
@@ -101,7 +110,12 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
   const clusterGroup = L.markerClusterGroup();
 
   stops.forEach(stop => {
-    const marker = L.marker([stop.stop_lat, stop.stop_lon], { icon: busDivIcon });
+    // Convertir lat/lon a número
+    const lat = parseFloat(stop.stop_lat);
+    const lon = parseFloat(stop.stop_lon);
+    if (isNaN(lat) || isNaN(lon)) return; // ignorar paradas inválidas
+
+    const marker = L.marker([lat, lon], { icon: busDivIcon });
     marker.bindPopup("Cargando...");
 
     marker.on('click', () => {
@@ -179,7 +193,7 @@ function iniciarMapa(stops, stopTimes, trips, routes, shapes) {
     const latlngs = puntos.map(pt => [
       parseFloat(pt.shape_pt_lat),
       parseFloat(pt.shape_pt_lon)
-    ]);
+    ]).filter(([lat, lon]) => !isNaN(lat) && !isNaN(lon)); // ignorar inválidos
 
     L.polyline(latlngs, {
       color: 'blue',
