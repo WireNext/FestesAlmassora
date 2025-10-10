@@ -636,3 +636,8 @@ const timerFunction = setInterval(function() {
     document.getElementById("countdown").style.display = "none";
   }
 }, 1000);
+
+// 🧹 Funció per tancar el banner d’avís
+document.getElementById('tancar-banner').addEventListener('click', function() {
+  document.getElementById('aviso-lluvia').style.display = 'none';
+});
