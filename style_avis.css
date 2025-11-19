@@ -1,0 +1,219 @@
+:root {
+  --color-principal: rgb(66, 173, 66);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff8f0;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  color: #333;
+  /* Espacio para el banner fijo (Escritorio) */
+  padding-top: 65px; 
+}
+
+header {
+  background: var(--color-principal);
+  color: #333;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+header h1 {
+  font-size: 2.2rem;
+}
+
+header p {
+  font-size: 1.2rem;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.dia {
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.dia-header {
+  background: var(--color-principal);
+  color: #333;
+  padding: 1.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dia-header:hover {
+  background: #8bdf64;
+}
+
+.dia-actes {
+  display: none;
+  background: #fff2da;
+  padding: 1rem;
+}
+
+.acte {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+
+.acte:last-child {
+  border-bottom: none;
+}
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Sección de cuenta atrás */
+#countdown {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: #333;
+}
+
+#countdown h2 {
+  margin-bottom: 15px;
+}
+
+#timer {
+  font-size: 1.5em;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center; 
+}
+
+.menu li {
+  display: inline;
+}
+
+.menu a {
+  text-decoration: none;
+  color: black; 
+  font-weight: bold;
+}
+
+.menu a:hover {
+  color: #e63946; 
+}
+
+nav {
+  width: 100%;
+}
+
+/* 🔔 Banner d’avís per pluges */
+#aviso-lluvia {
+  background: linear-gradient(90deg, #ffd84d, #ffcc00);
+  color: #333;
+  text-align: center;
+  padding: 15px 50px; 
+  font-size: 1.05em;*/
+  font-weight: 500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  display: flex; /* Mantiene la alineación en escritorio */
+  align-items: center;
+  justify-content: center;
+  animation: deslizar 0.6s ease;
+  border-bottom: 3px solid rgba(0,0,0,0.1);
+  height: auto; 
+}
+
+/* ⚠️ NUEVO ESTILO: Contenedor interno para forzar el ajuste del texto */
+.aviso-contenido-wrapper {
+    flex-grow: 1; /* Permite que el contenido ocupe el espacio */
+    min-width: 0; /* IMPEDIRÁ EL DESBORDAMIENTO del texto largo */
+    padding-right: 15px; /* Pequeño espacio entre el texto y el botón en escritorio */
+}
+
+/* Botón de Cerrar */
+#tancar-banner { 
+  position: absolute;
+  right: 15px;
+  top: 50%; 
+  transform: translateY(-50%); 
+  background: rgba(0,0,0,0.1);
+  border: none;
+  border-radius: 50%;
+  width: 30px; 
+  height: 30px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  transition: background 0.2s;
+}
+
+#tancar-banner:hover {
+  background: rgba(0,0,0,0.25);
+}
+
+@keyframes deslizar {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 📱 Responsive - Estilos Específicos del Banner */
+@media (max-width: 600px) {
+  /* Estilos Generales Móviles */
+  header h1 {
+    font-size: 1.8rem;
+  }
+  .dia-header {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+  .acte {
+    font-size: 1rem;
+  }
+  body {
+    padding-top: 55px; /* Espacio para el banner en móvil */
+  }
+
+  /* SOLUCIÓN AL DESBORDAMIENTO: Ajuste del padding */
+  #aviso-lluvia {
+    font-size: 0.9em;
+    /* Reducimos el padding izquierdo, y usamos el padding derecho para dejar el espacio del botón fijo */
+    padding: 10px 35px 10px 10px; 
+  }
+  
+  .icona { font-size: 1.3em; }
+
+  /* SOLUCIÓN AL DESBORDAMIENTO: Ajuste del botón */
+  #tancar-banner {
+    right: 5px; /* Acercamos el botón al borde */
+    width: 25px; 
+    height: 25px;
+    font-size: 1em;
+  }
+}

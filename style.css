@@ -78,46 +78,33 @@ footer {
   color: #555;
 }
 
-/* 📱 Responsive */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.8rem;
-  }
-  .dia-header {
-    font-size: 1.1rem;
-    padding: 1rem;
-  }
-  .acte {
-    font-size: 1rem;
-  }
+/* Sección de cuenta atrás */
+#countdown {
+  background: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  color: #333;
 }
 
-    /* Sección de cuenta atrás */
-    #countdown {
-      background: #fff;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 600px;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      color: #333;
-    }
+#countdown h2 {
+  margin-bottom: 15px;
+}
 
-    #countdown h2 {
-      margin-bottom: 15px;
-    }
+#timer {
+  font-size: 1.5em;
+}
 
-    #timer {
-      font-size: 1.5em;
-    }
-
-    .menu {
+.menu {
   list-style: none;
   padding: 0;
   margin: 10px 0 0 0;
   display: flex;
   gap: 20px;
+  justify-content: center; 
 }
 
 .menu li {
@@ -126,104 +113,14 @@ footer {
 
 .menu a {
   text-decoration: none;
-  color: #333;
+  color: black; 
   font-weight: bold;
 }
 
 .menu a:hover {
-  color: #e63946; /* cambia de color al pasar el ratón */
-}
-
-/* Quita los estilos por defecto de la lista */
-.menu {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  display: flex;              /* Activa flexbox */
-  justify-content: center;    /* Centra horizontalmente */
-  gap: 20px;                  /* Espacio entre elementos */
-}
-
-.menu li a {
-  text-decoration: none;
-  color: black;   /* Cambia según tu diseño */
-  font-weight: bold;
+  color: #e63946; 
 }
 
 nav {
   width: 100%;
-}
-
-/* 🔔 Banner d’avís per pluges */
-#aviso-lluvia {
-  background: linear-gradient(90deg, #ffd84d, #ffcc00);
-  color: #333;
-  text-align: center;
-  padding: 15px 50px;
-  font-size: 1.05em;
-  font-weight: 500;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: deslizar 0.6s ease;
-  border-bottom: 3px solid rgba(0,0,0,0.1);
-}
-
-.aviso-contenido {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 800px;
-  flex-wrap: wrap;
-}
-
-.icona {
-  font-size: 1.5em;
-  animation: gota 1.5s infinite ease-in-out;
-}
-
-@keyframes gota {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-
-.tancar-banner {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  background: rgba(0,0,0,0.1);
-  border: none;
-  border-radius: 50%;
-  width: 28px;
-  height: 28px;
-  font-size: 1.1em;
-  font-weight: bold;
-  cursor: pointer;
-  color: #333;
-  transition: background 0.2s;
-}
-
-.tancar-banner:hover {
-  background: rgba(0,0,0,0.25);
-}
-
-@keyframes deslizar {
-  from { transform: translateY(-100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* 📱 Mòbils */
-@media (max-width: 600px) {
-  #aviso-lluvia {
-    font-size: 0.95em;
-    padding: 12px 35px;
-  }
-  .icona { font-size: 1.3em; }
 }
