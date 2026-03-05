@@ -1,53 +1,86 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <title>Mapa busos Almassora</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bus Almassora 2026</title>
 
-    <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    <!-- MarkerCluster CSS (opcional si usas clustering) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
-
+    
     <style>
-        /* Ajustar el tamaño del mapa */
-        html, body {
-            height: 100%;
-            margin: 0;
-        }
+        body { margin: 0; padding: 0; background: #000; font-family: -apple-system, sans-serif; overflow: hidden; }
+        
         #map {
-            height: 100%;
+            height: 100vh;
             width: 100%;
+            background: #050505;
+            filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
         }
 
-        /* Estilos para popup de próximas salidas */
-        .parpadeo {
-            animation: parpadeo 1s infinite;
-            color: red;
-            font-weight: bold;
+        /* Panell Liquid Glass */
+        #routes-info {
+            position: absolute;
+            bottom: 110px;
+            left: 15px;
+            right: 15px;
+            max-height: 30vh;
+            overflow-y: auto;
+            z-index: 1000;
+            background: rgba(25, 25, 25, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
-        @keyframes parpadeo {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        #routes-info h3 { color: #ff3b30; margin: 0 0 10px; font-size: 16px; text-transform: uppercase; }
+
+        .stop-list { list-style: none; padding: 0; margin: 0; }
+        .stop-list li {
+            padding: 10px 0;
+            border-bottom: 0.5px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #ccc;
         }
+
+        /* CSS DE LA TAB-BAR (Molt important perquè es veja bé aquí també) */
+        .tab-bar {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            width: 210px; height: 65px;
+            background: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 35px;
+            display: flex; justify-content: space-around; align-items: center;
+            border: 0.5px solid rgba(255,255,255,0.15);
+            z-index: 2000;
+        }
+        .tab { background: none; border: none; font-size: 24px; opacity: 0.3; color: white; cursor: pointer; }
+        .tab.active { opacity: 1; filter: drop-shadow(0 0 8px #ff3b30); }
+
+        .leaflet-control-zoom { display: none; }
     </style>
 </head>
 <body>
 
     <div id="map"></div>
-    <div id="routes-info"></div> <!-- Para lista de rutas y paradas -->
+    
+    <div id="routes-info">
+        <h3>Línies de Bus</h3>
+        <div id="lista-rutas">Selecciona una parada al mapa per veure horaris.</div>
+    </div>
 
-    <!-- Leaflet JS -->
+    <nav class="tab-bar">
+        <button class="tab" onclick="location.href='inicio.html'">🏠</button>
+        <button class="tab" onclick="location.href='inicio.html#p-events'">📅</button>
+        <button class="tab active">🚌</button>
+    </nav>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <!-- MarkerCluster JS (opcional) -->
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-
-    <!-- Tu script JS -->
     <script src="script_bus.js"></script>
-
 </body>
 </html>

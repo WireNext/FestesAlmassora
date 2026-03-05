@@ -1,45 +1,82 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Festes d'Almassora</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="Favicon-Bou.webp" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Santa Quitèria 2026</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<!--    <div id="aviso-lluvia">
-    ⚠️ A causa de les pluges, alguns actes podrien ser cancel·lats o ajornats. Consulta els canals oficials per a més informació.
-    <button id="tancar-banner">✖</button>
-  </div>-->
-<header>
-  <h1>Festes d'Almassora</h1>
-  <p>Programació oficial</p>
+    <div class="bg-blur"></div>
 
-  <!-- Menú de navegación-->
-  <nav>
-    <ul class="menu">
-      <li><a href="bus.html">Bus de la festa</a></li>
-    </ul>
-  </nav>
-</header>
-      <section id="countdown">
-        <h2>Compte arrere per al xupinazo</h2>
-        <div id="timer">
-          <span id="days"></span> díes
-          <span id="hours"></span> hores
-          <span id="minutes"></span> minuts
-          <span id="seconds"></span> segons
-        </div>
-      </section>
+    <main id="app">
+        <section id="p-inici" class="page active">
+            <header>
+                <p class="subtitle">ALMASSORA 2026</p>
+                <h1>Inici</h1>
+            </header>
 
+            <div class="glass-card countdown">
+                <div id="timer">
+                    <div class="t-unit"><span id="days">00</span><label>Dies</label></div>
+                    <div class="t-unit"><span id="hours">00</span><label>Hores</label></div>
+                    <div class="t-unit"><span id="minutes">00</span><label>Min</label></div>
+                </div>
+            </div>
 
-  <main id="programacio"></main>
+            <h2 class="label">ACTES D'AVUI</h2>
+            <div class="scroll-x" id="avui-scroll"></div>
 
-  <footer>
-    <p>© 2025 Festes d'Almassora</p>
-  </footer>
+            <h2 class="label">EL TEMPS</h2>
+            <div class="glass-card weather-expanded">
+                <div id="weather-main" onclick="toggleWeatherDetails()">
+                    </div>
 
-  <script src="script.js"></script>
+                <div id="weather-details" style="display: none; margin-top: 20px; border-top: 0.5px solid var(--border); padding-top: 20px;">
+                    
+                    <p class="label-mini">PREVISIÓ PER HORES</p>
+                    <div class="scroll-x" id="hourly-forecast" style="padding: 10px 0;"></div>
+
+                    <p class="label-mini">PRÒXIMS 7 DIES</p>
+                    <div id="daily-forecast" class="daily-list"></div>
+
+                    <div class="weather-grid">
+                        <div class="weather-box">
+                            <label>VENT</label>
+                            <span id="w-wind">-- km/h</span>
+                        </div>
+                        <div class="weather-box">
+                            <label>HUMITAT</label>
+                            <span id="w-humidity">-- %</span>
+                        </div>
+                        <div class="weather-box">
+                            <label>PLUJA</label>
+                            <span id="w-rain">-- %</span>
+                        </div>
+                        <div class="weather-box">
+                            <label>ÍNDEX UV</label>
+                            <span id="w-uv">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="p-events" class="page">
+            <header>
+                <p class="subtitle">PROGRAMACIÓ</p>
+                <h1>Calendari</h1>
+            </header>
+            <div id="programacio-container"></div>
+        </section>
+    </main>
+
+    <nav class="tab-bar">
+        <button class="tab active" onclick="showPage('p-inici', this)">🏠</button>
+        <button class="tab" onclick="showPage('p-events', this)">📅</button>
+        <button class="tab" onclick="window.location.href='bus.html'">🚌</button>
+    </nav>
+
+    <script src="script.js"></script>
 </body>
 </html>
