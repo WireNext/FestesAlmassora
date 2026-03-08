@@ -1,152 +1,306 @@
+/* ==========================================
+   CONFIGURACIÓ I VARIABLES (APPLE DARK STYLE)
+   ========================================== */
 :root {
     --red: #ff3b30;
-    --glass: rgba(255, 255, 255, 0.07);
-    --border: rgba(255, 255, 255, 0.12);
+    --bg: #000000;
+    --card-bg: rgba(28, 28, 30, 0.7);
+    --glass: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.15);
+    --text-main: #ffffff;
+    --text-sec: #8e8e93;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    background: #000;
-    color: #fff;
-    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    margin: 0; padding-bottom: 110px;
-    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.4;
+    overflow-x: hidden;
 }
 
+/* Fons amb desenfocament dinàmic */
 .bg-blur {
-    position: fixed; top: 0; width: 100%; height: 100%;
-    background: radial-gradient(circle at 0% 0%, rgba(255, 59, 48, 0.15), transparent 50%);
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(circle at 0% 0%, rgba(255, 59, 48, 0.15), transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(0, 122, 255, 0.1), transparent 50%);
     z-index: -1;
 }
 
-header { padding: 50px 25px 15px; }
-header h1 { font-size: 34px; margin: 0; font-weight: 800; letter-spacing: -1px; }
-.subtitle { color: var(--red); font-weight: 700; font-size: 12px; letter-spacing: 1px; }
+/* ==========================================
+   ESTRUCTURA DE PÀGINES
+   ========================================== */
+header {
+    padding: 60px 25px 20px;
+}
 
+header h1 {
+    font-size: 34px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+}
+
+.page {
+    display: none;
+    padding-bottom: 120px; /* Espai per a la tab-bar */
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================
+   TARGETES I COMPONENTS GLASS
+   ========================================== */
 .glass-card {
     background: var(--glass);
     backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border: 0.5px solid var(--border);
     border-radius: 24px;
     margin: 0 20px 20px;
     padding: 20px;
 }
 
-/* Timer */
-#timer { display: flex; justify-content: space-around; }
-.t-unit span { font-size: 38px; font-weight: 900; color: #fff; display: block; text-shadow: 0 0 15px rgba(255,59,48,0.4); }
-.t-unit label { font-size: 10px; color: var(--red); text-transform: uppercase; font-weight: 700; }
-
-/* Scroll horizontal */
-.label { font-size: 13px; color: #888; margin: 25px 25px 12px; font-weight: 600; text-transform: uppercase; }
-.scroll-x {
-    display: flex; gap: 12px; padding: 0 20px;
-    overflow-x: auto; scrollbar-width: none;
+.label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-sec);
+    margin: 25px 25px 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
+
+/* Compte enrere */
+#timer {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.t-unit span {
+    display: block;
+    font-size: 38px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 59, 48, 0.3);
+}
+
+.t-unit label {
+    font-size: 10px;
+    color: var(--red);
+    font-weight: 700;
+}
+
+/* Scroll Horitzontal (Actes i Temps) */
+.scroll-x {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0 20px;
+    gap: 12px;
+}
+
 .scroll-x::-webkit-scrollbar { display: none; }
 
 .event-mini-card {
-    min-width: 190px;
+    min-width: 160px;
     background: var(--glass);
     border: 0.5px solid var(--border);
+    padding: 15px;
     border-radius: 20px;
-    padding: 18px;
     flex-shrink: 0;
 }
-.event-mini-card b { color: var(--red); font-size: 15px; display: block; margin-bottom: 4px; }
-.event-mini-card p { margin: 0; font-size: 13px; color: #ccc; }
 
-/* Tab Bar */
-.tab-bar {
-    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-    width: 210px; height: 65px;
-    background: rgba(30, 30, 30, 0.8);
-    backdrop-filter: blur(20px);
-    border-radius: 35px;
-    display: flex; justify-content: space-around; align-items: center;
-    border: 0.5px solid var(--border);
+.event-mini-card b {
+    color: var(--red);
+    font-size: 15px;
+    display: block;
+    margin-bottom: 4px;
 }
-.tab { background: none; border: none; font-size: 24px; opacity: 0.3; color: white; }
-.tab.active { opacity: 1; filter: drop-shadow(0 0 8px var(--red)); }
 
-/* Pàgines */
-.page { display: none; }
-.page.active { display: block; }
+.event-mini-card p {
+    margin: 0;
+    font-size: 13px;
+    color: #eee;
+    font-weight: 500;
+}
 
-/* Desplegables */
-details { background: var(--glass); border: 0.5px solid var(--border); margin: 10px 20px; border-radius: 18px; }
-summary { padding: 18px; font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
-summary::after { content: '〉'; color: var(--red); transition: 0.3s; }
-details[open] summary::after { transform: rotate(90deg); }
-.actes-llista { padding: 0 18px 18px; margin: 0; list-style: none; border-top: 0.5px solid var(--border); }
-.actes-llista li { padding: 10px 0; font-size: 14px; border-bottom: 0.5px solid rgba(255,255,255,0.05); }
+/* ==========================================
+   PROGRAMACIÓ (SELECTOR I LLISTA)
+   ========================================== */
+.days-selector {
+    margin-bottom: 10px;
+}
 
-.weather-expanded { transition: all 0.4s ease; cursor: pointer; }
-.label-mini { font-size: 10px; color: #888; font-weight: 800; margin-bottom: 10px; }
+.day-tab {
+    background: var(--glass);
+    padding: 12px 22px;
+    border-radius: 16px;
+    border: 0.5px solid var(--border);
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-sec);
+    transition: 0.3s;
+}
 
-/* Graella 2x2 */
+.day-tab.active {
+    background: var(--red);
+    color: #fff;
+    border-color: var(--red);
+    box-shadow: 0 4px 15px rgba(255, 59, 48, 0.3);
+}
+
+/* ==========================================
+   TEMPS (EL MEU TEMPS DETALLAT)
+   ========================================== */
+.weather-expanded { cursor: pointer; }
+
+.label-mini { font-size: 10px; color: var(--text-sec); font-weight: 800; margin-bottom: 10px; }
+
 .weather-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .weather-box {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.03);
     padding: 15px;
     border-radius: 18px;
     border: 0.5px solid var(--border);
 }
 
-.weather-box label { display: block; font-size: 9px; color: #888; font-weight: 700; margin-bottom: 4px; }
-.weather-box span { font-size: 16px; font-weight: 700; color: #fff; }
+.weather-box label { display: block; font-size: 9px; color: var(--text-sec); margin-bottom: 4px; font-weight: 700; }
+.weather-box span { font-size: 16px; font-weight: 700; }
 
-/* Llista vertical 7 dies */
-.daily-list { margin-bottom: 20px; }
+.hour-item {
+    text-align: center;
+    min-width: 55px;
+}
+
+.hour-item span { font-size: 11px; color: var(--text-sec); }
+.hour-item b { font-size: 14px; display: block; margin-top: 2px; }
+
 .daily-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    align-items: center;
+    padding: 10px 0;
     border-bottom: 0.5px solid rgba(255,255,255,0.05);
-    font-size: 14px;
 }
 
-/* Hourly scroll */
-.hour-item {
-    text-align: center;
-    min-width: 50px;
-    margin-right: 15px;
+/* ==========================================
+   MODAL A PANTALLA COMPLETA
+   ========================================== */
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 5000; 
+    left: 0; top: 0; 
+    width: 100%; height: 100%; 
+    background: var(--bg); 
+    overflow-y: auto;
+    animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.hour-item span { display: block; font-size: 12px; font-weight: 600; }
-.hour-item b { font-size: 14px; color: var(--red); }
 
-/* Selector de dies */
-.days-selector { display: flex; gap: 10px; padding-bottom: 10px; }
-.day-tab { 
-    background: rgba(255,255,255,0.05); 
-    padding: 10px 20px; 
-    border-radius: 12px; 
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+.modal-img { 
+    width: 100%; 
+    height: 40vh; 
+    object-fit: cover;
+    /* Difuminat inferior de la imatge */
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+.close-modal { 
+    position: fixed; 
+    right: 20px; top: 20px; 
+    width: 36px; height: 36px;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50%;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 300;
+    z-index: 5100;
+}
+
+.modal-body { padding: 0 25px 50px; margin-top: -20px; }
+.modal-body h2 { font-size: 30px; font-weight: 800; margin: 0; }
+
+.btn-map { 
+    display: flex; align-items: center; justify-content: center;
+    background: #fff; color: #000; 
+    padding: 18px; border-radius: 20px; 
+    margin-top: 30px; text-decoration: none; 
+    font-weight: 700; font-size: 16px;
+}
+
+/* ==========================================
+   NAVBAR (TAB BAR)
+   ========================================== */
+.tab-bar {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 210px;
+    height: 65px;
+    background: rgba(30, 30, 30, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 35px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     border: 0.5px solid var(--border);
-    white-space: nowrap;
+    z-index: 2000;
+}
+
+.tab {
+    background: none;
+    border: none;
+    font-size: 24px;
+    opacity: 0.3;
+    transition: 0.3s;
     cursor: pointer;
 }
-.day-tab.active { background: var(--red); color: white; border-color: var(--red); }
 
-/* Modal de detalls */
-.modal { 
-    display: none; position: fixed; z-index: 1000; left: 0; top: 0; 
-    width: 100%; height: 100%; background: rgba(0,0,0,0.8); 
-    backdrop-filter: blur(5px);
+.tab.active {
+    opacity: 1;
+    filter: drop-shadow(0 0 8px var(--red));
 }
-.modal-content { 
-    margin: 10% auto; width: 90%; max-width: 500px; 
-    overflow: hidden; padding: 0; position: relative;
-}
-.modal-img { width: 100%; height: 200px; object-fit: cover; }
-.modal-body { padding: 20px; }
-.close-modal { position: absolute; right: 15px; top: 10px; font-size: 30px; color: white; cursor: pointer; z-index: 10; }
-.btn-map { 
-    display: block; background: #4285F4; color: white; text-align: center; 
-    padding: 12px; border-radius: 10px; margin-top: 20px; text-decoration: none; 
-}
-

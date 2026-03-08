@@ -1,8 +1,8 @@
 /**
- * ENGINE SANTA QUITÈRIA 2026
+ * ENGINE SANTA QUITÈRIA 2026 - FULLSCREEN VERSION
  */
 
-let dadesProgramacio = []; // Variable global per a la programació
+let dadesProgramacio = [];
 
 // --- 1. NAVEGACIÓ I MODALS ---
 function showPage(id, btn) {
@@ -14,24 +14,28 @@ function showPage(id, btn) {
 }
 
 function openActe(idActe) {
-    let acteTrobat = null;
+    let acte = null;
     dadesProgramacio.forEach(dia => {
-        const a = dia.actes.find(item => item.id === idActe);
-        if(a) acteTrobat = a;
+        const trobat = dia.actes.find(a => a.id === idActe);
+        if(trobat) acte = trobat;
     });
 
-    if(acteTrobat) {
-        document.getElementById("modal-titol").innerText = acteTrobat.titol;
-        document.getElementById("modal-info").innerText = `🕒 ${acteTrobat.hora_inici}h - ${acteTrobat.hora_fi}h`;
-        document.getElementById("modal-desc").innerText = acteTrobat.descripcio;
-        document.getElementById("modal-img").src = acteTrobat.imatge;
-        document.getElementById("modal-map").href = acteTrobat.mapa_url;
-        document.getElementById("event-modal").style.display = "block";
+    if(acte) {
+        document.getElementById("modal-titol").innerText = acte.titol;
+        document.getElementById("modal-info").innerText = `🕒 ${acte.hora_inici}h - ${acte.hora_fi}h`;
+        document.getElementById("modal-desc").innerText = acte.descripcio;
+        document.getElementById("modal-img").src = acte.imatge;
+        document.getElementById("modal-map").href = acte.mapa_url;
+        
+        const modal = document.getElementById("event-modal");
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Bloqueja el scroll de l'app
     }
 }
 
 function closeModal() {
     document.getElementById("event-modal").style.display = "none";
+    document.body.style.overflow = "auto"; // Torna el scroll
 }
 
 function toggleWeatherDetails() {
@@ -44,11 +48,10 @@ function getWeatherIcon(code) {
     if (code <= 3) return "🌤️";
     if (code <= 48) return "🌫️";
     if (code <= 67) return "🌧️";
-    if (code <= 82) return "🌦️";
     return "☁️";
 }
 
-// --- 2. LÒGICA DE FILTRATGE DE DIES ---
+// --- 2. LÒGICA DE SELECCIÓ DE DIA ---
 function selectDay(diaID, element) {
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
@@ -62,15 +65,14 @@ function selectDay(diaID, element) {
             const card = document.createElement("div");
             card.className = "glass-card";
             card.style.marginBottom = "15px";
-            card.style.cursor = "pointer";
             card.onclick = () => openActe(acte.id);
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div>
-                        <b style="font-size:16px; display:block;">${acte.titol}</b>
-                        <span style="font-size:13px; color:var(--red); font-weight:600;">🕒 ${acte.hora_inici}h</span>
+                        <b style="font-size:17px; display:block;">${acte.titol}</b>
+                        <span style="font-size:13px; color:var(--red); font-weight:700;">🕒 ${acte.hora_inici}h</span>
                     </div>
-                    <span style="font-size:18px; opacity:0.5;">〉</span>
+                    <span style="opacity:0.3;">〉</span>
                 </div>
             `;
             container.appendChild(card);
@@ -81,9 +83,12 @@ function selectDay(diaID, element) {
 // --- 3. INICIALITZACIÓ ---
 document.addEventListener("DOMContentLoaded", () => {
     const ara = new Date();
-    const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
+    // Forçar data per a proves o usar la real
+    const y = ara.getFullYear();
+    const m = String(ara.getMonth() + 1).padStart(2, '0');
+    const d = String(ara.getDate()).padStart(2, '0');
+    const avuiISO = `${y}-${m}-${d}`;
 
-    // A. Carregar Programació
     fetch('programacion.json')
     .then(r => r.json())
     .then(data => {
@@ -92,19 +97,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const avuiScroll = document.getElementById("avui-scroll");
 
         data.forEach((dia, index) => {
-            // Crear pestanyes de dies
+            // Pestanyes horitzontals
             const btn = document.createElement("div");
             btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            // Actes d'avui per a la pestanya inici
+            // Actes d'avui (Pestanya Inici)
             if(dia.data_iso === avuiISO) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
                     mini.className = "event-mini-card";
-                    mini.onclick = () => { showPage('p-events', document.querySelectorAll('.tab')[1]); selectDay(dia.dia_id, document.querySelectorAll('.day-tab')[index]); };
+                    mini.onclick = () => openActe(acte.id); // Obre directament el modal
                     mini.innerHTML = `<b>${acte.hora_inici}h</b><p>${acte.titol}</p>`;
                     avuiScroll.appendChild(mini);
                 });
@@ -115,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if(data.length > 0) selectDay(data[0].dia_id, tabsCont.firstChild);
     });
 
-    // B. Compte Enrere
+    // Compte enrere
     const target = new Date("May 10, 2026 00:00:00").getTime();
     setInterval(() => {
         const diff = target - new Date().getTime();
@@ -126,19 +131,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 1000);
 
-    // C. El Temps
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,precipitation_probability,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,uv_index_max&timezone=auto")
+    // Temps (Simplificat per a l'exemple, manté la teua lògica d'icones)
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
     .then(r => r.json()).then(d => {
         const h = ara.getHours();
-        document.getElementById("weather-main").innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div><b style="font-size:18px;">Almassora</b><br><small style="color:#888;">Previsió detallada</small></div>
-                <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${getWeatherIcon(d.current_weather.weathercode)}</span>
-            </div>`;
+        const weatherMain = document.getElementById("weather-main");
+        if(weatherMain) {
+            weatherMain.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a detalls</small></div>
+                    <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${getWeatherIcon(d.current_weather.weathercode)}</span>
+                </div>`;
+        }
         
         const hCont = document.getElementById("hourly-forecast");
-        for(let i=h; i<h+12; i++) {
-            hCont.innerHTML += `<div class="hour-item"><span>${i}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${getWeatherIcon(d.hourly.weather_code[i])}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
+        if(hCont) {
+            for(let i=h; i<h+12; i++) {
+                hCont.innerHTML += `<div class="hour-item"><span>${i}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${getWeatherIcon(d.hourly.weather_code[i])}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
+            }
         }
         
         document.getElementById("w-wind").innerText = d.current_weather.windspeed + " km/h";
