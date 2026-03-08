@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Santa Quitèria 2026</title>
+    <title>Almassora 2026</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <main id="app">
         <section id="p-inici" class="page active">
             <header>
-                <p class="subtitle">ALMASSORA 2026</p>
+                <p class="subtitle">SANTA QUITERIA 2026</p>
                 <h1>Inici</h1>
             </header>
 
@@ -31,32 +31,16 @@
             <div class="glass-card weather-expanded">
                 <div id="weather-main" onclick="toggleWeatherDetails()">
                     </div>
-
                 <div id="weather-details" style="display: none; margin-top: 20px; border-top: 0.5px solid var(--border); padding-top: 20px;">
-                    
                     <p class="label-mini">PREVISIÓ PER HORES</p>
                     <div class="scroll-x" id="hourly-forecast" style="padding: 10px 0;"></div>
-
                     <p class="label-mini">PRÒXIMS 7 DIES</p>
                     <div id="daily-forecast" class="daily-list"></div>
-
                     <div class="weather-grid">
-                        <div class="weather-box">
-                            <label>VENT</label>
-                            <span id="w-wind">-- km/h</span>
-                        </div>
-                        <div class="weather-box">
-                            <label>HUMITAT</label>
-                            <span id="w-humidity">-- %</span>
-                        </div>
-                        <div class="weather-box">
-                            <label>PLUJA</label>
-                            <span id="w-rain">-- %</span>
-                        </div>
-                        <div class="weather-box">
-                            <label>ÍNDEX UV</label>
-                            <span id="w-uv">--</span>
-                        </div>
+                        <div class="weather-box"><label>VENT</label><span id="w-wind">--</span></div>
+                        <div class="weather-box"><label>HUMITAT</label><span id="w-humidity">--</span></div>
+                        <div class="weather-box"><label>PLUJA</label><span id="w-rain">--</span></div>
+                        <div class="weather-box"><label>ÍNDEX UV</label><span id="w-uv">--</span></div>
                     </div>
                 </div>
             </div>
@@ -67,9 +51,25 @@
                 <p class="subtitle">PROGRAMACIÓ</p>
                 <h1>Calendari</h1>
             </header>
-            <div id="programacio-container"></div>
+            
+            <div class="days-selector scroll-x" id="days-tabs" style="padding: 0 20px;"></div>
+
+            <div id="events-list-container" style="padding: 20px;"></div>
         </section>
     </main>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal" onclick="closeModal()">×</span>
+            <img id="modal-img" class="modal-img" src="" alt="">
+            <div class="modal-body">
+                <h2 id="modal-titol"></h2>
+                <p id="modal-info" style="color:var(--red); font-weight:700; margin: 10px 0;"></p>
+                <p id="modal-desc" style="line-height: 1.5; color: #ddd;"></p>
+                <a id="modal-map" href="" target="_blank" class="btn-map">📍 Com arribar-hi</a>
+            </div>
+        </div>
+    </div>
 
     <nav class="tab-bar">
         <button class="tab active" onclick="showPage('p-inici', this)">🏠</button>
