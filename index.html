@@ -63,6 +63,11 @@ img {
   </style>
 </head>
 <body>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
   <h1>Queden</h1><br>
   <section id="countdown">
     <h2>
