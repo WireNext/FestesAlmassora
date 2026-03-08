@@ -1,0 +1,14 @@
+[
+  {
+    "id": "av1",
+    "titol": "Canvi d'ubicació",
+    "text": "La mascletà d'avui es trasllada al carrer Major per motius tècnics.",
+    "tipus": "important"
+  },
+  {
+    "id": "av2",
+    "titol": "Previsió de pluja",
+    "text": "Estigueu atents a les xarxes socials per possibles canvis en els actes de la vesprada.",
+    "tipus": "info"
+  }
+]

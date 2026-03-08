@@ -1,11 +1,11 @@
 /**
  * ENGINE SANTA QUITÈRIA 2026 
- * Gestió de JSON + Pantalla Completa + Temps
+ * Gestió de JSON (Avisos + Programació) + Temps + Pantalla Completa
  */
 
-let dadesProgramacio = []; // Variable global per a les dades del JSON
+let dadesProgramacio = []; // Variable global per a la programació
 
-// --- 1. NAVEGACIÓ ENTRE PESTANYES ---
+// --- 1. NAVEGACIÓ ENTRE PESTANYES PRINCIPALS ---
 function showPage(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -14,7 +14,37 @@ function showPage(id, btn) {
     window.scrollTo(0, 0);
 }
 
-// --- 2. GESTIÓ DEL DETALL DE L'ACTE (PANTALLA COMPLETA) ---
+// --- 2. GESTIÓ D'AVISOS DINÀMICS ---
+function carregarAvisos() {
+    fetch('avisos.json')
+    .then(r => r.json())
+    .then(avisos => {
+        const container = document.getElementById("seccio-avisos");
+        if (!avisos || avisos.length === 0) {
+            container.innerHTML = ""; // No apareix res si el JSON està buit []
+            return;
+        }
+
+        let htmlAvisos = '<h2 class="label">AVISOS D\'ÚLTIMA HORA</h2>';
+        avisos.forEach(a => {
+            htmlAvisos += `
+                <div class="avís-card ${a.tipus}">
+                    <div class="avís-icon">${a.tipus === 'important' ? '⚠️' : 'ℹ️'}</div>
+                    <div class="avís-contingut">
+                        <b>${a.titol}</b>
+                        <p>${a.text}</p>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = htmlAvisos;
+    })
+    .catch(() => {
+        document.getElementById("seccio-avisos").innerHTML = "";
+    });
+}
+
+// --- 3. PANTALLA COMPLETA DE DETALL D'ACTE ---
 function openActe(idActe) {
     let acte = null;
     dadesProgramacio.forEach(dia => {
@@ -23,24 +53,22 @@ function openActe(idActe) {
     });
 
     if(acte) {
+        // Omplim dades textuals
         document.getElementById("modal-img").src = acte.imatge;
         document.getElementById("modal-titol").innerText = acte.titol;
         document.getElementById("modal-info").innerText = `${acte.hora_inici}h - ${acte.hora_fi}h`;
         document.getElementById("modal-desc").innerText = acte.descripcio;
         
-        // Generem la URL del mapa interactiu (Embed)
-        // L'acte ha de tindre un camp "ubicacio" al JSON (ex: "Plaça de la Vila, Almassora")
+        // MAPA INTERACTIU: Generem l'iframe dinàmicament
         const query = encodeURIComponent(acte.ubicacio + ", Almassora");
-        const mapUrl = `https://www.google.com/maps/embed/v1/place?key=LA_TEUA_API_KEY&q=${query}`;
+        const mapUrl = `https://maps.google.com/maps?q=${query}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+        document.getElementById("modal-map-frame").src = mapUrl;
         
-        // Si no tens API Key de Google, podem usar el mètode sense Key (més limitat):
-        const mapUrlNoKey = `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
-        
-        document.getElementById("modal-map-frame").src = mapUrlNoKey;
-        document.getElementById("modal-map-link").href = `https://www.google.com/maps/search/?api=1&query=${query}`;
-        
+        // Mostrem la pàgina de detall
         const page = document.getElementById("event-modal");
         page.style.display = "block";
+        
+        // Bloquegem l'scroll de l'app principal
         document.body.style.position = 'fixed';
         document.body.style.width = '100%';
     }
@@ -48,10 +76,14 @@ function openActe(idActe) {
 
 function closeModal() {
     document.getElementById("event-modal").style.display = "none";
-    document.body.style.overflow = "auto";
+    document.getElementById("modal-map-frame").src = ""; // Netegem el mapa per seguretat
+    
+    // Tornem l'scroll a la normalitat
+    document.body.style.position = '';
+    document.body.style.width = '';
 }
 
-// --- 3. FILTRATGE PER DIES ---
+// --- 4. FILTRATGE DE PROGRAMACIÓ PER DIES ---
 function selectDay(diaID, element) {
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
@@ -65,7 +97,6 @@ function selectDay(diaID, element) {
             const card = document.createElement("div");
             card.className = "glass-card";
             card.style.marginBottom = "15px";
-            card.style.cursor = "pointer";
             card.onclick = () => openActe(acte.id);
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -81,30 +112,53 @@ function selectDay(diaID, element) {
     }
 }
 
-// --- 4. TEMPS I UTILITATS ---
+// --- 5. LÒGICA DE L'ORATGE (API) ---
+function carregarTemps() {
+    const ara = new Date();
+    fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
+    .then(r => r.json()).then(d => {
+        const h = ara.getHours();
+        
+        // Icona i temperatura actual
+        const icons = { 0: "☀️", 1: "🌤️", 2: "🌤️", 3: "☁️", 45: "🌫️", 61: "🌧️", 80: "🌦️" };
+        const iconActual = icons[d.current_weather.weathercode] || "☁️";
+
+        document.getElementById("weather-main").innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a detalls</small></div>
+                <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${iconActual}</span>
+            </div>`;
+        
+        // Previsió per hores
+        const hCont = document.getElementById("hourly-forecast");
+        hCont.innerHTML = "";
+        for(let i=h; i<h+12; i++) {
+            const iconH = icons[d.hourly.weather_code[i]] || "☁️";
+            hCont.innerHTML += `<div class="hour-item"><span>${i % 24}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${iconH}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
+        }
+        
+        // Widgets extra
+        document.getElementById("w-wind").innerText = d.current_weather.windspeed + " km/h";
+        document.getElementById("w-humidity").innerText = d.hourly.relative_humidity_2m[h] + "%";
+        document.getElementById("w-rain").innerText = d.hourly.precipitation_probability[h] + "%";
+        document.getElementById("w-uv").innerText = d.daily.uv_index_max[0];
+    });
+}
+
 function toggleWeatherDetails() {
     const d = document.getElementById('weather-details');
     d.style.display = d.style.display === 'none' ? 'block' : 'none';
 }
 
-function getWeatherIcon(code) {
-    if (code === 0) return "☀️";
-    if (code <= 3) return "🌤️";
-    if (code <= 48) return "🌫️";
-    if (code <= 67) return "🌧️";
-    if (code <= 82) return "🌦️";
-    return "☁️";
-}
-
-// --- 5. INICIALITZACIÓ (DOM LOADED) ---
+// --- 6. INICIALITZACIÓ GENERAL ---
 document.addEventListener("DOMContentLoaded", () => {
-    const ara = new Date();
-    const y = ara.getFullYear();
-    const m = String(ara.getMonth() + 1).padStart(2, '0');
-    const d = String(ara.getDate()).padStart(2, '0');
-    const avuiISO = `${y}-${m}-${d}`;
+    // A. Carregar Avisos
+    carregarAvisos();
 
-    // A. Carregar Programació des de JSON
+    // B. Carregar Programació
+    const ara = new Date();
+    const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
+
     fetch('programacion.json')
     .then(r => r.json())
     .then(data => {
@@ -113,14 +167,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const avuiScroll = document.getElementById("avui-scroll");
 
         data.forEach((dia, index) => {
-            // Pestanyes de dies
+            // Crear pestanyes de dies
             const btn = document.createElement("div");
             btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            // Omplir Inici si coincideix amb data d'avui
+            // Omplir actes d'avui en Inici
             if(dia.data_iso === avuiISO) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
@@ -136,7 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if(data.length > 0) selectDay(data[0].dia_id, tabsCont.firstChild);
     });
 
-    // B. Compte Enrere
+    // C. Carregar Temps
+    carregarTemps();
+
+    // D. Compte Enrere
     const target = new Date("May 10, 2026 00:00:00").getTime();
     setInterval(() => {
         const diff = target - new Date().getTime();
@@ -146,25 +203,4 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("minutes").innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
         }
     }, 1000);
-
-    // C. API del Temps
-    fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
-    .then(r => r.json()).then(data => {
-        const h = ara.getHours();
-        document.getElementById("weather-main").innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a la previsió</small></div>
-                <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(data.current_weather.temperature)}°C ${getWeatherIcon(data.current_weather.weathercode)}</span>
-            </div>`;
-        
-        const hCont = document.getElementById("hourly-forecast");
-        for(let i=h; i<h+12; i++) {
-            hCont.innerHTML += `<div class="hour-item"><span>${i}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${getWeatherIcon(data.hourly.weather_code[i])}</span><b>${Math.round(data.hourly.temperature_2m[i])}°</b></div>`;
-        }
-        
-        document.getElementById("w-wind").innerText = data.current_weather.windspeed + " km/h";
-        document.getElementById("w-humidity").innerText = data.hourly.relative_humidity_2m[h] + "%";
-        document.getElementById("w-rain").innerText = data.hourly.precipitation_probability[h] + "%";
-        document.getElementById("w-uv").innerText = data.daily.uv_index_max[0];
-    });
 });
