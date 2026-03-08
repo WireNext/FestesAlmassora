@@ -1,0 +1,16 @@
+{
+  "name": "Santa Quitèria Almassora 2026",
+  "short_name": "Almassora 2026",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ff3b30",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
