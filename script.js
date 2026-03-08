@@ -16,7 +16,6 @@ function showPage(id, btn) {
 
 // --- 2. GESTIÓ DEL DETALL DE L'ACTE (PANTALLA COMPLETA) ---
 function openActe(idActe) {
-    // Busquem l'acte dins de dadesProgramacio
     let acte = null;
     dadesProgramacio.forEach(dia => {
         const trobat = dia.actes.find(a => a.id === idActe);
@@ -24,17 +23,26 @@ function openActe(idActe) {
     });
 
     if(acte) {
-        // Omplim la interfície amb les dades del JSON
         document.getElementById("modal-img").src = acte.imatge;
         document.getElementById("modal-titol").innerText = acte.titol;
         document.getElementById("modal-info").innerText = `${acte.hora_inici}h - ${acte.hora_fi}h`;
         document.getElementById("modal-desc").innerText = acte.descripcio;
-        document.getElementById("modal-map").href = acte.mapa_url;
         
-        // Mostrem el modal i bloquegem l'scroll del fons
-        const modal = document.getElementById("event-modal");
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; 
+        // Generem la URL del mapa interactiu (Embed)
+        // L'acte ha de tindre un camp "ubicacio" al JSON (ex: "Plaça de la Vila, Almassora")
+        const query = encodeURIComponent(acte.ubicacio + ", Almassora");
+        const mapUrl = `https://www.google.com/maps/embed/v1/place?key=LA_TEUA_API_KEY&q=${query}`;
+        
+        // Si no tens API Key de Google, podem usar el mètode sense Key (més limitat):
+        const mapUrlNoKey = `https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+        
+        document.getElementById("modal-map-frame").src = mapUrlNoKey;
+        document.getElementById("modal-map-link").href = `https://www.google.com/maps/search/?api=1&query=${query}`;
+        
+        const page = document.getElementById("event-modal");
+        page.style.display = "block";
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
     }
 }
 

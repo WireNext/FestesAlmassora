@@ -12,7 +12,7 @@
         "hora_fi": "12:30",
         "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
         "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
-        "mapa_url": "https://www.google.com/maps?q=39.94,-0.06"
+        "ubicacio": "Plaça doctor fleming"
       },
       {
         "id": "a2",
@@ -21,7 +21,7 @@
         "hora_fi": "02:00",
         "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
         "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
-        "mapa_url": "https://www.google.com/maps?q=39.945,-0.065"
+        "ubicacio": "Plaça Major"
       }
     ]
   }

@@ -58,18 +58,38 @@
         </section>
     </main>
 
-    <div id="event-modal" class="modal">
-        <div class="modal-content glass-card">
-            <span class="close-modal" onclick="closeModal()">×</span>
-            <img id="modal-img" class="modal-img" src="" alt="">
-            <div class="modal-body">
-                <h2 id="modal-titol"></h2>
-                <p id="modal-info" style="color:var(--red); font-weight:700; margin: 10px 0;"></p>
-                <p id="modal-desc" style="line-height: 1.5; color: #ddd;"></p>
-                <a id="modal-map" href="" target="_blank" class="btn-map">📍 Com arribar-hi</a>
+        <div id="event-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="close-modal" onclick="closeModal()">
+                        <span>〈</span> Tornar
+                    </div>
+                    <img id="modal-img" src="" alt="Portada">
+                </div>
+                <div class="modal-body">
+                    <div id="modal-info" class="event-time-badge"></div>
+                    <h2 id="modal-titol"></h2>
+                    <p id="modal-desc" class="modal-desc"></p>
+                    
+                    <h3 class="label-mini" style="margin-top: 30px;">UBICACIÓ</h3>
+                    <div class="map-container">
+                        <iframe 
+                            id="modal-map-frame" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 18px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <a id="modal-map-link" href="" target="_blank" class="btn-map-sec">
+                        Obrir en l'App de Mapes ➔
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
     <nav class="tab-bar">
         <button class="tab active" onclick="showPage('p-inici', this)">🏠</button>
