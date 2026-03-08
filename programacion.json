@@ -27,6 +27,32 @@
   },
   {
     "dia_id": "dia1",
+    "data_iso": "2026-03-09",
+    "titol_curt": "Dl 9",
+    "titol_llarg": "Dilluns 9 de març",
+    "actes": [
+      {
+        "id": "a1",
+        "titol": "Mascletà d'Inici",
+        "hora_inici": "12:00",
+        "hora_fi": "12:30",
+        "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
+        "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
+        "ubicacio": "Plaça doctor fleming"
+      },
+      {
+        "id": "a2",
+        "titol": "Orquestra Liquid Glass",
+        "hora_inici": "22:00",
+        "hora_fi": "02:00",
+        "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
+        "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
+        "ubicacio": "Plaça Major"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia1",
     "data_iso": "2026-05-15",
     "titol_curt": "Dv 15",
     "titol_llarg": "Divendres 15 de maig - L'Esclat",
