@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ENS VEIEM EN 2026 🐂</title>
+  <link rel="icon" href="rellotge.png" type="image/x-icon">
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icon-512.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ocupar tota la pantalla */
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    #countdown {
+      margin-bottom: 20px;
+    }
+
+img {
+  width: 100%;
+  max-width: 700px;  /* Màxim en pantalles grans */
+  height: auto;
+  margin: 20px 0;
+  display: block;
+  object-fit: contain;
+}
+
+    p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    #timer {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    /* 📱 Ajustos per a mòbils */
+    @media (max-width: 600px) {
+      #timer {
+        font-size: 1.2em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
+  <h1>Queden</h1><br>
+  <section id="countdown">
+    <h2>
+      <div id="timer">
+        <span id="days"></span> dies 
+        <span id="hours"></span> hores 
+        <span id="minutes"></span> minuts 
+        <span id="seconds"></span> segons
+      </div>
+    </h2>
+  </section>
+  <h1>per a Santa Quitera 2026</h2>
+
+
+  <img src="SantaQuiteria.jpg" alt="Imatge Santa Quiteria">
+
+  <script>
+    // 📅 Data d'inici de les festes
+    const eventDate = new Date("May 10, 2026 00:00:00").getTime();
+
+    const timerFunction = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      if (distance < 0) {
+        clearInterval(timerFunction);
+        document.getElementById("timer").innerText = "¡JA ESTAN ACÍ LES FESTES!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

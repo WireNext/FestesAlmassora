@@ -1,112 +1,116 @@
 <!DOCTYPE html>
 <html lang="ca">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ENS VEIEM EN 2026 🐂</title>
-  <link rel="icon" href="rellotge.png" type="image/x-icon">
-  <link rel="manifest" href="manifest.json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Santa Quiteria 2026</title>
+    <link rel="icon" href="icon-512.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+      <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="apple-touch-icon" href="icon-512.png">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh; /* Ocupar tota la pantalla */
-      text-align: center;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 20px;
-    }
-
-    #countdown {
-      margin-bottom: 20px;
-    }
-
-img {
-  width: 100%;
-  max-width: 700px;  /* Màxim en pantalles grans */
-  height: auto;
-  margin: 20px 0;
-  display: block;
-  object-fit: contain;
-}
-
-    p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-
-    #timer {
-      font-size: 1.5em;
-      font-weight: bold;
-    }
-
-    /* 📱 Ajustos per a mòbils */
-    @media (max-width: 600px) {
-      #timer {
-        font-size: 1.2em;
-      }
-      p {
-        font-size: 1em;
-      }
-    }
-  </style>
 </head>
 <body>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
-  <h1>Queden</h1><br>
-  <section id="countdown">
-    <h2>
-      <div id="timer">
-        <span id="days"></span> dies 
-        <span id="hours"></span> hores 
-        <span id="minutes"></span> minuts 
-        <span id="seconds"></span> segons
-      </div>
-    </h2>
-  </section>
-  <h1>per a Santa Quitera 2026</h2>
+    <div class="bg-blur"></div>
 
+    <main id="app">
+        <section id="p-inici" class="page active">
+            <header>
+                <p class="subtitle">SANTA QUITERIA 2026</p>
+                <h1>Inici</h1>
+            </header>
 
-  <img src="SantaQuiteria.jpg" alt="Imatge Santa Quiteria">
+            <div class="glass-card countdown" id="timer-wrapper">
+                <div id="timer">
+                    <div class="t-unit"><span id="days">00</span><label>Dies</label></div>
+                    <div class="t-unit"><span id="hours">00</span><label>Hores</label></div>
+                    <div class="t-unit"><span id="minutes">00</span><label>Min</label></div>
+                    <div class="t-unit"><span id="seconds">00</span><label>Seg</label></div>
+                </div>
+            </div>
 
-  <script>
-    // 📅 Data d'inici de les festes
-    const eventDate = new Date("May 10, 2026 00:00:00").getTime();
+            <div id="seccio-avisos"></div>
 
-    const timerFunction = setInterval(function() {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
+            <div class="ads-container">
+                <small style="color: #444; display: block; text-align: center; margin-bottom: 5px;">PUBLICITAT</small>
+                <div class="ads-placeholder">
+                    </div>
+            </div>
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            <h2 class="label">ACTES D'AVUI</h2>
+            <div class="scroll-x" id="avui-scroll"></div>
 
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
+            <h2 class="label">EL TEMPS</h2>
+            <div class="glass-card weather-expanded">
+                <div id="weather-main" onclick="toggleWeatherDetails()">
+                    </div>
+                <div id="weather-details" style="display: none; margin-top: 20px; border-top: 0.5px solid var(--border); padding-top: 20px;">
+                    <p class="label-mini">PREVISIÓ PER HORES</p>
+                    <div class="scroll-x" id="hourly-forecast" style="padding: 10px 0;"></div>
+                    <p class="label-mini">PRÒXIMS 7 DIES</p>
+                    <div id="daily-forecast" class="daily-list"></div>
+                    <div class="weather-grid">
+                        <div class="weather-box"><label>VENT</label><span id="w-wind">--</span></div>
+                        <div class="weather-box"><label>HUMITAT</label><span id="w-humidity">--</span></div>
+                        <div class="weather-box"><label>PLUJA</label><span id="w-rain">--</span></div>
+                        <div class="weather-box"><label>ÍNDEX UV</label><span id="w-uv">--</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      if (distance < 0) {
-        clearInterval(timerFunction);
-        document.getElementById("timer").innerText = "¡JA ESTAN ACÍ LES FESTES!";
-      }
-    }, 1000);
-  </script>
+        <section id="p-events" class="page">
+            <header>
+                <p class="subtitle">PROGRAMACIÓ</p>
+                <h1>Calendari</h1>
+            </header>
+            
+            <div class="days-selector scroll-x" id="days-tabs" style="padding: 0 20px;"></div>
+
+            <div id="events-list-container" style="padding: 20px;"></div>
+        </section>
+    </main>
+
+        <div id="event-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="close-modal" onclick="closeModal()">
+                        <span>〈</span> Tornar
+                    </div>
+                    <img id="modal-img" src="" alt="Portada">
+                </div>
+                <div class="modal-body">
+                    <div id="modal-info" class="event-time-badge"></div>
+                    <h2 id="modal-titol"></h2>
+                    <p id="modal-desc" class="modal-desc"></p>
+                    
+                    <h3 class="label-mini" style="margin-top: 30px;">UBICACIÓ</h3>
+                    <div class="map-container">
+                        <iframe 
+                            id="modal-map-frame" 
+                            width="100%" 
+                            height="250" 
+                            style="border:0; border-radius: 18px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <a id="modal-map-link" href="" target="_blank" class="btn-map-sec">
+                        Obrir en l'App de Mapes ➔
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    <nav class="tab-bar">
+        <button class="tab active" onclick="showPage('p-inici', this)">🏠</button>
+        <button class="tab" onclick="showPage('p-events', this)">📅</button>
+        <button class="tab" onclick="window.location.href='bus.html'">🚌</button>
+    </nav>
+
+    <script src="script.js"></script>
 </body>
 </html>

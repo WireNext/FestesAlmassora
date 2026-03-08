@@ -403,3 +403,19 @@ header h1 {
     50% { transform: scale(1.05); opacity: 0.8; }
     100% { transform: scale(1); opacity: 1; }
 }
+
+.ads-container {
+    margin: 20px;
+    text-align: center;
+}
+
+.ads-placeholder {
+    width: 100%;
+    min-height: 100px; /* Alçada estàndard de banner mòbil */
+    background: rgba(255, 255, 255, 0.03); /* Molt suau */
+    border-radius: 15px;
+    border: 0.5px dashed var(--border); /* Ratlletes per saber on va */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
