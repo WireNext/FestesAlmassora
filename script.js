@@ -1,10 +1,11 @@
 /**
- * ENGINE SANTA QUITÈRIA 2026 - FULLSCREEN VERSION
+ * ENGINE SANTA QUITÈRIA 2026 
+ * Gestió de JSON + Pantalla Completa + Temps
  */
 
-let dadesProgramacio = [];
+let dadesProgramacio = []; // Variable global per a les dades del JSON
 
-// --- 1. NAVEGACIÓ I MODALS ---
+// --- 1. NAVEGACIÓ ENTRE PESTANYES ---
 function showPage(id, btn) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -13,7 +14,9 @@ function showPage(id, btn) {
     window.scrollTo(0, 0);
 }
 
+// --- 2. GESTIÓ DEL DETALL DE L'ACTE (PANTALLA COMPLETA) ---
 function openActe(idActe) {
+    // Busquem l'acte dins de dadesProgramacio
     let acte = null;
     dadesProgramacio.forEach(dia => {
         const trobat = dia.actes.find(a => a.id === idActe);
@@ -21,37 +24,26 @@ function openActe(idActe) {
     });
 
     if(acte) {
-        document.getElementById("modal-titol").innerText = acte.titol;
-        document.getElementById("modal-info").innerText = `🕒 ${acte.hora_inici}h - ${acte.hora_fi}h`;
-        document.getElementById("modal-desc").innerText = acte.descripcio;
+        // Omplim la interfície amb les dades del JSON
         document.getElementById("modal-img").src = acte.imatge;
+        document.getElementById("modal-titol").innerText = acte.titol;
+        document.getElementById("modal-info").innerText = `${acte.hora_inici}h - ${acte.hora_fi}h`;
+        document.getElementById("modal-desc").innerText = acte.descripcio;
         document.getElementById("modal-map").href = acte.mapa_url;
         
+        // Mostrem el modal i bloquegem l'scroll del fons
         const modal = document.getElementById("event-modal");
         modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Bloqueja el scroll de l'app
+        document.body.style.overflow = "hidden"; 
     }
 }
 
 function closeModal() {
     document.getElementById("event-modal").style.display = "none";
-    document.body.style.overflow = "auto"; // Torna el scroll
+    document.body.style.overflow = "auto";
 }
 
-function toggleWeatherDetails() {
-    const d = document.getElementById('weather-details');
-    d.style.display = d.style.display === 'none' ? 'block' : 'none';
-}
-
-function getWeatherIcon(code) {
-    if (code === 0) return "☀️";
-    if (code <= 3) return "🌤️";
-    if (code <= 48) return "🌫️";
-    if (code <= 67) return "🌧️";
-    return "☁️";
-}
-
-// --- 2. LÒGICA DE SELECCIÓ DE DIA ---
+// --- 3. FILTRATGE PER DIES ---
 function selectDay(diaID, element) {
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
@@ -65,6 +57,7 @@ function selectDay(diaID, element) {
             const card = document.createElement("div");
             card.className = "glass-card";
             card.style.marginBottom = "15px";
+            card.style.cursor = "pointer";
             card.onclick = () => openActe(acte.id);
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -80,15 +73,30 @@ function selectDay(diaID, element) {
     }
 }
 
-// --- 3. INICIALITZACIÓ ---
+// --- 4. TEMPS I UTILITATS ---
+function toggleWeatherDetails() {
+    const d = document.getElementById('weather-details');
+    d.style.display = d.style.display === 'none' ? 'block' : 'none';
+}
+
+function getWeatherIcon(code) {
+    if (code === 0) return "☀️";
+    if (code <= 3) return "🌤️";
+    if (code <= 48) return "🌫️";
+    if (code <= 67) return "🌧️";
+    if (code <= 82) return "🌦️";
+    return "☁️";
+}
+
+// --- 5. INICIALITZACIÓ (DOM LOADED) ---
 document.addEventListener("DOMContentLoaded", () => {
     const ara = new Date();
-    // Forçar data per a proves o usar la real
     const y = ara.getFullYear();
     const m = String(ara.getMonth() + 1).padStart(2, '0');
     const d = String(ara.getDate()).padStart(2, '0');
     const avuiISO = `${y}-${m}-${d}`;
 
+    // A. Carregar Programació des de JSON
     fetch('programacion.json')
     .then(r => r.json())
     .then(data => {
@@ -97,30 +105,30 @@ document.addEventListener("DOMContentLoaded", () => {
         const avuiScroll = document.getElementById("avui-scroll");
 
         data.forEach((dia, index) => {
-            // Pestanyes horitzontals
+            // Pestanyes de dies
             const btn = document.createElement("div");
             btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            // Actes d'avui (Pestanya Inici)
+            // Omplir Inici si coincideix amb data d'avui
             if(dia.data_iso === avuiISO) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
                     mini.className = "event-mini-card";
-                    mini.onclick = () => openActe(acte.id); // Obre directament el modal
+                    mini.onclick = () => openActe(acte.id);
                     mini.innerHTML = `<b>${acte.hora_inici}h</b><p>${acte.titol}</p>`;
                     avuiScroll.appendChild(mini);
                 });
             }
         });
 
-        if(avuiScroll.innerHTML === "") avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
+        if(avuiScroll && avuiScroll.innerHTML === "") avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
         if(data.length > 0) selectDay(data[0].dia_id, tabsCont.firstChild);
     });
 
-    // Compte enrere
+    // B. Compte Enrere
     const target = new Date("May 10, 2026 00:00:00").getTime();
     setInterval(() => {
         const diff = target - new Date().getTime();
@@ -131,29 +139,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, 1000);
 
-    // Temps (Simplificat per a l'exemple, manté la teua lògica d'icones)
+    // C. API del Temps
     fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
-    .then(r => r.json()).then(d => {
+    .then(r => r.json()).then(data => {
         const h = ara.getHours();
-        const weatherMain = document.getElementById("weather-main");
-        if(weatherMain) {
-            weatherMain.innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a detalls</small></div>
-                    <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${getWeatherIcon(d.current_weather.weathercode)}</span>
-                </div>`;
-        }
+        document.getElementById("weather-main").innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a la previsió</small></div>
+                <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(data.current_weather.temperature)}°C ${getWeatherIcon(data.current_weather.weathercode)}</span>
+            </div>`;
         
         const hCont = document.getElementById("hourly-forecast");
-        if(hCont) {
-            for(let i=h; i<h+12; i++) {
-                hCont.innerHTML += `<div class="hour-item"><span>${i}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${getWeatherIcon(d.hourly.weather_code[i])}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
-            }
+        for(let i=h; i<h+12; i++) {
+            hCont.innerHTML += `<div class="hour-item"><span>${i}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${getWeatherIcon(data.hourly.weather_code[i])}</span><b>${Math.round(data.hourly.temperature_2m[i])}°</b></div>`;
         }
         
-        document.getElementById("w-wind").innerText = d.current_weather.windspeed + " km/h";
-        document.getElementById("w-humidity").innerText = d.hourly.relative_humidity_2m[h] + "%";
-        document.getElementById("w-rain").innerText = d.hourly.precipitation_probability[h] + "%";
-        document.getElementById("w-uv").innerText = d.daily.uv_index_max[0];
+        document.getElementById("w-wind").innerText = data.current_weather.windspeed + " km/h";
+        document.getElementById("w-humidity").innerText = data.hourly.relative_humidity_2m[h] + "%";
+        document.getElementById("w-rain").innerText = data.hourly.precipitation_probability[h] + "%";
+        document.getElementById("w-uv").innerText = data.daily.uv_index_max[0];
     });
 });
