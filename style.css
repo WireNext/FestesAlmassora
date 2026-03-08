@@ -228,23 +228,34 @@ header h1 {
 .modal { 
     display: none; 
     position: fixed; 
-    z-index: 9999; 
-    left: 0; top: 0; 
-    width: 100vw; height: 100vh; 
-    background: #000; 
+    z-index: 10000; /* Per damunt de la Tab Bar i tot l'altre */
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100vh; 
+    background: #000000; /* Fons sòlid, zero transparències */
     overflow-y: auto;
-    animation: slideInRight 0.3s cubic-bezier(0.33, 1, 0.68, 1);
+    -webkit-overflow-scrolling: touch;
+    animation: pageIn 0.3s ease-out;
 }
 
-@keyframes slideInRight {
-    from { transform: translateX(100%); }
+@keyframes pageIn {
+    from { transform: translateX(100%); } /* Entra des de la dreta com en iOS */
     to { transform: translateX(0); }
+}
+
+.modal-content { 
+    width: 100%; 
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #000;
 }
 
 .modal-header {
     position: relative;
     width: 100%;
-    height: 45vh;
+    height: 50vh; /* La imatge ocupa la meitat de la nova pàgina */
 }
 
 .modal-img { 
@@ -253,60 +264,55 @@ header h1 {
     object-fit: cover;
 }
 
+/* Botó de "Tornar" tipus fletxa, no una X de tancar finestra */
 .close-modal { 
     position: absolute; 
-    top: 50px; left: 20px; 
-    width: 40px; height: 40px; 
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 50%;
+    top: 50px; 
+    left: 20px; 
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 12px;
     color: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: 600;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .modal-body { 
-    padding: 35px 25px 60px;
+    padding: 30px 25px 100px; /* Molt d'espai baix */
     background: #000;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    margin-top: -30px;
     position: relative;
-    min-height: 60vh;
+    flex-grow: 1;
 }
 
-.modal-body h2 { font-size: 30px; font-weight: 800; margin: 0 0 10px 0; line-height: 1.1; }
+.modal-body h2 { 
+    font-size: 32px; 
+    font-weight: 800; 
+    margin: 0 0 15px 0; 
+    color: #fff;
+}
 
 .event-time-badge {
-    display: inline-block;
-    background: rgba(255, 59, 48, 0.15);
-    color: var(--red);
-    padding: 6px 14px;
-    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    background: var(--red);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 50px;
     font-weight: 700;
-    margin-bottom: 25px;
     font-size: 14px;
+    margin-bottom: 25px;
 }
 
 .modal-desc {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.6;
-    color: #ccc;
-    margin-bottom: 40px;
-}
-
-.btn-map { 
-    display: block;
-    background: #fff;
-    color: #000; 
-    text-align: center;
-    padding: 20px; 
-    border-radius: 20px; 
-    text-decoration: none;
-    font-weight: 800;
-    font-size: 16px;
+    color: #a1a1a6; /* Gris tipus Apple */
 }
 
 /* ==========================================
