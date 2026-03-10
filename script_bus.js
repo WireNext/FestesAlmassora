@@ -149,7 +149,7 @@ function drawStopsOnMap(map, agency, filter = {}) {
             const futuros = horariosConDiff.filter(h => h.diffMin >= 0);
 
             if (futuros.length === 0) {
-                marker.setPopupContent(`<strong>${stop.stop_name}</strong><br>No hay más servicios hoy.`);
+                marker.setPopupContent(`<strong>${stop.stop_name}</strong><br>No hi ha més serveis avuí.`);
                 return;
             }
 
@@ -230,7 +230,7 @@ function displayRoutesInfo(agency, filter = {}) {
     const filteredRoutes = filterRoutes(agency, filter);
 
     if (!filteredRoutes.length) {
-        routesInfoDiv.innerHTML += `<p>No se encontraron datos de rutas para ${agency}.</p>`;
+        routesInfoDiv.innerHTML += `<p>No se han trobat rutes per a ${agency}.</p>`;
         return;
     }
 
