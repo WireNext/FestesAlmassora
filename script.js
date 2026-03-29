@@ -20,6 +20,7 @@ function carregarAvisos() {
     .then(r => r.json())
     .then(avisos => {
         const container = document.getElementById("seccio-avisos");
+        if (!container) return; // Seguridad
         if (!avisos || avisos.length === 0) {
             container.innerHTML = ""; 
             return;
@@ -39,7 +40,9 @@ function carregarAvisos() {
         container.innerHTML = htmlAvisos;
     })
     .catch(() => {
-        document.getElementById("seccio-avisos").innerHTML = "";
+        if(document.getElementById("seccio-avisos")) {
+            document.getElementById("seccio-avisos").innerHTML = "";
+        }
     });
 }
 
@@ -77,10 +80,12 @@ function closeModal() {
 
 // --- 4. FILTRATGE DE PROGRAMACIÓ ---
 function selectDay(diaID, element) {
+    if(!element) return;
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
 
     const container = document.getElementById("events-list-container");
+    if(!container) return;
     container.innerHTML = "";
 
     const diaSeleccionat = dadesProgramacio.find(d => d.dia_id === diaID);
@@ -112,32 +117,37 @@ function carregarTemps() {
         const icons = { 0: "☀️", 1: "🌤️", 2: "🌤️", 3: "☁️", 45: "🌫️", 61: "🌧️", 80: "🌦️" };
         const iconActual = icons[d.current_weather.weathercode] || "☁️";
 
-        document.getElementById("weather-main").innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a detalls</small></div>
-                <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${iconActual}</span>
-            </div>`;
-        
-        const hCont = document.getElementById("hourly-forecast");
-        hCont.innerHTML = "";
-        for(let i=h; i<h+12; i++) {
-            const iconH = icons[d.hourly.weather_code[i]] || "☁️";
-            hCont.innerHTML += `<div class="hour-item"><span>${i % 24}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${iconH}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
+        const weatherMain = document.getElementById("weather-main");
+        if(weatherMain) {
+            weatherMain.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div><b style="font-size:18px;">Almassora Ara</b><br><small style="color:#888;">Clica per a detalls</small></div>
+                    <span style="font-size:32px; font-weight:900; color:var(--red);">${Math.round(d.current_weather.temperature)}°C ${iconActual}</span>
+                </div>`;
         }
         
-        document.getElementById("w-wind").innerText = d.current_weather.windspeed + " km/h";
-        document.getElementById("w-humidity").innerText = d.hourly.relative_humidity_2m[h] + "%";
-        document.getElementById("w-rain").innerText = d.hourly.precipitation_probability[h] + "%";
-        document.getElementById("w-uv").innerText = d.daily.uv_index_max[0];
+        const hCont = document.getElementById("hourly-forecast");
+        if(hCont) {
+            hCont.innerHTML = "";
+            for(let i=h; i<h+12; i++) {
+                const iconH = icons[d.hourly.weather_code[i]] || "☁️";
+                hCont.innerHTML += `<div class="hour-item"><span>${i % 24}:00</span><span style="font-size:20px;margin:5px 0;display:block;">${iconH}</span><b>${Math.round(d.hourly.temperature_2m[i])}°</b></div>`;
+            }
+        }
+        
+        if(document.getElementById("w-wind")) document.getElementById("w-wind").innerText = d.current_weather.windspeed + " km/h";
+        if(document.getElementById("w-humidity")) document.getElementById("w-humidity").innerText = d.hourly.relative_humidity_2m[h] + "%";
+        if(document.getElementById("w-rain")) document.getElementById("w-rain").innerText = d.hourly.precipitation_probability[h] + "%";
+        if(document.getElementById("w-uv")) document.getElementById("w-uv").innerText = d.daily.uv_index_max[0];
     });
 }
 
 function toggleWeatherDetails() {
     const d = document.getElementById('weather-details');
-    d.style.display = d.style.display === 'none' ? 'block' : 'none';
+    if(d) d.style.display = d.style.display === 'none' ? 'block' : 'none';
 }
 
-// --- 6. COMPTE ENRERE AMB AVÍS DE FESTES ---
+// --- 6. COMPTE ENRERE ---
 function actualitzarCompteEnrere() {
     const target = new Date("May 16, 2026 00:00:00").getTime();
     
@@ -157,11 +167,10 @@ function actualitzarCompteEnrere() {
                     </div>`;
             }
         } else {
-            // Càlculs incloent segons
             const d = Math.floor(diff / 86400000);
             const h = Math.floor((diff % 86400000) / 3600000);
             const m = Math.floor((diff % 3600000) / 60000);
-            const s = Math.floor((diff % 60000) / 1000); // <-- Segons
+            const s = Math.floor((diff % 60000) / 1000);
 
             if(document.getElementById("days")) {
                 document.getElementById("days").innerText = d.toString().padStart(2, '0');
@@ -173,8 +182,54 @@ function actualitzarCompteEnrere() {
     }, 1000);
 }
 
-// --- 7. INICIALITZACIÓ GENERAL ---
+// --- 7. NOTIFICACIONS PUSH (CORREGIDO) ---
+async function inicializarNotificaciones() {
+    // ⚠️ USA TUS DATOS REALES AQUÍ:
+    const firebaseConfig = {
+        apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
+        authDomain: "alertes-festes.firebaseapp.com",
+        projectId: "alertes-festes",
+        storageBucket: "alertes-festes.firebasestorage.app",
+        messagingSenderId: "560447529511",
+        appId: "1:560447529511:web:500e93ab4a1434a3e1e402",
+        measurementId: "G-W5MV8950LK"
+    };
+
+    // Inicializar Firebase si no está inicializado
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+    
+    const messaging = firebase.messaging();
+
+    try {
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+            const token = await messaging.getToken({ 
+                vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE' 
+            });
+            
+            if (token) {
+                console.log("Token del usuario para enviar avisos:", token);
+                // Aquí podrías guardar el token en Firestore
+            }
+        }
+    } catch (error) {
+        console.error("Error en notificaciones:", error);
+    }
+}
+
+// --- 8. INICIALITZACIÓ GENERAL ---
 document.addEventListener("DOMContentLoaded", () => {
+    // Registrar el Service Worker explícitamente
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').then(reg => {
+            console.log('SW listo.');
+            // Inicializar una vez el SW esté listo
+            inicializarNotificaciones();
+        });
+    }
+
     carregarAvisos();
     carregarTemps();
     actualitzarCompteEnrere();
@@ -189,6 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const tabsCont = document.getElementById("days-tabs");
         const avuiScroll = document.getElementById("avui-scroll");
 
+        if(!tabsCont) return;
+
         data.forEach((dia, index) => {
             const btn = document.createElement("div");
             btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
@@ -196,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            if(dia.data_iso === avuiISO) {
+            if(dia.data_iso === avuiISO && avuiScroll) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
                     mini.className = "event-mini-card";
