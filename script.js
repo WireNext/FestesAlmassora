@@ -199,36 +199,30 @@ async function inicializarNotificaciones() {
     }
     
     const messaging = firebase.messaging();
+    const db = firebase.firestore(); // Esto ahora funcionará gracias al index.html nuevo
 
     try {
         const permission = await Notification.requestPermission();
-        
         if (permission === 'granted') {
-            // Sincronizamos con el Service Worker que ya tienes registrado
             const reg = await navigator.serviceWorker.ready;
-
             const token = await messaging.getToken({ 
                 vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE',
                 serviceWorkerRegistration: reg
             });
             
             if (token) {
-                // IMPORTANTE: Este token es la "dirección" de cada móvil.
-                // Para enviar avisos a todos, deberías guardarlo en tu base de datos.
-                console.log("Token generado con éxito.");
-            }
-
-            // Manejo de mensajes con la App abierta (Foreground)
-            messaging.onMessage((payload) => {
-                new Notification(payload.notification.title, {
-                    body: payload.notification.body,
-                    icon: 'icon-512.png'
+                // GUARDAR EN FIRESTORE
+                await db.collection("usuarios_avisos").doc(token).set({
+                    token: token,
+                    pueblo: "Almassora",
+                    fecha: new Date(),
+                    plataforma: "web"
                 });
-            });
-
+                console.log("Token guardado con éxito en Firestore.");
+            }
         }
     } catch (error) {
-        console.error("Error en el sistema de avisos:", error);
+        console.error("Error en notificaciones:", error);
     }
 }
 
