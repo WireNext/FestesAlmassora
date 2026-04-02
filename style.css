@@ -253,15 +253,18 @@ header h1 {
 }
 
 .modal-header {
-    position: relative;
+position: relative;
     width: 100%;
-    height: 50vh; /* La imatge ocupa la meitat de la nova pàgina */
+    height: 300px; 
+    overflow: hidden;
 }
 
 .modal-img { 
     width: 100%; 
     height: 100%; 
-    object-fit: cover;
+    object-fit: cover; 
+    object-position: center; 
+    background: #1c1c1e; 
 }
 
 /* Botó de "Tornar" tipus fletxa, no una X de tancar finestra */
