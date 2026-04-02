@@ -35,5 +35,5 @@ messaging.onBackgroundMessage((payload) => {
 
 // Tu evento fetch vacío (necesario para que sea PWA instalable)
 self.addEventListener('fetch', function(event) {
-    // Aquí podrías añadir lógica de caché en el futuro
+    const urlToOpen = 'https://festesalmassora.vercel.app/';
 });

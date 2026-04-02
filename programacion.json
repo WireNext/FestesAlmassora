@@ -1,28 +1,12 @@
-[{
-    "dia_id": "dia1",
-    "data_iso": "2026-02-02",
-    "titol_curt": "Dll 2",
-    "titol_llarg": "Dilluns 2 d'Abril -  Encesa",
-    "actes": [
-      {
-        "id": "a1",
-        "titol": "Encesa",
-        "hora_inici": "23:58",
-        "hora_fi": "23:59",
-        "descripcio": "Event inventat.",
-        "imatge": "https://cdn.digitalvalue.es/almassora/assets2/68be74d06080ce6b6d18840d?w=500&interlace=true",
-        "ubicacio": "Plaça Santa Isabel"
-      }
-    ]
-  },
+[
   {
-    "dia_id": "dia2",
+    "dia_id": "dia1",
     "data_iso": "2026-04-02",
     "titol_curt": "Dj 2",
     "titol_llarg": "Dijous 2 d'Abril -  Trencà de l'hora",
     "actes": [
       {
-        "id": "a2",
+        "id": "a1",
         "titol": "Trencà de l'hora",
         "hora_inici": "23:58",
         "hora_fi": "23:59",
@@ -33,13 +17,13 @@
     ]
   },
   {
-    "dia_id": "dia3",
+    "dia_id": "dia2",
     "data_iso": "2026-04-03",
     "titol_curt": "Dv 3",
     "titol_llarg": "Divendres 3 d'Abril -  Trencà de l'hora",
     "actes": [
       {
-        "id": "a3",
+        "id": "a2",
         "titol": "Trencà de l'hora",
         "hora_inici": "00:00",
         "hora_fi": "01:00",
