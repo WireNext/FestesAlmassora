@@ -228,11 +228,9 @@ async function inicializarNotificaciones() {
 
 // --- 8. INICIALITZACIÓ GENERAL ---
 document.addEventListener("DOMContentLoaded", () => {
-    // Registrar el Service Worker explícitamente
+    // ... (Mantén igual el registro del Service Worker y llamadas a funciones)
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => {
-            console.log('SW listo.');
-            // Inicializar una vez el SW esté listo
             inicializarNotificaciones();
         });
     }
@@ -242,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     actualitzarCompteEnrere();
 
     const ara = new Date();
+    // Formato YYYY-MM-DD
     const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
 
     fetch('programacion.json')
@@ -253,14 +252,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(!tabsCont) return;
 
+        let indexDiaSeleccionat = 0; // Por defecto el primero
+
         data.forEach((dia, index) => {
+            // Comprobamos si este día es hoy
+            const esAvui = dia.data_iso === avuiISO;
+            if (esAvui) {
+                indexDiaSeleccionat = index;
+            }
+
             const btn = document.createElement("div");
-            btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
+            // Quitamos el 'active' de aquí, lo pondremos luego dinámicamente
+            btn.className = `day-tab`; 
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            if(dia.data_iso === avuiISO && avuiScroll) {
+            // Llenar scroll horizontal de inicio si es hoy
+            if(esAvui && avuiScroll) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
                     mini.className = "event-mini-card";
@@ -271,7 +280,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        if(avuiScroll && avuiScroll.innerHTML === "") avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
-        if(data.length > 0) selectDay(data[0].dia_id, tabsCont.firstChild);
+        // Mensaje si no hay nada hoy en el inicio
+        if(avuiScroll && avuiScroll.innerHTML === "") {
+            avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
+        }
+
+        // --- EL TRUCO ESTÁ AQUÍ ---
+        // Seleccionamos el botón correspondiente al index encontrado (hoy o el primero)
+        const botoPerDefecte = tabsCont.children[indexDiaSeleccionat];
+        if(data.length > 0 && botoPerDefecte) {
+            selectDay(data[indexDiaSeleccionat].dia_id, botoPerDefecte);
+            
+            // Opcional: Hacer scroll automático para que se vea el botón del día actual si hay muchos
+            botoPerDefecte.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
     });
 });
