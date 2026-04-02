@@ -39,13 +39,7 @@
     "titol_llarg": "Divendres 3 d'Abril -  Trencà de l'hora",
     "actes": [
       {
-        "id": "a2",
-        "titol": "Trencà de l'hora",
-        "hora_inici": "00:00",
-        "hora_fi": "01:00",
-        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
-        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
-        "ubicacio": "Plaça Major"
+        "id": "a2"
       }
     ]
   }
