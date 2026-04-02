@@ -255,8 +255,8 @@ header h1 {
 .modal-header {
     position: relative;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    max-height: 45vh;
+    aspect-ratio: 1 / 1; 
+    max-height: 50vh; 
     overflow: hidden;
     background: #1c1c1e;
 }
@@ -282,15 +282,22 @@ header h1 {
 /* Botó de "Tornar" tipus fletxa, no una X de tancar finestra */
 .close-modal { 
     position: absolute; 
-    top: env(safe-area-inset-top, 20px); /* Se adapta a la "isla dinámica" o notch */
+    top: calc(40px + env(safe-area-inset-top, 0px)); 
     left: 20px; 
-    padding: 10px 15px;
-    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro para que contraste con cualquier foto */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-radius: 12px;
+    border-radius: 14px;
     color: white;
-    z-index: 100;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 101; /* Asegúrate de que esté por encima de todo */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 0.5px solid rgba(255, 255, 255, 0.2); /* Un borde fino tipo cristal */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .modal-body { 
