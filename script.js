@@ -184,7 +184,6 @@ function actualitzarCompteEnrere() {
 
 // --- 7. NOTIFICACIONS PUSH (CORREGIDO) ---
 async function inicializarNotificaciones() {
-    // ⚠️ USA TUS DATOS REALES AQUÍ:
     const firebaseConfig = {
         apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
         authDomain: "alertes-festes.firebaseapp.com",
@@ -195,7 +194,6 @@ async function inicializarNotificaciones() {
         measurementId: "G-W5MV8950LK"
     };
 
-    // Inicializar Firebase si no está inicializado
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
@@ -204,18 +202,33 @@ async function inicializarNotificaciones() {
 
     try {
         const permission = await Notification.requestPermission();
+        
         if (permission === 'granted') {
+            // Sincronizamos con el Service Worker que ya tienes registrado
+            const reg = await navigator.serviceWorker.ready;
+
             const token = await messaging.getToken({ 
-                vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE' 
+                vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE',
+                serviceWorkerRegistration: reg
             });
             
             if (token) {
-                console.log("Token del usuario para enviar avisos:", token);
-                // Aquí podrías guardar el token en Firestore
+                // IMPORTANTE: Este token es la "dirección" de cada móvil.
+                // Para enviar avisos a todos, deberías guardarlo en tu base de datos.
+                console.log("Token generado con éxito.");
             }
+
+            // Manejo de mensajes con la App abierta (Foreground)
+            messaging.onMessage((payload) => {
+                new Notification(payload.notification.title, {
+                    body: payload.notification.body,
+                    icon: 'icon-512.png'
+                });
+            });
+
         }
     } catch (error) {
-        console.error("Error en notificaciones:", error);
+        console.error("Error en el sistema de avisos:", error);
     }
 }
 
@@ -223,7 +236,7 @@ async function inicializarNotificaciones() {
 document.addEventListener("DOMContentLoaded", () => {
     // Registrar el Service Worker explícitamente
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(reg => {
+        navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => {
             console.log('SW listo.');
             // Inicializar una vez el SW esté listo
             inicializarNotificaciones();
