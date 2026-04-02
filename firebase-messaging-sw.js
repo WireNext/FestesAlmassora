@@ -2,7 +2,6 @@
 importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js');
 
-// Tu configuración (la que has pegado antes)
 const firebaseConfig = {
   apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
   authDomain: "alertes-festes.firebaseapp.com",
@@ -13,27 +12,50 @@ const firebaseConfig = {
   measurementId: "G-W5MV8950LK"
 };
 
-// Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
-
-// Inicializa Firebase Messaging
 const messaging = firebase.messaging();
 
-// Este evento maneja las notificaciones cuando la app está CERRADA o en SEGUNDO PLANO
+// 1. Manejo en segundo plano
 messaging.onBackgroundMessage((payload) => {
-  console.log('Notificació rebuda en segon pla:', payload);
-
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: 'icon-512.png', // Asegúrate de que esta ruta sea correcta
-    badge: 'icon-512.png'
+    icon: 'icon-512.png',
+    badge: 'icon-512.png',
+    // Guardamos la URL en los datos de la notificación por si queremos que sea dinámica
+    data: {
+      url: 'https://festesalmassora.vercel.app/'
+    }
   };
 
-  self.registration.showNotification(notificationTitle, notificationOptions);
+  return self.registration.showNotification(notificationTitle, notificationOptions);
 });
 
-// Tu evento fetch vacío (necesario para que sea PWA instalable)
+// 2. LOGICA PARA ABRIR LA WEB AL HACER CLIC
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close(); // Cierra la notificación al pinchar
+
+  const urlToOpen = 'https://festesalmassora.vercel.app/';
+
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then(function(windowClients) {
+        // Si la web ya está abierta en alguna pestaña, le ponemos el foco
+        for (var i = 0; i < windowClients.length; i++) {
+          var client = windowClients[i];
+          if (client.url === urlToOpen && 'focus' in client) {
+            return client.focus();
+          }
+        }
+        // Si no está abierta, abrimos una nueva pestaña
+        if (clients.openWindow) {
+          return clients.openWindow(urlToOpen);
+        }
+      })
+  );
+});
+
+// Evento fetch (puedes dejarlo vacío o implementarlo para caché, pero no afecta al clic)
 self.addEventListener('fetch', function(event) {
-    const urlToOpen = 'https://festesalmassora.vercel.app/';
+    // Aquí iría la lógica de caché de la PWA si la necesitas
 });
