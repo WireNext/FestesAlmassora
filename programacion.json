@@ -1,96 +1,35 @@
 [
   {
     "dia_id": "dia1",
-    "data_iso": "2026-03-08",
-    "titol_curt": "Dg 8",
-    "titol_llarg": "Diumenge 8 de març",
+    "data_iso": "2026-04-02",
+    "titol_curt": "Dj 2",
+    "titol_llarg": "Dijous 2 d'Abril -  Trencà de l'hora",
     "actes": [
       {
         "id": "a1",
-        "titol": "Mascletà d'Inici",
-        "hora_inici": "12:00",
-        "hora_fi": "12:30",
-        "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
-        "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
-        "ubicacio": "Plaça doctor fleming"
-      },
-      {
-        "id": "a2",
-        "titol": "Orquestra Liquid Glass",
-        "hora_inici": "22:00",
-        "hora_fi": "02:00",
-        "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
-        "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
+        "titol": "Trencà de l'hora",
+        "hora_inici": "23:58",
+        "hora_fi": "23:59",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://www.almassora.es/ca/articulos/almassora-sol-licitara-declarar-la-matxa-i-la-trenca-de-l-hora-festes-d-interes-turistic",
         "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia1",
-    "data_iso": "2026-03-09",
-    "titol_curt": "Dl 9",
-    "titol_llarg": "Dilluns 9 de març",
-    "actes": [
-      {
-        "id": "a1",
-        "titol": "Mascletà d'Inici",
-        "hora_inici": "12:00",
-        "hora_fi": "12:30",
-        "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
-        "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
-        "ubicacio": "Plaça doctor fleming"
-      },
-      {
-        "id": "a2",
-        "titol": "Orquestra Liquid Glass",
-        "hora_inici": "22:00",
-        "hora_fi": "02:00",
-        "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
-        "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
-        "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia1",
-    "data_iso": "2026-05-15",
-    "titol_curt": "Dv 15",
-    "titol_llarg": "Divendres 15 de maig - L'Esclat",
-    "actes": [
-      {
-        "id": "a1",
-        "titol": "L'Esclat de la Festa",
-        "hora_inici": "00:00",
-        "hora_fi": "01:00",
-        "descripcio": "Concentració de penyes i veïnat al balcó de l'Ajuntament per a proclamar l'inici de les festes.",
-        "imatge": "https://via.placeholder.com/400x200?text=Esclat+Festa",
-        "ubicacio": "Plaça de la Peregrina"
       }
     ]
   },
   {
     "dia_id": "dia2",
-    "data_iso": "2026-05-16",
-    "titol_curt": "Ds 16",
-    "titol_llarg": "Dissabte 16 de maig - Bous al Carrer",
+    "data_iso": "2026-04-03",
+    "titol_curt": "Dj 3",
+    "titol_llarg": "Dijous 3 d'Abril -  Trencà de l'hora",
     "actes": [
       {
-        "id": "a2",
-        "titol": "Entrada de bous",
-        "hora_inici": "12:00",
-        "hora_fi": "13:00",
-        "descripcio": "Tradicional entrada de bous i vaques pels carrers de la Vila.",
-        "imatge": "https://via.placeholder.com/400x200?text=Bous+Vila",
-        "ubicacio": "Recinte de la Vila"
-      },
-      {
-        "id": "a3",
-        "titol": "Orquestra Panorama",
-        "hora_inici": "23:30",
-        "hora_fi": "04:00",
-        "descripcio": "Gran actuació musical per a tancar el primer dissabte de festes.",
-        "imatge": "https://via.placeholder.com/400x200?text=Panorama",
-        "ubicacio": "Plaça de la Picaora"
+        "id": "a1",
+        "titol": "Trencà de l'hora",
+        "hora_inici": "00:00",
+        "hora_fi": "01:00",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://www.almassora.es/ca/articulos/almassora-sol-licitara-declarar-la-matxa-i-la-trenca-de-l-hora-festes-d-interes-turistic",
+        "ubicacio": "Plaça Major"
       }
     ]
   },
