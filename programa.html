@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Programació - Santa Quiteria 2026</title>
+    <link rel="icon" href="icon-512.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+</head>
+<body>
+    <div class="bg-blur"></div>
+
+    <main id="app">
+        <section id="p-events" class="page active"> <header>
+                <p class="subtitle">PROGRAMACIÓ</p>
+                <h1>Calendari</h1>
+            </header>
+            
+            <div class="days-selector scroll-x" id="days-tabs" style="padding: 0 20px;"></div>
+
+            <div id="events-list-container" style="padding: 20px;"></div>
+        </section>
+    </main>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="close-modal" onclick="closeModal()">
+                    <span>〈</span> Tornar
+                </div>
+                <img id="modal-img" src="" alt="Portada">
+            </div>
+            <div class="modal-body">
+                <div id="modal-info" class="event-time-badge"></div>
+                <h2 id="modal-titol"></h2>
+                <p id="modal-desc" class="modal-desc"></p>
+                
+                <h3 class="label-mini" style="margin-top: 30px;">UBICACIÓ</h3>
+                <div class="map-container">
+                    <iframe 
+                        id="modal-map-frame" 
+                        width="100%" 
+                        height="250" 
+                        style="border:0; border-radius: 18px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                
+                <a id="modal-map-link" href="" target="_blank" class="btn-map-sec">
+                    Obrir en l'App de Mapes ➔
+                </a>
+
+                <div class="ads-container">
+                    <small style="color: #444; display: block; text-align: center; margin-bottom: 5px;">PUBLICITAT</small>
+                    <div class="ads-placeholder"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="tab-bar">
+        <button class="tab" onclick="window.location.href='index.html'">🏠</button>
+        <button class="tab active" onclick="window.location.href='programa.html'">📅</button>
+        <button class="tab" onclick="window.location.href='bus.html'">🚌</button>
+    </nav>
+
+    <script src="script.js"></script>
+</body>
+</html>
