@@ -32,5 +32,22 @@
         "ubicacio": "Plaça Major"
       }
     ]
+  },
+    {
+    "dia_id": "dia3",
+    "data_iso": "2026-04-14",
+    "titol_curt": "Dm 14",
+    "titol_llarg": "Dimarts 14 d'Abril -  Prova",
+    "actes": [
+      {
+        "id": "a2",
+        "titol": "Prova",
+        "hora_inici": "20:00",
+        "hora_fi": "22:00",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
+        "ubicacio": "Plaça Major"
+      }
+    ]
   }
 ]
