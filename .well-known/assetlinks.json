@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "app.vercel.festesalmassora.twa",
+    "sha256_cert_fingerprints": ["12:65:4E:91:D9:3E:0D:37:A6:49:7A:B3:36:C1:4F:C2:59:75:3A:43:2F:A0:5B:E0:4F:D3:5F:A4:44:A2:9D:62"]
+  }
+}]
