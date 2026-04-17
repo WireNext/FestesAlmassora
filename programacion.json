@@ -1,232 +1,52 @@
 [
   {
     "dia_id": "dia1",
-    "data_iso": "2026-03-08",
-    "titol_curt": "Dg 8",
-    "titol_llarg": "Diumenge 8 de març",
+    "data_iso": "2026-04-02",
+    "titol_curt": "Dj 2",
+    "titol_llarg": "Dijous 2 d'Abril -  Trencà de l'hora",
     "actes": [
       {
         "id": "a1",
-        "titol": "Mascletà d'Inici",
-        "hora_inici": "12:00",
-        "hora_fi": "12:30",
-        "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
-        "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
-        "ubicacio": "Plaça doctor fleming"
-      },
-      {
-        "id": "a2",
-        "titol": "Orquestra Liquid Glass",
-        "hora_inici": "22:00",
-        "hora_fi": "02:00",
-        "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
-        "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
+        "titol": "Trencà de l'hora",
+        "hora_inici": "23:58",
+        "hora_fi": "23:59",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
         "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia1",
-    "data_iso": "2026-03-09",
-    "titol_curt": "Dl 9",
-    "titol_llarg": "Dilluns 9 de març",
-    "actes": [
-      {
-        "id": "a1",
-        "titol": "Mascletà d'Inici",
-        "hora_inici": "12:00",
-        "hora_fi": "12:30",
-        "descripcio": "Gran disparada de mascletà a càrrec de la pirotècnia local per a donar inici a les festes de Santa Quitèria.",
-        "imatge": "https://via.placeholder.com/400x200?text=Mascletà",
-        "ubicacio": "Plaça doctor fleming"
-      },
-      {
-        "id": "a2",
-        "titol": "Orquestra Liquid Glass",
-        "hora_inici": "22:00",
-        "hora_fi": "02:00",
-        "descripcio": "Gran ball amenitzat per una de les millors orquestres del panorama actual.",
-        "imatge": "https://via.placeholder.com/400x200?text=Orquestra",
-        "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia1",
-    "data_iso": "2026-05-15",
-    "titol_curt": "Dv 15",
-    "titol_llarg": "Divendres 15 de maig - L'Esclat",
-    "actes": [
-      {
-        "id": "a1",
-        "titol": "L'Esclat de la Festa",
-        "hora_inici": "00:00",
-        "hora_fi": "01:00",
-        "descripcio": "Concentració de penyes i veïnat al balcó de l'Ajuntament per a proclamar l'inici de les festes.",
-        "imatge": "https://via.placeholder.com/400x200?text=Esclat+Festa",
-        "ubicacio": "Plaça de la Peregrina"
       }
     ]
   },
   {
     "dia_id": "dia2",
-    "data_iso": "2026-05-16",
-    "titol_curt": "Ds 16",
-    "titol_llarg": "Dissabte 16 de maig - Bous al Carrer",
+    "data_iso": "2026-04-03",
+    "titol_curt": "Dv 3",
+    "titol_llarg": "Divendres 3 d'Abril -  Trencà de l'hora",
     "actes": [
       {
         "id": "a2",
-        "titol": "Entrada de bous",
-        "hora_inici": "12:00",
-        "hora_fi": "13:00",
-        "descripcio": "Tradicional entrada de bous i vaques pels carrers de la Vila.",
-        "imatge": "https://via.placeholder.com/400x200?text=Bous+Vila",
-        "ubicacio": "Recinte de la Vila"
-      },
-      {
-        "id": "a3",
-        "titol": "Orquestra Panorama",
-        "hora_inici": "23:30",
-        "hora_fi": "04:00",
-        "descripcio": "Gran actuació musical per a tancar el primer dissabte de festes.",
-        "imatge": "https://via.placeholder.com/400x200?text=Panorama",
-        "ubicacio": "Plaça de la Picaora"
+        "titol": "Trencà de l'hora",
+        "hora_inici": "00:00",
+        "hora_fi": "01:00",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
+        "ubicacio": "Plaça Major"
       }
     ]
   },
-  {
+    {
     "dia_id": "dia3",
-    "data_iso": "2026-05-17",
-    "titol_curt": "Dg 17",
-    "titol_llarg": "Diumenge 17 de maig - La Romeria",
+    "data_iso": "2026-04-14",
+    "titol_curt": "Dm 14",
+    "titol_llarg": "Dimarts 14 d'Abril -  Prova",
     "actes": [
       {
-        "id": "a4",
-        "titol": "Romeria a Santa Quitèria",
-        "hora_inici": "09:00",
-        "hora_fi": "14:00",
-        "descripcio": "Pelegrinatge tradicional a l'ermita amb repartiment d'arròs i rotllos.",
-        "imatge": "https://via.placeholder.com/400x200?text=Romeria",
-        "ubicacio": "Ermita de Santa Quitèria"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia4",
-    "data_iso": "2026-05-18",
-    "titol_curt": "Dl 18",
-    "titol_llarg": "Dilluns 18 de maig - Dia dels Majors",
-    "actes": [
-      {
-        "id": "a5",
-        "titol": "Dinar de la Tercera Edat",
-        "hora_inici": "14:00",
-        "hora_fi": "17:00",
-        "descripcio": "Dinar de germanor amb ball i música en directe per als nostres majors.",
-        "imatge": "https://via.placeholder.com/400x200?text=Dinar+Majors",
-        "ubicacio": "Poliesportiu Municipal"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia5",
-    "data_iso": "2026-05-19",
-    "titol_curt": "Dt 19",
-    "titol_llarg": "Dimarts 19 de maig - Activitats Infantils",
-    "actes": [
-      {
-        "id": "a6",
-        "titol": "Tancament Infantil de Carretons",
-        "hora_inici": "11:00",
-        "hora_fi": "12:30",
-        "descripcio": "Diversió per als més menuts amb bous de fusta i aigua.",
-        "imatge": "https://via.placeholder.com/400x200?text=Carretons",
-        "ubicacio": "Carrer Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia6",
-    "data_iso": "2026-05-20",
-    "titol_curt": "Dc 20",
-    "titol_llarg": "Dimecres 20 de maig - Paelles",
-    "actes": [
-      {
-        "id": "a7",
-        "titol": "Concurs de Paelles",
-        "hora_inici": "13:00",
-        "hora_fi": "18:00",
-        "descripcio": "Jornada gastronòmica on les penyes competeixen per la millor paella del poble.",
-        "imatge": "https://via.placeholder.com/400x200?text=Paelles",
-        "ubicacio": "Carrer de Sant Marc"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia7",
-    "data_iso": "2026-05-21",
-    "titol_curt": "Dj 21",
-    "titol_llarg": "Dijous 21 de maig - Nit de Disfresses",
-    "actes": [
-      {
-        "id": "a8",
-        "titol": "Cercavila de Disfresses",
-        "hora_inici": "22:00",
-        "hora_fi": "02:00",
-        "descripcio": "Desfilada multicolor amb música de xarangues i premis a l'originalitat.",
-        "imatge": "https://via.placeholder.com/400x200?text=Disfresses",
-        "ubicacio": "Centre Urbà"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia8",
-    "data_iso": "2026-05-22",
-    "titol_curt": "Dv 22",
-    "titol_llarg": "Divendres 22 de maig - Solemnitat",
-    "actes": [
-      {
-        "id": "a9",
-        "titol": "Ofrena de Flors",
-        "hora_inici": "19:00",
-        "hora_fi": "21:00",
-        "descripcio": "Ofrena floral a la patrona Santa Quitèria amb la participació de les Reines i Cort d'Honor.",
-        "imatge": "https://via.placeholder.com/400x200?text=Ofrena",
-        "ubicacio": "Església de la Nativitat"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia9",
-    "data_iso": "2026-05-23",
-    "titol_curt": "Ds 23",
-    "titol_llarg": "Dissabte 23 de maig - Santa Quitèria",
-    "actes": [
-      {
-        "id": "a10",
-        "titol": "Missa Major i Processó",
-        "hora_inici": "11:00",
-        "hora_fi": "21:00",
-        "descripcio": "Actes religiosos solemnes en honor a la patrona seguit de la processó general.",
-        "imatge": "https://via.placeholder.com/400x200?text=Processo",
-        "ubicacio": "Vila d'Almassora"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia10",
-    "data_iso": "2026-05-24",
-    "titol_curt": "Dg 24",
-    "titol_llarg": "Diumenge 24 de maig - Fi de Festa",
-    "actes": [
-      {
-        "id": "a11",
-        "titol": "Castell de Focs Artificials",
-        "hora_inici": "22:00",
-        "hora_fi": "22:30",
-        "descripcio": "Espectacle pirotècnic per a acomiadar les festes fins a l'any que ve.",
-        "imatge": "https://via.placeholder.com/400x200?text=Focs+Final",
-        "ubicacio": "Davant del Centre de Salut"
+        "id": "a2",
+        "titol": "Prova",
+        "hora_inici": "20:00",
+        "hora_fi": "22:00",
+        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
+        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
+        "ubicacio": "Plaça Major"
       }
     ]
   }

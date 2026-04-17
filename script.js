@@ -184,7 +184,6 @@ function actualitzarCompteEnrere() {
 
 // --- 7. NOTIFICACIONS PUSH (CORREGIDO) ---
 async function inicializarNotificaciones() {
-    // ⚠️ USA TUS DATOS REALES AQUÍ:
     const firebaseConfig = {
         apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
         authDomain: "alertes-festes.firebaseapp.com",
@@ -195,23 +194,31 @@ async function inicializarNotificaciones() {
         measurementId: "G-W5MV8950LK"
     };
 
-    // Inicializar Firebase si no está inicializado
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
     
     const messaging = firebase.messaging();
+    const db = firebase.firestore(); // Esto ahora funcionará gracias al index.html nuevo
 
     try {
         const permission = await Notification.requestPermission();
         if (permission === 'granted') {
+            const reg = await navigator.serviceWorker.ready;
             const token = await messaging.getToken({ 
-                vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE' 
+                vapidKey: 'BPQe3gAfktjRHBj3YqtsFszFpLdptoNm3537STs61t-zSDKcbYKJBpxTpydwQILJijjpelA-9tJHHNy2nrG-aDE',
+                serviceWorkerRegistration: reg
             });
             
             if (token) {
-                console.log("Token del usuario para enviar avisos:", token);
-                // Aquí podrías guardar el token en Firestore
+                // GUARDAR EN FIRESTORE
+                await db.collection("usuarios_avisos").doc(token).set({
+                    token: token,
+                    pueblo: "Almassora",
+                    fecha: new Date(),
+                    plataforma: "web"
+                });
+                console.log("Token guardado con éxito en Firestore.");
             }
         }
     } catch (error) {
@@ -221,20 +228,62 @@ async function inicializarNotificaciones() {
 
 // --- 8. INICIALITZACIÓ GENERAL ---
 document.addEventListener("DOMContentLoaded", () => {
-    // Registrar el Service Worker explícitamente
+    // ... (Mantén igual el registro del Service Worker y llamadas a funciones)
     if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').then(reg => {
-            console.log('SW listo.');
-            // Inicializar una vez el SW esté listo
+        navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => {
             inicializarNotificaciones();
         });
     }
+
+// --- 9. LÒGICA D'INSTAL·LACIÓ PWA ---
+let deferredPrompt;
+const installContainer = document.getElementById('install-container');
+const btnInstalar = document.getElementById('btn-instalar');
+
+// Función para saber si ya estamos en la App instalada
+function isRunningStandalone() {
+    return (window.matchMedia('(display-mode: standalone)').matches) || 
+           (window.navigator.standalone) || 
+           document.referrer.includes('android-app://');
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Solo actuar si es móvil/tablet y NO está ya instalado
+    const isMobile = window.innerWidth <= 1024;
+
+    if (isMobile && !isRunningStandalone()) {
+        e.preventDefault();
+        deferredPrompt = e;
+        // Mostrar el contenedor
+        if(installContainer) installContainer.style.display = 'block';
+    }
+});
+
+if(btnInstalar) {
+    btnInstalar.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                if(installContainer) installContainer.style.display = 'none';
+            }
+            deferredPrompt = null;
+        }
+    });
+}
+
+// Si se instala correctamente, ocultamos todo
+window.addEventListener('appinstalled', () => {
+    if(installContainer) installContainer.style.display = 'none';
+    deferredPrompt = null;
+});
 
     carregarAvisos();
     carregarTemps();
     actualitzarCompteEnrere();
 
     const ara = new Date();
+    // Formato YYYY-MM-DD
     const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
 
     fetch('programacion.json')
@@ -246,14 +295,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if(!tabsCont) return;
 
+        let indexDiaSeleccionat = 0; // Por defecto el primero
+
         data.forEach((dia, index) => {
+            // Comprobamos si este día es hoy
+            const esAvui = dia.data_iso === avuiISO;
+            if (esAvui) {
+                indexDiaSeleccionat = index;
+            }
+
             const btn = document.createElement("div");
-            btn.className = `day-tab ${index === 0 ? 'active' : ''}`;
+            // Quitamos el 'active' de aquí, lo pondremos luego dinámicamente
+            btn.className = `day-tab`; 
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            if(dia.data_iso === avuiISO && avuiScroll) {
+            // Llenar scroll horizontal de inicio si es hoy
+            if(esAvui && avuiScroll) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
                     mini.className = "event-mini-card";
@@ -264,7 +323,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        if(avuiScroll && avuiScroll.innerHTML === "") avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
-        if(data.length > 0) selectDay(data[0].dia_id, tabsCont.firstChild);
+        // Mensaje si no hay nada hoy en el inicio
+        if(avuiScroll && avuiScroll.innerHTML === "") {
+            avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
+        }
+
+        // --- EL TRUCO ESTÁ AQUÍ ---
+        // Seleccionamos el botón correspondiente al index encontrado (hoy o el primero)
+        const botoPerDefecte = tabsCont.children[indexDiaSeleccionat];
+        if(data.length > 0 && botoPerDefecte) {
+            selectDay(data[indexDiaSeleccionat].dia_id, botoPerDefecte);
+            
+            // Opcional: Hacer scroll automático para que se vea el botón del día actual si hay muchos
+            botoPerDefecte.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
     });
 });

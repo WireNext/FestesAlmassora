@@ -1,20 +1,8 @@
 [
-{
-    "id": "av1",
-    "titol": "Dades ficticies",
-    "text": "Degut a les proves que estem realitzant, la informació que es mostra no es correcta, son dades ficticies per probar tots el components de la web.",
-    "tipus": "important"
-  },
   {
     "id": "av1",
-    "titol": "Canvi d'ubicació",
-    "text": "La mascletà d'avui es trasllada al carrer Major per motius tècnics.",
-    "tipus": "important"
-  },
-  {
-    "id": "av2",
-    "titol": "Previsió de pluja",
-    "text": "Estigueu atents a les xarxes socials per possibles canvis en els actes de la vesprada.",
+    "titol": "Programació provisional",
+    "text": "Encara no se ha fet publica la programació oficial per a Santa Quiteria 2026, per tant alguns events podrien no ser correctes.",
     "tipus": "info"
   }
 ]
