@@ -9,9 +9,12 @@
       <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="description" content="Programa Santa Quitèria Almassora 2026. Tots els esdeveniments, bous i festes de la teua ciutat actualitzats al moment.">
   <link rel="apple-touch-icon" href="icon-512.png">
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
 <script src="script.js"></script>
 </head>
 <body>
@@ -35,11 +38,11 @@
 
             <div id="seccio-avisos"></div>
 
-            <div class="ads-container">
+<!--            <div class="ads-container">
                 <small style="color: #444; display: block; text-align: center; margin-bottom: 5px;">PUBLICITAT</small>
                 <div class="ads-placeholder">
                     </div>
-            </div>
+            </div>-->
 
             <h2 class="label">ACTES D'AVUI</h2>
             <div class="scroll-x" id="avui-scroll"></div>
@@ -134,12 +137,21 @@
             </div>
         </div>
 
-    <nav class="tab-bar">
-        <button class="tab active" onclick="showPage('p-inici', this)">🏠</button>
-        <button class="tab" onclick="showPage('p-events', this)">📅</button>
+<nav class="tab-bar">
+        <button class="tab active" onclick="window.location.href='index.html'">🏠</button>
+        <button class="tab" onclick="window.location.href='programa.html'">📅</button>
         <button class="tab" onclick="window.location.href='bus.html'">🚌</button>
     </nav>
 
     <script src="script.js"></script>
+    <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('Service Worker registrado con éxito', reg))
+        .catch(err => console.log('Error al registrar el Service Worker', err));
+    });
+  }
+</script>
 </body>
 </html>
