@@ -79,35 +79,44 @@ function closeModal() {
 }
 
 // --- 4. FILTRATGE DE PROGRAMACIÓ ---
-function selectDay(diaID, element) {
-    if(!element) return;
+function selectDay(diaId, btn) {
+    // 1. Gestionar pestañas
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-    element.classList.add('active');
+    btn.classList.add('active');
 
+    // 2. Buscar datos del día
+    const dia = dadesProgramacio.find(d => d.dia_id === diaId);
     const container = document.getElementById("events-list-container");
-    if(!container) return;
+    if (!container || !dia) return;
+
     container.innerHTML = "";
+    const favs = getFavorits(); // Obtenemos favoritos guardados
 
-    const diaSeleccionat = dadesProgramacio.find(d => d.dia_id === diaID);
-    if(diaSeleccionat) {
-        diaSeleccionat.actes.forEach(acte => {
-            const card = document.createElement("div");
-            card.className = "glass-card";
-            card.style.marginBottom = "15px";
-            card.onclick = () => openActe(acte.id);
-            card.innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <b style="font-size:17px; display:block;">${acte.titol}</b>
-                        <span style="font-size:13px; color:var(--red); font-weight:700;">🕒 ${acte.hora_inici}h</span>
-                    </div>
-                    <span style="opacity:0.3;">〉</span>
-                </div>`;
-            container.appendChild(card);
-        });
-    }
+    // 3. Generar las tarjetas con la estrella
+    dia.actes.forEach(acte => {
+        const isFav = favs.includes(acte.id);
+        const card = document.createElement("div");
+        card.className = "event-card";
+        
+        // Al hacer clic en la tarjeta se abre el modal
+        card.onclick = () => openActe(acte.id);
+
+        card.innerHTML = `
+            <div class="event-info">
+                <span class="event-time">${acte.hora_inici}h</span>
+                <h3 class="event-title">${acte.titol}</h3>
+                <p class="event-location">📍 ${acte.ubicacio}</p>
+            </div>
+            <div class="fav-button ${isFav ? 'is-fav' : ''}" 
+                 onclick="toggleFavorit('${acte.id}', event)">
+                ${isFav ? '★' : '☆'}
+            </div>
+        `;
+        container.appendChild(card);
+    });
+
+    window.scrollTo(0, 0);
 }
-
 // --- 5. LÒGICA DE L'ORATGE ---
 function carregarTemps() {
     const ara = new Date();
@@ -352,7 +361,8 @@ function getFavorits() {
 
 // Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
-    if (event) event.stopPropagation();
+    if (event) event.stopPropagation(); // Evita abrir el modal
+    
     let favs = getFavorits();
     if (favs.includes(id)) {
         favs = favs.filter(favId => favId !== id);
@@ -361,15 +371,13 @@ function toggleFavorit(id, event) {
     }
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // Refrescar vistas
-    if (document.getElementById('events-list-container')) {
-        const activeTab = document.querySelector('.day-tab.active');
-        if (activeTab) {
-            const diaId = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText)?.dia_id;
-            if(diaId) selectDay(diaId, activeTab);
-        }
+    // REFRESCAR: Buscamos qué día está activo para volver a dibujarlo con la estrella nueva
+    const activeTab = document.querySelector('.day-tab.active');
+    const currentDayId = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText)?.dia_id;
+    
+    if (currentDayId) {
+        selectDay(currentDayId, activeTab);
     }
-    renderFavoritsIndex(); // Actualizar lista en el inicio
 }
 
 // 2. Función para renderizar favoritos en INDEX.HTML
