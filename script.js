@@ -355,64 +355,52 @@ window.addEventListener('appinstalled', () => {
 
 // Obté la llista de IDs favorits del localStorage
 function getFavorits() {
-    const favs = localStorage.getItem('festes_favs');
-    return favs ? JSON.parse(favs) : [];
+    return JSON.parse(localStorage.getItem('festes_favs') || "[]");
 }
 
-// Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
     if (event) event.stopPropagation();
-    
     let favs = getFavorits();
-    if (favs.includes(id)) {
-        favs = favs.filter(favId => favId !== id);
-    } else {
-        favs.push(id);
-    }
+    favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id];
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // 1. Si estamos en programa.html, refrescamos las estrellas
+    // Refrescar si estamos en programa.html
     const activeTab = document.querySelector('.day-tab.active');
-    if (activeTab) {
-        const diaActual = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText);
-        if (diaActual) selectDay(diaActual.dia_id, activeTab);
+    if (activeTab && typeof selectDay === 'function') {
+        const dia = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText);
+        if(dia) selectDay(dia.dia_id, activeTab);
     }
-
-    // 2. Actualizamos la sección de favoritos (estemos donde estemos)
-    renderFavoritsIndex();
+    renderFavoritsIndex(); 
 }
+
 // 2. Función para renderizar favoritos en INDEX.HTML
 function renderFavoritsIndex() {
     const container = document.getElementById("favorits-container");
     const section = document.getElementById("seccio-favorits");
-    
-    if (!container || !section) return; // Si no estamos en index.html, salimos
+    if (!container || !section) return;
 
     const favIds = getFavorits();
-
     if (favIds.length === 0) {
         section.style.display = "none";
         return;
     }
 
     section.style.display = "block";
-    container.innerHTML = ""; // Limpiamos para reconstruir
+    container.innerHTML = "";
 
-    // Buscamos los actos que coinciden con nuestros favoritos
     dadesProgramacio.forEach(dia => {
         dia.actes.forEach(acte => {
             if (favIds.includes(acte.id)) {
-                const miniCard = document.createElement("div");
-                miniCard.className = "event-mini-card fav-item";
-                miniCard.onclick = () => openActe(acte.id);
-                miniCard.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; align-items:start;">
+                const mini = document.createElement("div");
+                mini.className = "event-mini-card fav-item";
+                mini.onclick = () => openActe(acte.id);
+                mini.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; width:100%;">
                         <b>${acte.hora_inici}h</b>
-                        <span style="color:#ffcc00; font-size:18px;">★</span>
+                        <span style="color:#ffcc00">★</span>
                     </div>
-                    <p>${acte.titol}</p>
-                `;
-                container.appendChild(miniCard);
+                    <p>${acte.titol}</p>`;
+                container.appendChild(mini);
             }
         });
     });
@@ -453,19 +441,47 @@ function carregarProgramacio() {
         dadesProgramacio = data;
         const avuiScroll = document.getElementById("avui-scroll");
         const seccioAvui = document.getElementById("seccio-avui");
-        
-        // ... (tu lógica de buscar el día de hoy) ...
-        
-        if (avuiScroll && seccioAvui) {
-            // Si el contenedor no tiene hijos (o solo tiene el mensaje de "No hay actos")
-            if (avuiScroll.children.length === 0 || avuiScroll.innerText.includes("No hi ha")) {
-                seccioAvui.style.display = "none";
-            } else {
-                seccioAvui.style.display = "block";
+        const tabsCont = document.getElementById("days-tabs");
+
+        // Fecha de hoy corregida para comparación (YYYY-MM-DD)
+        const hoy = new Date();
+        const hoyStr = hoy.getFullYear() + "-" + 
+                       String(hoy.getMonth() + 1).padStart(2, '0') + "-" + 
+                       String(hoy.getDate()).padStart(2, '0');
+
+        let actosHoyContador = 0;
+
+        data.forEach((dia) => {
+            const esAvui = dia.data_iso === hoyStr;
+
+            // 1. Rellenar pestañas (si existen)
+            if (tabsCont) {
+                const btn = document.createElement("button");
+                btn.className = `day-tab`; 
+                btn.innerText = dia.titol_curt;
+                btn.onclick = () => selectDay(dia.dia_id, btn);
+                tabsCont.appendChild(btn);
             }
+
+            // 2. Rellenar actos de hoy
+            if (esAvui && avuiScroll) {
+                dia.actes.forEach(acte => {
+                    actosHoyContador++;
+                    const mini = document.createElement("div");
+                    mini.className = "event-mini-card";
+                    mini.onclick = () => openActe(acte.id);
+                    mini.innerHTML = `<b>${acte.hora_inici}h</b><p>${acte.titol}</p>`;
+                    avuiScroll.appendChild(mini);
+                });
+            }
+        });
+
+        // Ocultar sección de hoy si no hay actos
+        if (seccioAvui) {
+            seccioAvui.style.display = (actosHoyContador > 0) ? "block" : "none";
         }
 
-        renderFavoritsIndex(); // Llamar al cargar la web
+        renderFavoritsIndex();
     });
 }
 
