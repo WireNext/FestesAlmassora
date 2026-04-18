@@ -352,7 +352,7 @@ function getFavorits() {
 
 // Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
-    if (event) event.stopPropagation(); // Evita que s'òpiga el modal al fer clic en l'estrella
+    if (event) event.stopPropagation(); // Importante: para que no se abra el modal al dar a la estrella
     
     let favs = getFavorits();
     if (favs.includes(id)) {
@@ -362,17 +362,30 @@ function toggleFavorit(id, event) {
     }
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // Refrescar la vista actual per a actualitzar les estrelles
+    // Esto recarga la lista para que la estrella cambie de color al momento
     const activeTab = document.querySelector('.day-tab.active');
-    if (activeTab) activeTab.click(); 
+    if (activeTab) {
+        // Buscamos el ID del día actual para refrescar
+        const diaId = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText)?.dia_id;
+        if(diaId) selectDay(diaId, activeTab);
+    }
 }
 
 // Modifica la funció on renderitzes els actes (dins de selectDay) 
 // per a incloure el botó d'estrella:
-function crearCardActe(acte) {
-    const isFav = getFavorits().includes(acte.id);
-    return `
-        <div class="event-card" onclick="openActe('${acte.id}')">
+function renderizarActes(actes) {
+    const container = document.getElementById("events-list-container");
+    container.innerHTML = "";
+    const favs = getFavorits();
+
+    actes.forEach(acte => {
+        const isFav = favs.includes(acte.id);
+        const card = document.createElement("div");
+        card.className = "event-card";
+        // Al hacer clic en la card se abre el modal, pero NO si pulsamos en la estrella
+        card.onclick = () => openActe(acte.id);
+
+        card.innerHTML = `
             <div class="event-info">
                 <span class="event-time">${acte.hora_inici}h</span>
                 <h3 class="event-title">${acte.titol}</h3>
@@ -381,13 +394,14 @@ function crearCardActe(acte) {
             <div class="fav-button ${isFav ? 'is-fav' : ''}" onclick="toggleFavorit('${acte.id}', event)">
                 ${isFav ? '★' : '☆'}
             </div>
-        </div>
-    `;
+        `;
+        container.appendChild(card);
+    });
 }
 
 function mostrarInfoVioleta() {
     // Puedes personalizar la ubicación según donde se instale este año
-    const ubicacioPunt = "Plaça Pere Cornell (Davant l'Ajuntament)";
+    const ubicacioPunt = "Per determinar";
     
     const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
 

@@ -459,6 +459,22 @@ header h1 {
     }
 }
 
+.event-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--glass);
+    padding: 15px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+}
+
+.event-info {
+    flex: 1; /* El texto ocupa todo el espacio menos la estrella */
+}
+
 .fav-button {
     font-size: 24px;
     color: var(--text-sec);
