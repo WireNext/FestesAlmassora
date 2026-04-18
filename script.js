@@ -361,7 +361,7 @@ function getFavorits() {
 
 // Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
-    if (event) event.stopPropagation(); // Evita abrir el modal
+    if (event) event.stopPropagation();
     
     let favs = getFavorits();
     if (favs.includes(id)) {
@@ -371,45 +371,48 @@ function toggleFavorit(id, event) {
     }
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // REFRESCAR: Buscamos qué día está activo para volver a dibujarlo con la estrella nueva
+    // 1. Si estamos en programa.html, refrescamos las estrellas
     const activeTab = document.querySelector('.day-tab.active');
-    const currentDayId = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText)?.dia_id;
-    
-    if (currentDayId) {
-        selectDay(currentDayId, activeTab);
+    if (activeTab) {
+        const diaActual = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText);
+        if (diaActual) selectDay(diaActual.dia_id, activeTab);
     }
-}
 
+    // 2. Actualizamos la sección de favoritos (estemos donde estemos)
+    renderFavoritsIndex();
+}
 // 2. Función para renderizar favoritos en INDEX.HTML
 function renderFavoritsIndex() {
     const container = document.getElementById("favorits-container");
     const section = document.getElementById("seccio-favorits");
-    if (!container || !section) return;
+    
+    if (!container || !section) return; // Si no estamos en index.html, salimos
 
     const favIds = getFavorits();
+
     if (favIds.length === 0) {
         section.style.display = "none";
         return;
     }
 
     section.style.display = "block";
-    container.innerHTML = "";
+    container.innerHTML = ""; // Limpiamos para reconstruir
 
-    // Buscamos los datos de los actos favoritos en todo el JSON
+    // Buscamos los actos que coinciden con nuestros favoritos
     dadesProgramacio.forEach(dia => {
         dia.actes.forEach(acte => {
             if (favIds.includes(acte.id)) {
-                const card = document.createElement("div");
-                card.className = "event-mini-card fav-card";
-                card.onclick = () => openActe(acte.id);
-                card.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; width:100%;">
+                const miniCard = document.createElement("div");
+                miniCard.className = "event-mini-card fav-item";
+                miniCard.onclick = () => openActe(acte.id);
+                miniCard.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:start;">
                         <b>${acte.hora_inici}h</b>
-                        <span style="color:#ffcc00">★</span>
+                        <span style="color:#ffcc00; font-size:18px;">★</span>
                     </div>
                     <p>${acte.titol}</p>
                 `;
-                container.appendChild(card);
+                container.appendChild(miniCard);
             }
         });
     });
@@ -453,8 +456,9 @@ function carregarProgramacio() {
         
         // ... (tu lógica de buscar el día de hoy) ...
         
-        if(avuiScroll && seccioAvui) {
-            if (avuiScroll.children.length === 0 || avuiScroll.innerHTML.includes("No hi ha actes")) {
+        if (avuiScroll && seccioAvui) {
+            // Si el contenedor no tiene hijos (o solo tiene el mensaje de "No hay actos")
+            if (avuiScroll.children.length === 0 || avuiScroll.innerText.includes("No hi ha")) {
                 seccioAvui.style.display = "none";
             } else {
                 seccioAvui.style.display = "block";
