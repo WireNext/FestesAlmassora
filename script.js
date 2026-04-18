@@ -443,18 +443,24 @@ function carregarProgramacio() {
         const seccioAvui = document.getElementById("seccio-avui");
         const tabsCont = document.getElementById("days-tabs");
 
-        // Fecha de hoy corregida para comparación (YYYY-MM-DD)
+        // --- CORRECCIÓN DE FECHA ---
         const hoy = new Date();
-        const hoyStr = hoy.getFullYear() + "-" + 
-                       String(hoy.getMonth() + 1).padStart(2, '0') + "-" + 
-                       String(hoy.getDate()).padStart(2, '0');
+        const yyyy = hoy.getFullYear();
+        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+        const dd = String(hoy.getDate()).padStart(2, '0');
+        const hoyStr = `${yyyy}-${mm}-${dd}`; 
+        // ---------------------------
 
         let actosHoyContador = 0;
+        let indexDiaSeleccionat = 0;
 
-        data.forEach((dia) => {
+        if(avuiScroll) avuiScroll.innerHTML = ""; // Limpiar antes de llenar
+
+        data.forEach((dia, idx) => {
             const esAvui = dia.data_iso === hoyStr;
+            if(esAvui) indexDiaSeleccionat = idx;
 
-            // 1. Rellenar pestañas (si existen)
+            // Llenar pestañas (si estamos en programa.html)
             if (tabsCont) {
                 const btn = document.createElement("button");
                 btn.className = `day-tab`; 
@@ -463,7 +469,7 @@ function carregarProgramacio() {
                 tabsCont.appendChild(btn);
             }
 
-            // 2. Rellenar actos de hoy
+            // Llenar actos de hoy (si estamos en index.html)
             if (esAvui && avuiScroll) {
                 dia.actes.forEach(acte => {
                     actosHoyContador++;
@@ -476,12 +482,21 @@ function carregarProgramacio() {
             }
         });
 
-        // Ocultar sección de hoy si no hay actos
+        // --- CONTROL DE VISIBILIDAD ---
         if (seccioAvui) {
-            seccioAvui.style.display = (actosHoyContador > 0) ? "block" : "none";
+            if (actosHoyContador > 0) {
+                seccioAvui.style.display = "block";
+            } else {
+                seccioAvui.style.display = "none";
+            }
         }
 
         renderFavoritsIndex();
+
+        // Seleccionar día por defecto en programa.html
+        if(tabsCont && data.length > 0) {
+            selectDay(data[indexDiaSeleccionat].dia_id, tabsCont.children[indexDiaSeleccionat]);
+        }
     });
 }
 
