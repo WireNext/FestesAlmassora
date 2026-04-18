@@ -79,44 +79,35 @@ function closeModal() {
 }
 
 // --- 4. FILTRATGE DE PROGRAMACIÓ ---
-function selectDay(diaId, btn) {
-    // 1. Gestionar pestañas
+function selectDay(diaID, element) {
+    if(!element) return;
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
+    element.classList.add('active');
 
-    // 2. Buscar datos del día
-    const dia = dadesProgramacio.find(d => d.dia_id === diaId);
     const container = document.getElementById("events-list-container");
-    if (!container || !dia) return;
-
+    if(!container) return;
     container.innerHTML = "";
-    const favs = getFavorits(); // Obtenemos favoritos guardados
 
-    // 3. Generar las tarjetas con la estrella
-    dia.actes.forEach(acte => {
-        const isFav = favs.includes(acte.id);
-        const card = document.createElement("div");
-        card.className = "event-card";
-        
-        // Al hacer clic en la tarjeta se abre el modal
-        card.onclick = () => openActe(acte.id);
-
-        card.innerHTML = `
-            <div class="event-info">
-                <span class="event-time">${acte.hora_inici}h</span>
-                <h3 class="event-title">${acte.titol}</h3>
-                <p class="event-location">📍 ${acte.ubicacio}</p>
-            </div>
-            <div class="fav-button ${isFav ? 'is-fav' : ''}" 
-                 onclick="toggleFavorit('${acte.id}', event)">
-                ${isFav ? '★' : '☆'}
-            </div>
-        `;
-        container.appendChild(card);
-    });
-
-    window.scrollTo(0, 0);
+    const diaSeleccionat = dadesProgramacio.find(d => d.dia_id === diaID);
+    if(diaSeleccionat) {
+        diaSeleccionat.actes.forEach(acte => {
+            const card = document.createElement("div");
+            card.className = "glass-card";
+            card.style.marginBottom = "15px";
+            card.onclick = () => openActe(acte.id);
+            card.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <b style="font-size:17px; display:block;">${acte.titol}</b>
+                        <span style="font-size:13px; color:var(--red); font-weight:700;">🕒 ${acte.hora_inici}h</span>
+                    </div>
+                    <span style="opacity:0.3;">〉</span>
+                </div>`;
+            container.appendChild(card);
+        });
+    }
 }
+
 // --- 5. LÒGICA DE L'ORATGE ---
 function carregarTemps() {
     const ara = new Date();
@@ -355,72 +346,33 @@ window.addEventListener('appinstalled', () => {
 
 // Obté la llista de IDs favorits del localStorage
 function getFavorits() {
-    return JSON.parse(localStorage.getItem('festes_favs') || "[]");
+    const favs = localStorage.getItem('festes_favs');
+    return favs ? JSON.parse(favs) : [];
 }
 
+// Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
-    if (event) event.stopPropagation();
+    if (event) event.stopPropagation(); // Evita que s'òpiga el modal al fer clic en l'estrella
+    
     let favs = getFavorits();
-    favs = favs.includes(id) ? favs.filter(f => f !== id) : [...favs, id];
+    if (favs.includes(id)) {
+        favs = favs.filter(favId => favId !== id);
+    } else {
+        favs.push(id);
+    }
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // Refrescar si estamos en programa.html
+    // Refrescar la vista actual per a actualitzar les estrelles
     const activeTab = document.querySelector('.day-tab.active');
-    if (activeTab && typeof selectDay === 'function') {
-        const dia = dadesProgramacio.find(d => d.titol_curt === activeTab.innerText);
-        if(dia) selectDay(dia.dia_id, activeTab);
-    }
-    renderFavoritsIndex(); 
-}
-
-// 2. Función para renderizar favoritos en INDEX.HTML
-function renderFavoritsIndex() {
-    const container = document.getElementById("favorits-container");
-    const section = document.getElementById("seccio-favorits");
-    if (!container || !section) return;
-
-    const favIds = getFavorits();
-    if (favIds.length === 0) {
-        section.style.display = "none";
-        return;
-    }
-
-    section.style.display = "block";
-    container.innerHTML = "";
-
-    dadesProgramacio.forEach(dia => {
-        dia.actes.forEach(acte => {
-            if (favIds.includes(acte.id)) {
-                const mini = document.createElement("div");
-                mini.className = "event-mini-card fav-item";
-                mini.onclick = () => openActe(acte.id);
-                mini.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; width:100%;">
-                        <b>${acte.hora_inici}h</b>
-                        <span style="color:#ffcc00">★</span>
-                    </div>
-                    <p>${acte.titol}</p>`;
-                container.appendChild(mini);
-            }
-        });
-    });
+    if (activeTab) activeTab.click(); 
 }
 
 // Modifica la funció on renderitzes els actes (dins de selectDay) 
 // per a incloure el botó d'estrella:
-function renderizarActes(actes) {
-    const container = document.getElementById("events-list-container");
-    container.innerHTML = "";
-    const favs = getFavorits();
-
-    actes.forEach(acte => {
-        const isFav = favs.includes(acte.id);
-        const card = document.createElement("div");
-        card.className = "event-card";
-        // Al hacer clic en la card se abre el modal, pero NO si pulsamos en la estrella
-        card.onclick = () => openActe(acte.id);
-
-        card.innerHTML = `
+function crearCardActe(acte) {
+    const isFav = getFavorits().includes(acte.id);
+    return `
+        <div class="event-card" onclick="openActe('${acte.id}')">
             <div class="event-info">
                 <span class="event-time">${acte.hora_inici}h</span>
                 <h3 class="event-title">${acte.titol}</h3>
@@ -429,59 +381,6 @@ function renderizarActes(actes) {
             <div class="fav-button ${isFav ? 'is-fav' : ''}" onclick="toggleFavorit('${acte.id}', event)">
                 ${isFav ? '★' : '☆'}
             </div>
-        `;
-        container.appendChild(card);
-    });
-}
-
-function carregarProgramacio() {
-    fetch('programacion.json')
-    .then(r => r.json())
-    .then(data => {
-        dadesProgramacio = data;
-        const avuiScroll = document.getElementById("avui-scroll");
-        const seccioAvui = document.getElementById("seccio-avui");
-
-        // Obtener fecha de hoy exacta en formato YYYY-MM-DD
-        const ahora = new Date();
-        const hoyStr = ahora.getFullYear() + '-' + 
-                       String(ahora.getMonth() + 1).padStart(2, '0') + '-' + 
-                       String(ahora.getDate()).padStart(2, '0');
-
-        let actosHoyContador = 0;
-        if (avuiScroll) avuiScroll.innerHTML = ""; 
-
-        data.forEach(dia => {
-            // Comparamos la fecha del JSON con la de hoy
-            if (dia.data_iso === hoyStr && avuiScroll) {
-                dia.actes.forEach(acte => {
-                    actosHoyContador++;
-                    const mini = document.createElement("div");
-                    mini.className = "event-mini-card";
-                    mini.onclick = () => openActe(acte.id);
-                    mini.innerHTML = `<b>${acte.hora_inici}h</b><p>${acte.titol}</p>`;
-                    avuiScroll.appendChild(mini);
-                });
-            }
-        });
-
-        // CONTROL DE VISIBILIDAD
-        if (seccioAvui) {
-            // IMPORTANTE: Solo se muestra si hay actos hoy
-            seccioAvui.style.display = (actosHoyContador > 0) ? "block" : "none";
-        }
-
-        renderFavoritsIndex();
-    });
-}
-
-function mostrarInfoVioleta() {
-    // Puedes personalizar la ubicación según donde se instale este año
-    const ubicacioPunt = "Per determinar";
-    
-    const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
-
-    if (confirm(missatge)) {
-        window.location.href = "tel:016";
-    }
+        </div>
+    `;
 }
