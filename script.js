@@ -384,3 +384,14 @@ function crearCardActe(acte) {
         </div>
     `;
 }
+
+function mostrarInfoVioleta() {
+    // Puedes personalizar la ubicación según donde se instale este año
+    const ubicacioPunt = "Per determinar";
+    
+    const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
+
+    if (confirm(missatge)) {
+        window.location.href = "tel:016";
+    }
+}
