@@ -513,3 +513,14 @@ header h1 {
     background: rgba(160, 32, 240, 0.15);
     border-color: rgba(160, 32, 240, 0.3);
 }
+
+.fav-card {
+    background: rgba(255, 204, 0, 0.1) !important;
+    border: 0.5px solid rgba(255, 204, 0, 0.3) !important;
+    min-width: 140px;
+}
+
+/* Para ocultar secciones suavemente */
+section {
+    transition: opacity 0.3s ease;
+}
