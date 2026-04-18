@@ -442,21 +442,17 @@ function carregarProgramacio() {
         const avuiScroll = document.getElementById("avui-scroll");
         const seccioAvui = document.getElementById("seccio-avui");
 
-        // --- OBTENER FECHA LOCAL YYYY-MM-DD ---
+        // Obtener fecha de hoy en formato local (evita errores de zona horaria)
         const ahora = new Date();
-        const year = ahora.getFullYear();
-        const month = String(ahora.getMonth() + 1).padStart(2, '0');
-        const day = String(ahora.getDate()).padStart(2, '0');
-        const hoyStr = `${year}-${month}-${day}`;
-        
-        console.log("Buscando actos para fecha:", hoyStr); // Esto te dirá en la consola qué fecha busca
+        const hoyStr = ahora.getFullYear() + '-' + 
+                       String(ahora.getMonth() + 1).padStart(2, '0') + '-' + 
+                       String(ahora.getDate()).padStart(2, '0');
 
         let actosHoyContador = 0;
-        if(avuiScroll) avuiScroll.innerHTML = ""; 
+        if (avuiScroll) avuiScroll.innerHTML = ""; 
 
         data.forEach(dia => {
-            // Comparamos la fecha del JSON con la de hoy
-            if(dia.data_iso === hoyStr && avuiScroll) {
+            if (dia.data_iso === hoyStr && avuiScroll) {
                 dia.actes.forEach(acte => {
                     actosHoyContador++;
                     const mini = document.createElement("div");
@@ -468,18 +464,13 @@ function carregarProgramacio() {
             }
         });
 
-        // --- MOSTRAR O OCULTAR LA SECCIÓN COMPLETA ---
+        // Control de visibilidad: si hay actos hoy, mostramos la sección entera
         if (seccioAvui) {
-            if (actosHoyContador > 0) {
-                seccioAvui.style.setProperty("display", "block", "important");
-            } else {
-                seccioAvui.style.setProperty("display", "none", "important");
-            }
+            seccioAvui.style.display = (actosHoyContador > 0) ? "block" : "none";
         }
 
         renderFavoritsIndex();
-    })
-    .catch(err => console.error("Error cargando JSON:", err));
+    });
 }
 
 function mostrarInfoVioleta() {
