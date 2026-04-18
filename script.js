@@ -441,36 +441,22 @@ function carregarProgramacio() {
         dadesProgramacio = data;
         const avuiScroll = document.getElementById("avui-scroll");
         const seccioAvui = document.getElementById("seccio-avui");
-        const tabsCont = document.getElementById("days-tabs");
 
-        // --- CORRECCIÓN DE FECHA ---
-        const hoy = new Date();
-        const yyyy = hoy.getFullYear();
-        const mm = String(hoy.getMonth() + 1).padStart(2, '0');
-        const dd = String(hoy.getDate()).padStart(2, '0');
-        const hoyStr = `${yyyy}-${mm}-${dd}`; 
-        // ---------------------------
+        // --- OBTENER FECHA LOCAL YYYY-MM-DD ---
+        const ahora = new Date();
+        const year = ahora.getFullYear();
+        const month = String(ahora.getMonth() + 1).padStart(2, '0');
+        const day = String(ahora.getDate()).padStart(2, '0');
+        const hoyStr = `${year}-${month}-${day}`;
+        
+        console.log("Buscando actos para fecha:", hoyStr); // Esto te dirá en la consola qué fecha busca
 
         let actosHoyContador = 0;
-        let indexDiaSeleccionat = 0;
+        if(avuiScroll) avuiScroll.innerHTML = ""; 
 
-        if(avuiScroll) avuiScroll.innerHTML = ""; // Limpiar antes de llenar
-
-        data.forEach((dia, idx) => {
-            const esAvui = dia.data_iso === hoyStr;
-            if(esAvui) indexDiaSeleccionat = idx;
-
-            // Llenar pestañas (si estamos en programa.html)
-            if (tabsCont) {
-                const btn = document.createElement("button");
-                btn.className = `day-tab`; 
-                btn.innerText = dia.titol_curt;
-                btn.onclick = () => selectDay(dia.dia_id, btn);
-                tabsCont.appendChild(btn);
-            }
-
-            // Llenar actos de hoy (si estamos en index.html)
-            if (esAvui && avuiScroll) {
+        data.forEach(dia => {
+            // Comparamos la fecha del JSON con la de hoy
+            if(dia.data_iso === hoyStr && avuiScroll) {
                 dia.actes.forEach(acte => {
                     actosHoyContador++;
                     const mini = document.createElement("div");
@@ -482,22 +468,18 @@ function carregarProgramacio() {
             }
         });
 
-        // --- CONTROL DE VISIBILIDAD ---
+        // --- MOSTRAR O OCULTAR LA SECCIÓN COMPLETA ---
         if (seccioAvui) {
             if (actosHoyContador > 0) {
-                seccioAvui.style.display = "block";
+                seccioAvui.style.setProperty("display", "block", "important");
             } else {
-                seccioAvui.style.display = "none";
+                seccioAvui.style.setProperty("display", "none", "important");
             }
         }
 
         renderFavoritsIndex();
-
-        // Seleccionar día por defecto en programa.html
-        if(tabsCont && data.length > 0) {
-            selectDay(data[indexDiaSeleccionat].dia_id, tabsCont.children[indexDiaSeleccionat]);
-        }
-    });
+    })
+    .catch(err => console.error("Error cargando JSON:", err));
 }
 
 function mostrarInfoVioleta() {
