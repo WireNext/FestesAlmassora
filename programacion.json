@@ -1,52 +1,18 @@
 [
   {
     "dia_id": "dia1",
-    "data_iso": "2026-04-02",
-    "titol_curt": "Dj 2",
-    "titol_llarg": "Dijous 2 d'Abril -  Trencà de l'hora",
+    "data_iso": "2026-05-10",
+    "titol_curt": "Dm 10",
+    "titol_llarg": "Diumenge 10 de Maig -  Romería",
     "actes": [
       {
         "id": "a1",
-        "titol": "Trencà de l'hora",
-        "hora_inici": "23:58",
-        "hora_fi": "23:59",
-        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
-        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
-        "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-  {
-    "dia_id": "dia2",
-    "data_iso": "2026-04-03",
-    "titol_curt": "Dv 3",
-    "titol_llarg": "Divendres 3 d'Abril -  Trencà de l'hora",
-    "actes": [
-      {
-        "id": "a2",
-        "titol": "Trencà de l'hora",
-        "hora_inici": "00:00",
-        "hora_fi": "01:00",
-        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
-        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
-        "ubicacio": "Plaça Major"
-      }
-    ]
-  },
-    {
-    "dia_id": "dia3",
-    "data_iso": "2026-04-14",
-    "titol_curt": "Dm 14",
-    "titol_llarg": "Dimarts 14 d'Abril -  Prova",
-    "actes": [
-      {
-        "id": "a2",
-        "titol": "Prova",
-        "hora_inici": "20:00",
-        "hora_fi": "22:00",
-        "descripcio": "Atronadora trencada del silenci amb tambors i bombos per a commemorar la Mort de Crist.",
-        "imatge": "https://cdn.digitalvalue.es/almassora/assets/5a800dfee4f39ddce7925348?w=500&interlace=true",
-        "ubicacio": "Plaça Major"
+        "titol": "Romería",
+        "hora_inici": "08:00",
+        "hora_fi": "17:00",
+        "descripcio": "Tradicional romeria des de la Nativitat fins a l'ermita de Santa Quiteria, amb el repartiment de rotllos i el dinar en honor a la patrona.",
+        "imatge": "https://castellondiario.com/wp-content/uploads/2025/05/almassora-revive-su-devocion-por-santa-quiteria-con-una-multitudinaria-romeria.jpg",
+        "ubicacio": "Santa Quiteria"
       }
     ]
   }
