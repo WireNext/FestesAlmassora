@@ -182,7 +182,9 @@ function actualitzarCompteEnrere() {
     }, 1000);
 }
 
-// --- 7. NOTIFICACIONS PUSH (CORREGIDO) ---
+
+
+// --- 7. NOTIFICACIONS PUSH ---
 async function inicializarNotificaciones() {
     const firebaseConfig = {
         apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
@@ -339,3 +341,57 @@ window.addEventListener('appinstalled', () => {
         }
     });
 });
+
+// --- GESTIÓ DE FAVORITS ---
+
+// Obté la llista de IDs favorits del localStorage
+function getFavorits() {
+    const favs = localStorage.getItem('festes_favs');
+    return favs ? JSON.parse(favs) : [];
+}
+
+// Afegeix o lleva un acte de favorits
+function toggleFavorit(id, event) {
+    if (event) event.stopPropagation(); // Evita que s'òpiga el modal al fer clic en l'estrella
+    
+    let favs = getFavorits();
+    if (favs.includes(id)) {
+        favs = favs.filter(favId => favId !== id);
+    } else {
+        favs.push(id);
+    }
+    localStorage.setItem('festes_favs', JSON.stringify(favs));
+    
+    // Refrescar la vista actual per a actualitzar les estrelles
+    const activeTab = document.querySelector('.day-tab.active');
+    if (activeTab) activeTab.click(); 
+}
+
+// Modifica la funció on renderitzes els actes (dins de selectDay) 
+// per a incloure el botó d'estrella:
+function crearCardActe(acte) {
+    const isFav = getFavorits().includes(acte.id);
+    return `
+        <div class="event-card" onclick="openActe('${acte.id}')">
+            <div class="event-info">
+                <span class="event-time">${acte.hora_inici}h</span>
+                <h3 class="event-title">${acte.titol}</h3>
+                <p class="event-location">📍 ${acte.ubicacio}</p>
+            </div>
+            <div class="fav-button ${isFav ? 'is-fav' : ''}" onclick="toggleFavorit('${acte.id}', event)">
+                ${isFav ? '★' : '☆'}
+            </div>
+        </div>
+    `;
+}
+
+function mostrarInfoVioleta() {
+    // Puedes personalizar la ubicación según donde se instale este año
+    const ubicacioPunt = "Per determinar";
+    
+    const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
+
+    if (confirm(missatge)) {
+        window.location.href = "tel:016";
+    }
+}
