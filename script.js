@@ -89,7 +89,16 @@ function selectDay(diaID, element) {
     container.innerHTML = "";
 
     const diaSeleccionat = dadesProgramacio.find(d => d.dia_id === diaID);
+    
     if(diaSeleccionat) {
+        // --- NUEVA LÓGICA PARA LA FECHA ---
+        // Convertimos "2026-05-16" en un objeto fecha de JS
+        const fechaObj = new Date(diaSeleccionat.data_iso);
+        // Extraemos el día y el nombre del mes en español/catalán
+        const opciones = { day: '2-digit', month: 'short' };
+        const fechaFormateada = fechaObj.toLocaleDateString('ca-ES', opciones); 
+        // Resultado ej: "08 de maig" o "08 mai."
+
         diaSeleccionat.actes.forEach(acte => {
             const card = document.createElement("div");
             card.className = "glass-card";
@@ -99,7 +108,9 @@ function selectDay(diaID, element) {
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div>
                         <b style="font-size:17px; display:block;">${acte.titol}</b>
-                        <span style="font-size:13px; color:var(--red); font-weight:700;">🕒 ${acte.hora_inici}h</span>
+                        <span style="font-size:13px; color:var(--red); font-weight:700;">
+                            📅 ${fechaFormateada} - 🕒 ${acte.hora_inici}h
+                        </span>
                     </div>
                     <span style="opacity:0.3;">〉</span>
                 </div>`;
