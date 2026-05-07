@@ -1,18 +1,1474 @@
 [
   {
     "dia_id": "dia1",
-    "data_iso": "2026-05-10",
-    "titol_curt": "Dm 10",
-    "titol_llarg": "Diumenge 10 de Maig -  Romería",
+    "data_iso": "2026-05-08",
+    "titol_curt": "Dv 08",
+    "titol_llarg": "Divendres 8 de Maig",
     "actes": [
       {
         "id": "a1",
-        "titol": "Romería",
+        "titol": "Presentació oficial de la reina de les festes",
+        "hora_inici": "22:00",
+        "hora_fi": "",
+        "descripcio": "Presentació oficial de la reina de les festes. Martina Caparrós Mezquita, de les dames: Diana Zafrilla Piñero, Belén Zafrilla Piñero, Beatriz Alcaide Ahis Marta Curic Vega. Actuarà com a mantenidor el senyor Sergi González Fernández. A continuació, ball d'honor dedicat a la reina i a les dames, i actuació d'El showman del Serrucho. Lloc: Recinte Fester",
+        "imatge": "https://www.radiovila-real.es/wp-content/uploads/2026/01/reina-y-damas-2026.jpg",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia2",
+    "data_iso": "2026-05-09",
+    "titol_curt": "Ds 09",
+    "titol_llarg": "Dissabte 9 de Maig",
+    "actes": [
+      {
+        "id": "a2",
+        "titol": "VI Esdeveniment moter",
+        "hora_inici": "10:00",
+        "hora_fi": "",
+        "descripcio": "VI Esdeveniment moter, amenitzat pel grup Vanhored. Exposició de motos clàssiques i de competició. Organitzen: Motoclub Motard Almassora i ACT La Picaora. Col-labora: Ajuntament d'Almassora. Lloc: pl. Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Espanya"
+      },
+      {
+        "id": "a3",
+        "titol": "Cavalcada del Prego",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Cavalcada del Prego, que transcorrerà per l'itinerari de costum: av, de José Ortiz i els carrers de Sant Lluís, Santa Quitèria (l'Alcora), Sant Marc, Sant Ramon i la Trinitat. S'habilitarà una zona sensorialment amigable, per a una experiència inclusiva, a l'inici del recorregut a l'av. José Ortiz, en el tram comprés entre c/ Boqueres i el c/ Sant Tomás.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Av. de José Ortiz"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia3",
+    "data_iso": "2026-05-10",
+    "titol_curt": "Dg 10",
+    "titol_llarg": "Diumenge 10 de Maig",
+    "actes": [
+      {
+        "id": "a4",
+        "titol": "Volteig general de campanes",
         "hora_inici": "08:00",
-        "hora_fi": "17:00",
-        "descripcio": "Tradicional romeria des de la Nativitat fins a l'ermita de Santa Quiteria, amb el repartiment de rotllos i el dinar en honor a la patrona.",
+        "hora_fi": "",
+        "descripcio": "Volteig general de campanes per a anunciar la festivitat del dia.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de l'Església"
+      },
+      {
+        "id": "a5",
+        "titol": "Reunió de romers i de vehicles engalanats",
+        "hora_inici": "08:30",
+        "hora_fi": "",
+        "descripcio": "Reunió de romers i de vehicles engalanats a la plaça de l'Església de la Nativitat de Ntra. Sra. Repartiment de cintes i mocadors als romers en diferents punts habilitats durant el trajecte. La recaptació de la venda es donarà íntegrament a l'AECC (Associació Espanyola Contra el Càncer d'Almassora).",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de l'Església de la Nativitat"
+      },
+      {
+        "id": "a6",
+        "titol": "Romeria a l'ermita de Santa Quitèria",
+        "hora_inici": "09:00",
+        "hora_fi": "",
+        "descripcio": "Romeria a l'ermita de Santa Quitèria presidida pel Sr. Juan Ángel Tapiador Navas, rector de la parròquia de la Nativitat de Ntra. Sra., acompanyat per la cort d'honor de la Mare de Déu del Roser i de Santa Quitèria, la reina i les dames, el clergat i les autoritats. Als voltants de l'ermita, s'hi oferirà als romers el rotllet i una copeta. Tots els vehicles engalanats rebran un distintiu de la romeria.",
         "imatge": "https://españaenfiestas.es/images/fiestas/255/_thumb2/fiestas-santa-quiteria-almassora-10.jpg",
-        "ubicacio": "Ermita de Santa Quiteria"
+        "ubicacio": "Ermita de Santa Quitèria"
+      },
+      {
+        "id": "a7",
+        "titol": "Parc infantil",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Parc infantil a càrrec de Tic-tac Animaciones. Lloc: ermita de Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      },
+      {
+        "id": "a8",
+        "titol": "Santa missa a l'ermita",
+        "hora_inici": "12:00",
+        "hora_fi": "",
+        "descripcio": "Santa missa a l'ermita amb la presència de la reina, les dames i les autoritats. En finalitzar, ball de plaça a la porta de l'ermita, en col·laboració amb l'AC El Torrelló.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      },
+      {
+        "id": "a9",
+        "titol": "Paella monumental",
+        "hora_inici": "14:00",
+        "hora_fi": "",
+        "descripcio": "Paella monumental per a totes les persones participants en la romeria. Patrocina: CaixAlmassora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      },
+      {
+        "id": "a10",
+        "titol": "Continua el parc infantil",
+        "hora_inici": "15:00",
+        "hora_fi": "",
+        "descripcio": "Continua el parc infantil. Lloc: ermita de Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      },
+      {
+        "id": "a11",
+        "titol": "Tornada de la romeria",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Tornada de la romeria per a acompanyar la patrona Santa Quitèria, des de la seua ermita fins a la parròquia de Sant Josep. Al seu pas, s'encendran les tradicionals fogueres. A continuació, es formarà la processó pels voltants per a traslladar la imatge a l'església del Santíssim Crist del Calvari. La processó transcorrerà pels carrers de Santa Quitèria (l'Alcora) i de la Mare de Déu del Roser.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia4",
+    "data_iso": "2026-05-11",
+    "titol_curt": "Dl 11",
+    "titol_llarg": "Dilluns 11 de Maig",
+    "actes": [
+      {
+        "id": "a12",
+        "titol": "Projecte JIA (Jugar i Aprendre)",
+        "hora_inici": "11:30",
+        "hora_fi": "",
+        "descripcio": "Aprendre amb Germans Ochando. Aprenentatge, servei i treball cooperatiu des d'un abordatge intergeneracional. Banys de pati.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Germans Ochando"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia5",
+    "data_iso": "2026-05-12",
+    "titol_curt": "Dm 12",
+    "titol_llarg": "Dimarts 12 de Maig",
+    "actes": [
+      {
+        "id": "a13",
+        "titol": "Eixida de les persones majors de la residència",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de les persones majors de la residència municipal Vicente Vilar Morellá, junt amb els TVi (Transportistes Voluntaris de iaios i iaies) de les escoles d'Almassora, per a visitar Santa Quitèria a l'església del Ssm. Crist del Calvari i cantar els gojos en el format tradicional i també a l'estil Geriatrik-Art.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Església del Ssm. Crist del Calvari"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia6",
+    "data_iso": "2026-05-13",
+    "titol_curt": "Dc 13",
+    "titol_llarg": "Dimecres 13 de Maig",
+    "actes": [
+      {
+        "id": "a14",
+        "titol": "Lliurament de premis de la XIV Ruta de la Tapa",
+        "hora_inici": "20:30",
+        "hora_fi": "",
+        "descripcio": "Lliurament de premis de la XIV Ruta de la Tapa. Lloc: CaixAlmassora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "CaixAlmassora"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia7",
+    "data_iso": "2026-05-14",
+    "titol_curt": "Dj 14",
+    "titol_llarg": "Dijous 14 de Maig",
+    "actes": [
+      {
+        "id": "a15",
+        "titol": "Actuació del Grup de Guitarres i Pianos Vius",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Actuació del Grup de Guitarres i Pianos Vius de l'Escola de Música Mestre Agut Manrique d'Almassora. Lloc: residència municipal Vicente Vilar Morellá.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Residència municipal Vicente Vilar Morellá"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia8",
+    "data_iso": "2026-05-15",
+    "titol_curt": "Dv 15",
+    "titol_llarg": "Divendres 15 de Maig",
+    "actes": [
+      {
+        "id": "a16",
+        "titol": "Gran CBA de la temporada",
+        "hora_inici": "17:30",
+        "hora_fi": "",
+        "descripcio": "Gran CBA de la temporada, a ritme de pasdoble, amb la presència de la ramaderia d'El Saliner de Puçol i la quadrilla de Trigueros, Gallego, Socarrades i Clausell de Casa Bosch. Lloc: teatre Naif de la residència municipal Vicente Vilar Morellá.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Teatre Naif de la residència municipal"
+      },
+      {
+        "id": "a17",
+        "titol": "Inauguració de l'exposició 'Natura Viva'",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Inauguració de l'exposició 'Natura Viva', de l'autor Jaime Viciano Barcina, ubicada a l'Espai Obert (recepció de l'Ajuntament d'Almassora). Horari: de dilluns a divendres, de 10:30 a 13:30 h.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Espai Obert (recepció de l'Ajuntament)"
+      },
+      {
+        "id": "a18",
+        "titol": "Inauguració de l'exposició 'Enrique Agut, color d'una vida'",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Inauguració de l'exposició 'Enrique Agut, color d'una vida' de l'autor Enrique Agut. Lloc: Espai Mercat. Horari de 17:30 a 20:30 h, diumenges i festius s'afegeix l'horari de matí, d'11:30 a 13:30 h.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Espai Mercat"
+      },
+      {
+        "id": "a19",
+        "titol": "Inauguració de l'exposició 'Recordar para no olvidar'",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Inauguració de l'exposició 'Recordar para no olvidar' patrocinada per l'ACT Aficionades Taurines, dirigida per josocdebou, Ismael & Oscar M. Lloc: saló de Els Llauradors de CaixAlmassora. Horari: del 15 al 23 de maig, de 19:00 a 21:00 h. El dissabte 23 de maig, a les 12:00 h, se sortejaran dos llenços taurins de l'exposició.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Saló de Els Llauradors de CaixAlmassora"
+      },
+      {
+        "id": "a20",
+        "titol": "Inauguració de la Zona Latina",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Inauguració de la Zona Latina. Lloc: plaça de la Molineta.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de la Molineta"
+      },
+      {
+        "id": "a21",
+        "titol": "Inauguració de l'exposició 'La raíz de la memoria'",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "Inauguració de l'exposició 'La raíz de la memoria. 30 años en el Mediterráneo' de l'autor Jerónimo Uribe, pintor mexicà establit a Castelló. Lloc: CaixAlmassora. Horari: del 14 de maig al 24 de juny, de 18:30 a 21:00 h, de dimarts a divendres, i dissabtes i diumenges, d'11:30 a 13:30 h i de 18:30 a 21:00 h.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "CaixAlmassora"
+      },
+      {
+        "id": "a22",
+        "titol": "'Tardeo' flamenc",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' flamenc a càrrec de Fabián Sánchez, patrocinat per la penya Bufa la Gamba. Lloc: c/ Sant Roc, 24.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Roc, 24"
+      },
+      {
+        "id": "a23",
+        "titol": "Obertura del Casal del Vi",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Obertura del Casal del Vi. Lloc: pl. Pere Cornell.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Pere Cornell"
+      },
+      {
+        "id": "a24",
+        "titol": "Actuació musical 'Los pubs de tu vida'",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical 'Los pubs de tu vida', amb 8 Dj que van punxar en els pubs d'Almassora: DJ Agus (L'Estació Raspabar), Javi Robles (Ikatu Original), Juanpe (Ikatu Nave), DJ NUC (Lassal), DJ Xatarra (Alborotto), DJ Mai Tai (Riff), DJ JDVS (Krop i Blau i Blanc) i Sergio Sempere (Pipol). Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a25",
+        "titol": "Sopar de pa i porta",
+        "hora_inici": "21:30",
+        "hora_fi": "",
+        "descripcio": "Sopar de pa i porta, organitzat per l'ACT La Picaora, amenitzat pel duo musical Grupo Almazahara. Col·labora: Ajuntament d'Almassora. Lloc: c/ Sant Marc, cantó amb la pl. la Picaora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Marc, cantó pl. la Picaora"
+      },
+      {
+        "id": "a26",
+        "titol": "Esclat de Festa",
+        "hora_inici": "00:00",
+        "hora_fi": "",
+        "descripcio": "Esclat de Festa a la plaça Major per a anunciar l'inici de les festes.",
+        "imatge": "https://estaticos-cdn.prensaiberica.es/clip/1638a672-3c1c-47bf-be73-eda577b678eb_source-aspect-ratio_default_0.jpg",
+        "ubicacio": "Plaça Major"
+      },
+      {
+        "id": "a27",
+        "titol": "Discomòbil Tech house",
+        "hora_inici": "00:00",
+        "hora_fi": "",
+        "descripcio": "Discomòbil Tech house a càrrec de Dj Ximo, patrocinada per la penya El Demacre. Lloc: c/ la Llum.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "C/ la Llum"
+      },
+      {
+        "id": "a28",
+        "titol": "Inauguració del Recinte Fester amb discomòbil",
+        "hora_inici": "03:00",
+        "hora_fi": "",
+        "descripcio": "Inauguració del Recinte Fester amb discomòbil a càrrec de Jaime Martínez i DJ Iker Frías.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia9",
+    "data_iso": "2026-05-16",
+    "titol_curt": "Ds 16",
+    "titol_llarg": "Dissabte 16 de Maig",
+    "actes": [
+      {
+        "id": "a29",
+        "titol": "VI Carrera autonòmica de patinatge de velocitat",
+        "hora_inici": "09:30",
+        "hora_fi": "14:00",
+        "descripcio": "Organitza: Santa Quitèria Club Patín. Lloc: pista de patinatge, al costat de la piscina municipal.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pista de patinatge, al costat de la piscina"
+      },
+      {
+        "id": "a30",
+        "titol": "Arqueologia en família al Torrelló del Boverot",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Visites guiades i tallers didàctics per a toda la família. Visita al jaciment arqueològic a les 11:00 h i a les 12:00 h.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Torrelló del Boverot"
+      },
+      {
+        "id": "a31",
+        "titol": "Concentració de les penyes Sant Roc i El K-nut",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes Sant Roc i El K-nut al carrer de la Trinitat. A continuació, passacarrer amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a32",
+        "titol": "Encierro de sis bous cerrils",
+        "hora_inici": "12:00",
+        "hora_fi": "",
+        "descripcio": "Encierro de sis bous cerrils de la ramaderia de Carmen Valiente, patrocinat per l'Ajuntament d'Almassora i les penyes Sant Roc, El K-nut, Gent del Bou, Joventut Taurina, ACT La Picaora, El Jaleo i El Bureo.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9TBFKP-kjvlr0YIoofjrR_s1lfgegGCFZhA&s",
+        "ubicacio": "Recinte taurí"
+      },
+      {
+        "id": "a33",
+        "titol": "Actuació musical a càrrec de Tonet Marzà",
+        "hora_inici": "12:15",
+        "hora_fi": "",
+        "descripcio": "Actuació musical a càrrec de Tonet Marzà, Dj remember, patrocinada per la penya El Caragol. Lloc: c/ Sant Roc, s/n al costat de la penya El Caragol.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Roc, s/n"
+      },
+      {
+        "id": "a34",
+        "titol": "Exhibició d'un bou cerril de l'encierro",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Exhibició d'un bou cerril de l'encierro, patrocinat per l'Ajuntament d'Almassora, pels carrers de la Vila amb eixida des de la plaça Major.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      },
+      {
+        "id": "a35",
+        "titol": "Eixida de la reina i les dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de la reina i les dames des de la Casa de la Cultura, acompanyades per les penyes i colles per a dirigir-se a la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a36",
+        "titol": "Bous per la Vila de l'Ajuntament d'Almassora",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de l'Ajuntament d'Almassora i de les penyes Sant Roc i El K-nut, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      },
+      {
+        "id": "a37",
+        "titol": "Encierro infantil de carretons",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "En finalitzar els actes taurins, encierro infantil de carretons. Patrocina: Junta Local de Festes. Lloc: recinte taurí.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Recinte taurí"
+      },
+      {
+        "id": "a38",
+        "titol": "'Tardeo' amb DJ Pixo",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' amb DJ Pixo, organitzat per la penya La Peñita. Lloc: c/ Sant Pere, 73.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Pere, 73"
+      },
+      {
+        "id": "a39",
+        "titol": "Activitats infantils",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils a càrrec de Jara-Turia. Lloc: pl. Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Espanya"
+      },
+      {
+        "id": "a40",
+        "titol": "'Tardeo-rock' a càrrec del grup Vudú",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo-rock' a càrrec del grup Vudú, amb motiu del 30 aniversari de la penya L'Alcria. A continuació, Dj electro-pop. Lloc: c/ Sant Marc, 135 (penya L'Alcria).",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Marc, 135"
+      },
+      {
+        "id": "a41",
+        "titol": "'Tardeo' flamenco-pop",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' flamenco-pop a càrrec de Kimbala, patrocinat per la penya La Maraña. Lloc: pl. Santa Teresa.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Santa Teresa"
+      },
+      {
+        "id": "a42",
+        "titol": "'Tardeo' de Fabián Sánchez",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' de Fabián Sánchez, organitzat per la penya Joventut Taurina. Lloc: avinguda del Mar, 9 (el Portal).",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Avinguda del Mar, 9"
+      },
+      {
+        "id": "a43",
+        "titol": "Actuació musical a càrrec d'Alejandro Díaz Torres",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical a càrrec d'Alejandro Díaz Torres amb versions de pop i rumbes. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a44",
+        "titol": "Repartiment de 'cremaet'",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet', per a majors de 18 anys, a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a45",
+        "titol": "Concentració de les penyes i colles",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a46",
+        "titol": "Bous embolats de l'Ajuntament d'Almassora",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de l'Ajuntament d'Almassora amb eixida de la pl. la Picaora; i de les penyes Sant Roc i el K-nut, i un segon bou de l'Ajuntament d'Almassora, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a47",
+        "titol": "Discomòbil DJ Pixo",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Discomòbil DJ Pixo, organitzada per la penya Joventut Taurina. Lloc: avinguda del Mar, 9 (el Portal).",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Avinguda del Mar, 9"
+      },
+      {
+        "id": "a48",
+        "titol": "Discomòbil a càrrec de DJ Guillem Nebot i DJ Moonty",
+        "hora_inici": "03:00",
+        "hora_fi": "",
+        "descripcio": "Dj Clare Apir. Lloc: Recinte Fester. Discomòbil a càrrec de DJ Guillem Nebot, DJ Moonty.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia10",
+    "data_iso": "2026-05-17",
+    "titol_curt": "Dg 17",
+    "titol_llarg": "Diumenge 17 de Maig",
+    "actes": [
+      {
+        "id": "a49",
+        "titol": "Activitat de piragüisme",
+        "hora_inici": "09:00",
+        "hora_fi": "",
+        "descripcio": "Activitat de piragüisme. Inscripcions i més informació en la web de l'Ajuntament d'Almassora. Organitza: regidoria de Turisme. Lloc: pantanet de Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pantanet de Santa Quitèria"
+      },
+      {
+        "id": "a50",
+        "titol": "XXIV Trobada de 'bolilleres' a Almassora",
+        "hora_inici": "10:00",
+        "hora_fi": "",
+        "descripcio": "XXIV Trobada de 'bolilleres' a Almassora. Organitza: Amas de casa. Col·labora: Ajuntament d'Almassora. Lloc: c/ Sant Lluc.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "C/ Sant Lluc"
+      },
+      {
+        "id": "a51",
+        "titol": "Concentració de les penyes Gent del Bou i Joventut Taurina",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes Gent del Bou i Joventut Taurina al carrer de la Trinitat. A continuació, passacarrer amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a52",
+        "titol": "Entrada de vaques de la ramaderia de Els Coves",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Entrada de vaques de la ramaderia de Els Coves pels carrers de Sant Marc, Santa Quitèria (l'Alcora) i la Trinitat. A continuació, prova per la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrers de la Vila"
+      },
+      {
+        "id": "a53",
+        "titol": "Eixida de la reina i les dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de la reina i les dames des de la Casa de la Cultura, acompanyades per les penyes i colles per a dirigir-se a la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a54",
+        "titol": "Bous per la Vila de les penyes Gent del Bou i Joventut Taurina",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de les penyes Gent del Bou i Joventut Taurina, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      },
+      {
+        "id": "a55",
+        "titol": "Activitats infantils",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils a càrrec d'Splaiteatre. Lloc: pl. Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Espanya"
+      },
+      {
+        "id": "a56",
+        "titol": "'Tardeo' a càrrec de DJ Pixo",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' a càrrec de DJ Pixo, patrocinat per la penya Gent del Bou i el pub Leos. Lloc: el Raval, davant del pub Leos.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "El Raval, davant pub Leos"
+      },
+      {
+        "id": "a57",
+        "titol": "Actuació musical del Grupo Five",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical del Grupo Five amb versions de pop/rock. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a58",
+        "titol": "Repartiment de 'cremaet'",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet', per a majors de 18 anys, a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a59",
+        "titol": "Concentració de les penyes i colles",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a60",
+        "titol": "Bous embolats de les penyes Gent del Bou i Joventut Taurina",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de les penyes Gent del Bou i Joventut Taurina, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia11",
+    "data_iso": "2026-05-18",
+    "titol_curt": "Dl 18",
+    "titol_llarg": "Dilluns 18 de Maig",
+    "actes": [
+      {
+        "id": "a61",
+        "titol": "Visita a les Germanes de la Consolació",
+        "hora_inici": "10:30",
+        "hora_fi": "",
+        "descripcio": "Visita de la reina i les dames a les Germanes de la Consolació de la residència de majors Rosa María Molas, al carrer Darremur. A continuació, visita a la Unitat de Respir d'Alzheimer a Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Residència de majors Rosa María Molas"
+      },
+      {
+        "id": "a62",
+        "titol": "Especial matinal de Cançons d'amor",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Especial matinal de Cançons d'amor amb la nostra cantant local Lola Bou i el guitarrista Manel Brancal. Lloc: residència municipal Vicente Vilar Morellá.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Residència municipal Vicente Vilar Morellá"
+      },
+      {
+        "id": "a63",
+        "titol": "Concentració de penyes de dilluns",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes ACT La Picaora, El Jaleo, El Bureo, Els Penjats, El Barrilet, El Racó, T'empujen, El Clavell, El Corb, Els Clafidors, San Fermín, Amigues del Bou i El Roser al carrer de la Trinitat. A continuació, passacarrer amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a64",
+        "titol": "Entrada de vaques de la ramaderia de Jaime Tárrega Lucas",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Entrada de vaques de la ramaderia de Jaime Tárrega Lucas pels carrers de Sant Marc, Santa Quitèria (l'Alcora) i la Trinitat. A continuació, prova per la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrers de la Vila"
+      },
+      {
+        "id": "a65",
+        "titol": "Eixida de la reina i les dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de la reina i les dames des de la Casa de la Cultura, acompanyades per les penyes i colles per a dirigir-se a la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a66",
+        "titol": "Bous per la Vila de dilluns",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de les penyes ACT La Picaora, El Jaleo i El Bureo amb eixida de la pl. la Picaora; i de les penyes Els Penjats, El Barrilet, El Racó, T'empujen, El Clavell, El Corb, Els Clafidors, San Fermín, Amigues del Bou i El Roser amb eixida de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a67",
+        "titol": "Activitats infantils",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils a càrrec de Deus del Foc de Benicàssim. Lloc: pl. Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Espanya"
+      },
+      {
+        "id": "a68",
+        "titol": "Actuació musical del grup Cositas Buenas",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical del grup Cositas Buenas amb versions de flamenc i rumbes. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a69",
+        "titol": "Repartiment de 'cremaet'",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet', per a majors de 18 anys, a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a70",
+        "titol": "Concentració de penyes i colles",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a71",
+        "titol": "Bous embolats de dilluns",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de les penyes Els Penjats, El Barrilet, El Racó, T'empujen, El Clavell, El Corb, Els Clafidors, San Fermín, Amigues del Bou i El Roser amb eixida de la pl. Major; i de les penyes ACT La Picaora, El Jaleo i El Bureo amb eixida de la pl. la Picaora.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia12",
+    "data_iso": "2026-05-19",
+    "titol_curt": "Dm 19",
+    "titol_llarg": "Dimarts 19 de Maig",
+    "actes": [
+      {
+        "id": "a72",
+        "titol": "Concert acústic de Desiguales",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "En viu i en directe, concert acústic de Desiguales, la música d'autor dels germans Octavio i Rubén Garreta en estat pur. Lloc: residència municipal Vicente Vilar Morellá.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Residència municipal Vicente Vilar Morellá"
+      },
+      {
+        "id": "a73",
+        "titol": "Concentració de les penyes Aficionats al Bou i Aficionades Taurines",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes Aficionats al Bou i Aficionades Taurines al carrer de la Trinitat. A continuació, passacarrer amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a74",
+        "titol": "Entrada de vaques de la ramaderia de Hermanos Benavent",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Entrada de vaques de la ramaderia de Hermanos Benavent pels carrers de Sant Marc, Santa Quitèria (l'Alcora) i la Trinitat. A continuació, prova per la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrers de la Vila"
+      },
+      {
+        "id": "a75",
+        "titol": "Eixida de la reina i les dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de la reina i les dames des de la Casa de la Cultura, acompanyades per les penyes i colles per a dirigir-se a la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a76",
+        "titol": "Bous per la Vila de les penyes Aficionades Taurines i Aficionats al Bou",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de les penyes Aficionades Taurines i Aficionats al Bou, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      },
+      {
+        "id": "a77",
+        "titol": "Activitats infantils",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils a càrrec de Tic-Tac Animaciones. Lloc: pl. Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Espanya"
+      },
+      {
+        "id": "a78",
+        "titol": "'Tardeo' a càrrec de DJ Alfonso",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' a càrrec de DJ Alfonso, patrocinat per la penya Aficionats al Bou. Lloc: el Raval, davant del pub Leos.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "El Raval, davant pub Leos"
+      },
+      {
+        "id": "a79",
+        "titol": "Actuació musical del grup Saoco",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical del grup Saoco, música salsa. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a80",
+        "titol": "Repartiment de 'cremaet'",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet', per a majors de 18 anys, a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a81",
+        "titol": "Concentració de les penyes i colles",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a82",
+        "titol": "Bous embolats",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de les penyes Aficionats al Bou i Aficionades Taurines, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia13",
+    "data_iso": "2026-05-20",
+    "titol_curt": "Dc 20",
+    "titol_llarg": "Dimecres 20 de Maig",
+    "actes": [
+      {
+        "id": "a83",
+        "titol": "Concentració de penyes de dimecres",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes El Polp, El Bocao, Gamusinos, Bufa la Gamba, La Kalatra, El Desdén, La Jerga, La Kliba, El Intento, La Strankà, La Trenkà, L'Avagelio, El Jolgorio, La Tolka i El Comboi al carrer de la Trinitat. A continuació, passacarrer amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a84",
+        "titol": "Poemes i cançons a càrrec d'Erik Maunt",
+        "hora_inici": "11:30",
+        "hora_fi": "",
+        "descripcio": "Poemes i cançons a càrrec del nostre artista local Erik Maunt. Lloc: residència municipal Vicente Vilar Morellá.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Residència municipal Vicente Vilar Morellá"
+      },
+      {
+        "id": "a85",
+        "titol": "Entrada de vaques de la ramaderia de Hermanos Belles",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Entrada de vaques de la ramaderia de Hermanos Belles pels carrers de Sant Marc, Santa Quitèria (l'Alcora) i la Trinitat. A continuació, prova per la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrers de la Vila"
+      },
+      {
+        "id": "a86",
+        "titol": "Eixida de la reina i les dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Eixida de la reina i les dames des de la Casa de la Cultura, acompanyades per les penyes i colles per a dirigir-se a la Vila.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a87",
+        "titol": "Bous per la Vila de dimecres",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de les penyes El Polp, El Bocao, Gamusinos, La Jerga, La Kliba, Bufa la Gamba, La Kalatra, El Desdén, El Intento, La Strankà, La Trenkà, L'Avagelio, El Jolgorio i La Tolka, i de la penya El Comboi, ambdós amb eixides de la pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      },
+      {
+        "id": "a88",
+        "titol": "Activitats infantils de Laser Combat",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils a càrrec de Laser Combat. Lloc: pl. Víctimes del Terrorisme.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Víctimes del Terrorisme"
+      },
+      {
+        "id": "a89",
+        "titol": "Ball pla a càrrec de l'AC El Torrelló",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Ball pla a càrrec de l'AC El Torrelló. Lloc: pl. Santa Teresa.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Santa Teresa"
+      },
+      {
+        "id": "a90",
+        "titol": "Dia del Major amb Arantxa Pons i Mariló",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Dia del Major amb l'espectacle de copla de les artistes Arantxa Pons i Mariló. Obertura de portes a les 18:15 h i repartiment del berenar als assistents que prèviament s'hagen inscrit. Inscripcions fins al 15 de maig a la recepció de l'ajuntament, per als empadronats a Almassora nascuts el 1966 i anys anteriors. Lloc: pl. Pere Cornell.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Pl. Pere Cornell"
+      },
+      {
+        "id": "a91",
+        "titol": "Actuació musical de rumbes amb Fabián Sánchez",
+        "hora_inici": "20:30",
+        "hora_fi": "",
+        "descripcio": "Actuació musical de rumbes amb Fabián Sánchez. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a92",
+        "titol": "Repartiment de 'cremaet'",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet', per a majors de 18 anys, a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a93",
+        "titol": "Concentració de les penyes i colles",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a94",
+        "titol": "Bous embolats de dimecres",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de la penya El Comboi; i de les penyes El Polp, El Bocao, Gamusinos, La Jerga, La Kliba, Bufa la Gamba, La Kalatra, El Desdén, El Intento, La Strankà, La Trenkà, L'Avagelio, El Jolgorio i La Tolka, ambdós amb eixides de pl. Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila (eixida plaça Major)"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia14",
+    "data_iso": "2026-05-21",
+    "titol_curt": "Dj 21",
+    "titol_llarg": "Dijous 21 de Maig",
+    "actes": [
+      {
+        "id": "a95",
+        "titol": "Volteig de campanes i cercavila infantil",
+        "hora_inici": "09:00",
+        "hora_fi": "",
+        "descripcio": "Volteig de campanes de l'església de la Nativitat de la Mare de Déu. Cercavila infantil de disfresses des de la plaça de l'Església hasta la plaça d'Espanya amb animació musical, organitzat per la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de l'Església"
+      },
+      {
+        "id": "a96",
+        "titol": "Inauguració del parc infantil",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Inauguració del parc infantil a la plaça d'Espanya amb inflables, ludoteca infantil de fusta, espai de realitat virtual de PlayStation i simulador de curses de cotxes F1 en línia a la plaça de la Molineta. A continuació, hi haurà globoflèxia i pinta-cares per als xiquets amb l'animació de la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça d'Espanya i de la Molineta"
+      },
+      {
+        "id": "a97",
+        "titol": "Concentració de penyes de dijous",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de penyes i colles al carrer de Sant Marc, Santa Quitèria i la Trinitat per a començar el tradicional dinar pels carrers.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a98",
+        "titol": "Dinar de paelles per a penyes i colles",
+        "hora_inici": "14:00",
+        "hora_fi": "",
+        "descripcio": "Dinar de paelles per a penyes i colles, amb xaranga i animació. Patrocina l'Ajuntament d'Almassora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a99",
+        "titol": "Entrada i prova de bous de les penyes de dijous",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Entrada i prova de bous de les penyes de dijous pels carrers habituals de la Vila. Les penyes que hi participen són: La Runa, La Trempa, L'Esquena, L'Embolic, El Rebollet, El Quiebro, El Destape, L'Arre, La Xispa, La Komitiva, La Marxa, La Fuga, La Farra, La Kolla, La Jerga i El Desfici, que trauran els bous des de la plaça Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a100",
+        "titol": "Activitats infantils i tallers de fusta de Santa Quitèria",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils i tallers de fusta de Santa Quitèria a la plaça d'Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça d'Espanya"
+      },
+      {
+        "id": "a101",
+        "titol": "Solemnes Vespres de Santa Quitèria",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Solemnes Vespres de Santa Quitèria a l'església del Santíssim Crist del Calvari. Amb la participació de la coral d'Almassora, cantant els tradicionals Gojos a Santa Quitèria. En finalitzar els actes religiosos, processó de trasllat de la imatge de Santa Quitèria a la parròquia de la Nativitat de la Mare de Déu.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Església del Santíssim Crist del Calvari"
+      },
+      {
+        "id": "a102",
+        "titol": "Actuació musical de flamenc i rumbes",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical de flamenc i rumbes al Casal del Vi amb el grup local.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a103",
+        "titol": "Sopar de pa i porta de la Junta Local de Festes",
+        "hora_inici": "21:30",
+        "hora_fi": "",
+        "descripcio": "Sopar de pa i porta a la plaça Pere Cornell. Al seu acabament, actuació de l'orquestra de ball.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça Pere Cornell"
+      },
+      {
+        "id": "a104",
+        "titol": "Concentració de penyes per als bous de la nit",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de les penyes a la Casa de la Cultura per a anar als bous embolats.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a105",
+        "titol": "Bous embolats de les penyes de dijous",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats pels carrers de la Vila amb bous de les penyes: La Runa, La Trempa, L'Esquena, L'Embolic, El Rebollet, El Quiebro, El Destape, L'Arre, La Xispa, La Komitiva, La Marxa, La Fuga, La Farra, La Kolla, La Jerga i El Desfici, amb eixida des de la plaça Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a106",
+        "titol": "Festa tribut en l'àrea de DJ Pixo",
+        "hora_inici": "03:00",
+        "hora_fi": "",
+        "descripcio": "Festa tribut en l'àrea de DJ Pixo i Sergio Sempere. Lloc: Recinte Fester.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia15",
+    "data_iso": "2026-05-22",
+    "titol_curt": "Dv 22",
+    "titol_llarg": "Divendres 22 de Maig",
+    "actes": [
+      {
+        "id": "a107",
+        "titol": "Diana de l'església de la Nativitat",
+        "hora_inici": "08:00",
+        "hora_fi": "",
+        "descripcio": "Diana de l'església de la Nativitat de la Mare de Déu, anunciant la festa gran de la patrona Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de l'Església"
+      },
+      {
+        "id": "a108",
+        "titol": "Missa solemne en honor a Santa Quitèria",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Missa solemne en honor a Santa Quitèria, patrona d'Almassora, presidida per les autoritats de la ciutat i la reina i cort d'honor a la parròquia de la Nativitat de la Mare de Déu.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Parròquia de la Nativitat"
+      },
+      {
+        "id": "a109",
+        "titol": "Mascletada en honor a Santa Quitèria",
+        "hora_inici": "14:00",
+        "hora_fi": "",
+        "descripcio": "Mascletada en honor a Santa Quitèria a la plaça Pere Cornell, a càrrec de la pirotècnia local.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça Pere Cornell"
+      },
+      {
+        "id": "a110",
+        "titol": "Visita dels malalts de l'hospital",
+        "hora_inici": "16:00",
+        "hora_fi": "",
+        "descripcio": "Visita dels malalts de l'hospital a la capella de la Mare de Déu del Roser per la reina i dames.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Capella del Roser"
+      },
+      {
+        "id": "a111",
+        "titol": "Processó solemne de Santa Quitèria",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Processó solemne de Santa Quitèria, encapçalada per la reina, les dames d'honor, autoritats, clergat i fidels, pels carrers habituals del centre històric. A continuació, en arribar a la parròquia, es cantaran els tradicionals Gojos a Santa Quitèria.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a112",
+        "titol": "Espectacle de teatre musical familiar",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "Espectacle de teatre musical familiar amb cançons de pel·lícules de Disney a la plaça d'Espanya.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça d'Espanya"
+      },
+      {
+        "id": "a113",
+        "titol": "Actuació musical del grup Extremadura",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical del grup Extremadura al Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a114",
+        "titol": "Sopar de pa i porta de la tercera edat",
+        "hora_inici": "21:30",
+        "hora_fi": "",
+        "descripcio": "Sopar de pa i porta de la tercera edat amb ball de l'orquestra a la plaça Pere Cornell. Les inscripcions per a l'esdeveniment estaran obertes des del 15 de maig.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça Pere Cornell"
+      },
+      {
+        "id": "a115",
+        "titol": "Actuació de l'orquestra 'Remember Party'",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Actuació de l'orquestra 'Remember Party' amb grans èxits dels anys 80 i 90, organitzat per la penya Els Clafidors al carrer de Sant Lluc, 42.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Sant Lluc, 42"
+      },
+      {
+        "id": "a116",
+        "titol": "Festa remember amb DJ G-Cantero",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Festa remember amb DJ G-Cantero, organitzada por la penya La Trenka al carrer de Santa Teresa, s/n.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Santa Teresa"
+      },
+      {
+        "id": "a117",
+        "titol": "Gran revetlla de Sant Fermín",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Gran revetlla de Sant Fermín amb l'actuació musical de 'La Senda'. Organitzat per la penya San Fermín al carrer de Sant Joaquim, 72.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Sant Joaquim, 72"
+      },
+      {
+        "id": "a118",
+        "titol": "Activitats nocturnes de la penya Joventut Taurina",
+        "hora_inici": "00:00",
+        "hora_fi": "",
+        "descripcio": "Activitats nocturnes de la penya Joventut Taurina amb música i discjòqueis al Portal, carrer de Sant Joaquim.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Sant Joaquim"
+      },
+      {
+        "id": "a119",
+        "titol": "Discomòbil a càrrec de Clara Apir",
+        "hora_inici": "03:00",
+        "hora_fi": "",
+        "descripcio": "Discomòbil a càrrec de Clara Apir i DJ Diego Cuevas al Recinte Fester.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia16",
+    "data_iso": "2026-05-23",
+    "titol_curt": "Ds 23",
+    "titol_llarg": "Dissabte 23 de Maig",
+    "actes": [
+      {
+        "id": "a120",
+        "titol": "Concentració de penyes i colles de dissabte",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de penyes i colles de dissabte al carrer de la Trinitat per a preparar la cercavila amb la xaranga Banana Boom.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de la Trinitat"
+      },
+      {
+        "id": "a121",
+        "titol": "Encierro de sis bous cerrils de Celestino Cuadri",
+        "hora_inici": "12:00",
+        "hora_fi": "",
+        "descripcio": "Encierro de sis bous cerrils de Celestino Cuadri, patrocinat per l'Ajuntament d'Almassora i les penyes de dissabte: Sant Roc, El K-nut, Gent del Bou, Joventut Taurina, ACT La Picaora, El Jaleo i El Bureo, pels carrers de la Vila.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a122",
+        "titol": "Sorteig de dos llenços taurins de l'exposició",
+        "hora_inici": "12:00",
+        "hora_fi": "",
+        "descripcio": "Sorteig de dos llenços taurins de l'exposició 'Recordar para no olvidar' al saló dels Llauradors de CaixAlmassora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "CaixAlmassora"
+      },
+      {
+        "id": "a123",
+        "titol": "Exhibició d'un bou de l'encierro de Cuadri",
+        "hora_inici": "13:00",
+        "hora_fi": "",
+        "descripcio": "Exhibició d'un bou de l'encierro de Cuadri, patrocinat per l'Ajuntament d'Almassora amb eixida des de la plaça Major.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a124",
+        "titol": "Concentració i cercavila de la reina i dames",
+        "hora_inici": "17:00",
+        "hora_fi": "",
+        "descripcio": "Concentració i cercavila de la reina i dames des de la Casa de la Cultura fins a la plaça Major, acompanyades por les penyes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a125",
+        "titol": "Bous per la Vila de dissabte",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Bous per la Vila de dissabte amb eixides des de la plaça Major i la plaça de la Picaora.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a126",
+        "titol": "Encierro infantil de carretons",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Encierro infantil de carretons pels carrers del recinte taurí per a tots els xiquets de la ciutat.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Recinte taurí"
+      },
+      {
+        "id": "a127",
+        "titol": "'Tardeo' amb música en directe i DJ Pixo",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' amb música en directe i DJ Pixo al carrer de Sant Pere, 73, organitzat per la penya La Peñita.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Sant Pere, 73"
+      },
+      {
+        "id": "a128",
+        "titol": "Activitats infantils de Santa Quitèria",
+        "hora_inici": "18:30",
+        "hora_fi": "",
+        "descripcio": "Activitats infantils de Santa Quitèria a la plaça d'Espanya amb jocs i tallers.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça d'Espanya"
+      },
+      {
+        "id": "a129",
+        "titol": "'Tardeo-rock' amb la banda Vudú",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo-rock' amb la banda Vudú, celebrant el 30 aniversari de la penya L'Alcria al carrer de Sant Marc, 135.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Carrer de Sant Marc, 135"
+      },
+      {
+        "id": "a130",
+        "titol": "'Tardeo' flamenc de Fabián Sánchez",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' flamenc de Fabián Sánchez, organitzat per la penya La Maraña a la plaça de Santa Teresa.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de Santa Teresa"
+      },
+      {
+        "id": "a131",
+        "titol": "'Tardeo' de rumbes i versions",
+        "hora_inici": "19:30",
+        "hora_fi": "",
+        "descripcio": "'Tardeo' de rumbes i versions de pop amb Fabián Sánchez, organitzat per la penya Joventut Taurina al Portal.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "El Portal"
+      },
+      {
+        "id": "a132",
+        "titol": "Actuació musical al Casal del Vi",
+        "hora_inici": "20:00",
+        "hora_fi": "",
+        "descripcio": "Actuació musical al Casal del Vi amb el grup de música espanyola.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a133",
+        "titol": "Repartiment de 'cremaet' de la nit de dissabte",
+        "hora_inici": "22:30",
+        "hora_fi": "",
+        "descripcio": "Repartiment de 'cremaet' de la nit de dissabte a la Junta Local de Festes.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Junta Local de Festes"
+      },
+      {
+        "id": "a134",
+        "titol": "Concentració de penyes i colles per a anar als bous",
+        "hora_inici": "23:00",
+        "hora_fi": "",
+        "descripcio": "Concentració de penyes i colles per a anar als bous embolats a la Casa de la Cultura.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casa de la Cultura"
+      },
+      {
+        "id": "a135",
+        "titol": "Bous embolats de dissabte de Celestino Cuadri",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Bous embolats de dissabte de Celestino Cuadri i altres ramaderies de les penyes amb eixides des de la plaça de la Picaora i la plaça Major.",
+        "imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+        "ubicacio": "La Vila"
+      },
+      {
+        "id": "a136",
+        "titol": "Discomòbil de la penya Joventut Taurina",
+        "hora_inici": "23:30",
+        "hora_fi": "",
+        "descripcio": "Discomòbil de la penya Joventut Taurina amb DJ Pixo a l'avinguda del Mar, 9.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Avinguda del Mar, 9"
+      },
+      {
+        "id": "a137",
+        "titol": "Discomòbil de tancament",
+        "hora_inici": "03:00",
+        "hora_fi": "",
+        "descripcio": "Discomòbil de tancament a càrrec de DJ Guillem Nebot i DJ Moonty al Recinte Fester.",
+        "imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+        "ubicacio": "Recinte Fester"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia17",
+    "data_iso": "2026-05-24",
+    "titol_curt": "Dg 24",
+    "titol_llarg": "Diumenge 24 de Maig",
+    "actes": [
+      {
+        "id": "a138",
+        "titol": "Trobada nacional de gegants i cabuts",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Trobada nacional de gegants i cabuts a la plaça Pere Cornell, amb cercavila musical pels carrers cèntrics d'Almassora.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça Pere Cornell"
+      },
+      {
+        "id": "a139",
+        "titol": "Dinar de geganters",
+        "hora_inici": "14:00",
+        "hora_fi": "",
+        "descripcio": "Dinar de geganters de totes les agrupacions participants. Lloc: Casal del Vi.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Casal del Vi"
+      },
+      {
+        "id": "a140",
+        "titol": "Processó de trasllat de Santa Quitèria",
+        "hora_inici": "19:00",
+        "hora_fi": "",
+        "descripcio": "Processó de trasllat de Santa Quitèria des de la parròquia de la Nativitat de la Mare de Déu fins a la capella de la residència municipal.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Parròquia de la Nativitat"
+      },
+      {
+        "id": "a141",
+        "titol": "Castell de focs artificials",
+        "hora_inici": "22:00",
+        "hora_fi": "",
+        "descripcio": "Castell de focs artificials per a tancar la setmana de la festa de la patrona a la plaça de la Molineta.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça de la Molineta"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia18",
+    "data_iso": "2026-05-25",
+    "titol_curt": "Dl 25",
+    "titol_llarg": "Dilluns 25 de Maig",
+    "actes": [
+      {
+        "id": "a142",
+        "titol": "Solemne missa de difunts",
+        "hora_inici": "11:00",
+        "hora_fi": "",
+        "descripcio": "Solemne missa de difunts a l'església de la Nativitat de la Mare de Déu, en record de tots els veïns traspassats durant l'any.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Parròquia de la Nativitat"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia19",
+    "data_iso": "2026-05-29",
+    "titol_curt": "Dv 29",
+    "titol_llarg": "Divendres 29 de Maig",
+    "actes": [
+      {
+        "id": "a143",
+        "titol": "Repartiment de pinsos i flors",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Repartiment de pinsos i flors de Santa Quitèria de la Junta Local de Festes a la plaça Pere Cornell per a tota la població inscrita.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Plaça Pere Cornell"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia20",
+    "data_iso": "2026-06-06",
+    "titol_curt": "Ds 06",
+    "titol_llarg": "Dissabte 6 de Juny",
+    "actes": [
+      {
+        "id": "a144",
+        "titol": "Missa de tancament a l'ermita",
+        "hora_inici": "12:00",
+        "hora_fi": "",
+        "descripcio": "Missa de tancament de les festes de Santa Quitèria de la ciutat d'Almassora, amb l'últim cant dels Gojos a la Mare de Déu.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
+      }
+    ]
+  },
+  {
+    "dia_id": "dia21",
+    "data_iso": "2026-06-07",
+    "titol_curt": "Dg 07",
+    "titol_llarg": "Diumenge 7 de Juny",
+    "actes": [
+      {
+        "id": "a145",
+        "titol": "Tornada de la imatge de Santa Quitèria",
+        "hora_inici": "18:00",
+        "hora_fi": "",
+        "descripcio": "Tornada de la imatge de Santa Quitèria a la seua ermita, tancant de manera definitiva el cicle festiu del present any.",
+        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+        "ubicacio": "Ermita de Santa Quitèria"
       }
     ]
   }
