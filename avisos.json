@@ -1,3 +1,9 @@
 [
-
+  {
+   "id": "av1",
+    "titol": "Aplaçament Pregó",
+    "text": A causa de la situació meteorològica, l'Ajuntament d'Almassora i la Junta Local de Festes han acordat ajornar el Pregó previst per a hui.
+La nova data serà el dissabte 30 de maig.",
+   "tipus": "important"
+ }
 ]
