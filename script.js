@@ -193,6 +193,54 @@ function actualitzarCompteEnrere() {
     }, 1000);
 }
 
+function generarSchemaGoogle(data) {
+    const todosLosEventos = [];
+    const baseUrl = window.location.origin + window.location.pathname;
+
+    data.forEach(dia => {
+        dia.actes.forEach(acte => {
+            todosLosEventos.push({
+                "@context": "https://schema.org",
+                "@type": "Event",
+                "name": acte.titol,
+                "startDate": `${dia.data_iso}T${acte.hora_inici}`,
+                "description": acte.descripcio,
+                "image": acte.imatge,
+                "location": {
+                    "@type": "Place",
+                    "name": acte.ubicacio,
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": acte.ubicacio,
+                        "addressLocality": "Almassora",
+                        "addressRegion": "Castelló",
+                        "addressCountry": "ES"
+                    }
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "url": baseUrl + "#" + acte.id,
+                    "price": "0",
+                    "priceCurrency": "EUR",
+                    "availability": "https://schema.org/InStock"
+                },
+                "url": baseUrl + "#" + acte.id
+            });
+        });
+    });
+
+    // Eliminamos scripts previos de schema si existieran (para evitar duplicados al recargar)
+    const oldScript = document.getElementById('schema-eventos');
+    if (oldScript) oldScript.remove();
+
+    const script = document.createElement('script');
+    script.id = 'schema-eventos';
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(todosLosEventos);
+    document.head.appendChild(script);
+    
+    console.log("✅ Schema.org: " + todosLosEventos.length + " eventos listos para Google.");
+}
 
 
 // --- 7. NOTIFICACIONS PUSH ---
@@ -309,6 +357,7 @@ window.addEventListener('appinstalled', () => {
         if(!tabsCont) return;
 
         let indexDiaSeleccionat = 0; // Por defecto el primero
+        generarSchemaGoogle(data);
 
         data.forEach((dia, index) => {
             // Comprobamos si este día es hoy
