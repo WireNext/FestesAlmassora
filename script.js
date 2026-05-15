@@ -447,7 +447,7 @@ function crearCardActe(acte) {
 
 function mostrarInfoVioleta() {
     // Puedes personalizar la ubicación según donde se instale este año
-    const ubicacioPunt = "Divendres 15 de maig de 20.00 h a 22.00 h. Casal del vi. Dissabte 16 de maig de 20.00 h a 22.00 h. Casal del vi. Divendres 22 de maig de 22.00 h a 01.00 h. Recinte piscina. Dissabte 23 de maig de 20.00 h a 22.00 h. Casal del vi";
+    const ubicacioPunt = "Divendres 15 de maig de 20.00 h a 22.00 h. Casal del vi. \nDissabte 16 de maig de 20.00 h a 22.00 h. Casal del vi. \nDivendres 22 de maig de 22.00 h a 01.00 h. Recinte piscina. \nDissabte 23 de maig de 20.00 h a 22.00 h. Casal del vi";
     
     const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
 
