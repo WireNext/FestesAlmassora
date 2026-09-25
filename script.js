@@ -469,13 +469,7 @@ function toggleFavorit(id, event) {
 }
 
 function mostrarInfoVioleta() {
-<<<<<<< HEAD
     const ubicacioPunt = "Per determinar";
-=======
-    // Puedes personalizar la ubicación según donde se instale este año
-    const ubicacioPunt = "Divendres 15 de maig de 20.00 h a 22.00 h. Casal del vi. \nDissabte 16 de maig de 20.00 h a 22.00 h. Casal del vi. \nDivendres 22 de maig de 22.00 h a 01.00 h. Recinte piscina. \nDissabte 23 de maig de 20.00 h a 22.00 h. Casal del vi";
-    
->>>>>>> 33134ae242bccf1ba53b505db4e1562bcb13dc16
     const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
     if (confirm(missatge)) {
         window.location.href = "tel:016";
