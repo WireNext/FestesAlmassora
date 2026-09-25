@@ -1,6 +1,6 @@
 /**
  * ENGINE SANTA QUITÈRIA 2026 
- * Gestió de JSON (Avisos + Programació) + Temps + Pantalla Completa
+ * Gestió de JSON (Avisos + Programació) + Temps + Pantalla Completa + Buscador
  */
 
 let dadesProgramacio = []; 
@@ -20,7 +20,7 @@ function carregarAvisos() {
     .then(r => r.json())
     .then(avisos => {
         const container = document.getElementById("seccio-avisos");
-        if (!container) return; // Seguridad
+        if (!container) return; 
         if (!avisos || avisos.length === 0) {
             container.innerHTML = ""; 
             return;
@@ -55,13 +55,13 @@ function openActe(idActe) {
     });
 
     if(acte) {
-        document.getElementById("modal-img").src = acte.imatge;
+        document.getElementById("modal-img").src = acte.imatge || '';
         document.getElementById("modal-titol").innerText = acte.titol;
         document.getElementById("modal-info").innerText = `${acte.hora_inici}h - ${acte.hora_fi}h`;
-        document.getElementById("modal-desc").innerText = acte.descripcio;
+        document.getElementById("modal-desc").innerText = acte.descripcio || '';
         
         // Mapa interactiu
-        const query = encodeURIComponent(acte.ubicacio + ", Almassora");
+        const query = encodeURIComponent((acte.ubicacio || '') + ", Almassora");
         const mapUrl = `https://maps.google.com/maps?q=${query}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
         document.getElementById("modal-map-frame").src = mapUrl;
         
@@ -78,9 +78,81 @@ function closeModal() {
     document.body.style.width = '';
 }
 
-// --- 4. FILTRATGE DE PROGRAMACIÓ ---
+// --- 4. BUSCADOR EN TEMPS REAL ---
+function buscarActes(text) {
+    const query = text.toLowerCase().trim();
+    const container = document.getElementById("events-list-container");
+    const tabsCont = document.getElementById("days-tabs");
+    
+    if (!container) return;
+
+    // Si el cercador està buit, tornem al dia actiu
+    if (query === "") {
+        if(tabsCont) tabsCont.style.display = "flex"; // Mostrem les pestanyes de dies
+        const activeTab = document.querySelector('.day-tab.active') || tabsCont?.children[0];
+        if (activeTab) {
+            activeTab.click();
+        }
+        return;
+    }
+
+    // Amaguem pestanyes de dies durant la cerca
+    if(tabsCont) tabsCont.style.display = "none";
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+
+    container.innerHTML = "";
+    let trobats = 0;
+
+    dadesProgramacio.forEach(dia => {
+        const fechaObj = new Date(dia.data_iso);
+        const opciones = { day: '2-digit', month: 'short' };
+        const fechaFormateada = fechaObj.toLocaleDateString('ca-ES', opciones);
+
+        dia.actes.forEach(acte => {
+            const titol = (acte.titol || "").toLowerCase();
+            const desc = (acte.descripcio || "").toLowerCase();
+            const ubica = (acte.ubicacio || "").toLowerCase();
+
+            if (titol.includes(query) || desc.includes(query) || ubica.includes(query)) {
+                trobats++;
+                const card = document.createElement("div");
+                card.className = "glass-card";
+                card.style.marginBottom = "15px";
+                card.onclick = () => openActe(acte.id);
+                card.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <b style="font-size:17px; display:block;">${acte.titol}</b>
+                            <span style="font-size:13px; color:var(--red); font-weight:700;">
+                                📅 ${fechaFormateada} - 🕒 ${acte.hora_inici}h
+                            </span>
+                            ${acte.ubicacio ? `<span style="display:block; font-size:12px; opacity:0.7;">📍 ${acte.ubicacio}</span>` : ''}
+                        </div>
+                        <span style="opacity:0.3;">〉</span>
+                    </div>`;
+                container.appendChild(card);
+            }
+        });
+    });
+
+    if (trobats === 0) {
+        container.innerHTML = "<p style='color:#888; text-align:center; padding: 20px;'>No s'han trobat actes per a esta cerca.</p>";
+    }
+}
+
+// --- 5. FILTRATGE DE PROGRAMACIÓ PER DIA ---
 function selectDay(diaID, element) {
     if(!element) return;
+
+    // Si cliquem un dia, netegem el cercador si tenia text
+    const searchInput = document.getElementById("search-input");
+    if (searchInput && searchInput.value !== "") {
+        searchInput.value = "";
+    }
+
+    const tabsCont = document.getElementById("days-tabs");
+    if(tabsCont) tabsCont.style.display = "flex";
+
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
     element.classList.add('active');
 
@@ -91,13 +163,9 @@ function selectDay(diaID, element) {
     const diaSeleccionat = dadesProgramacio.find(d => d.dia_id === diaID);
     
     if(diaSeleccionat) {
-        // --- NUEVA LÓGICA PARA LA FECHA ---
-        // Convertimos "2026-05-16" en un objeto fecha de JS
         const fechaObj = new Date(diaSeleccionat.data_iso);
-        // Extraemos el día y el nombre del mes en español/catalán
         const opciones = { day: '2-digit', month: 'short' };
         const fechaFormateada = fechaObj.toLocaleDateString('ca-ES', opciones); 
-        // Resultado ej: "08 de maig" o "08 mai."
 
         diaSeleccionat.actes.forEach(acte => {
             const card = document.createElement("div");
@@ -119,7 +187,7 @@ function selectDay(diaID, element) {
     }
 }
 
-// --- 5. LÒGICA DE L'ORATGE ---
+// --- 6. LÒGICA DE L'ORATGE ---
 function carregarTemps() {
     const ara = new Date();
     fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
@@ -158,9 +226,9 @@ function toggleWeatherDetails() {
     if(d) d.style.display = d.style.display === 'none' ? 'block' : 'none';
 }
 
-// --- 6. COMPTE ENRERE ---
+// --- 7. COMPTE ENRERE ---
 function actualitzarCompteEnrere() {
-    const target = new Date("May 16, 2026 00:00:00").getTime();
+    const target = new Date("Oct 3, 2026 00:00:00").getTime();
     
     const x = setInterval(() => {
         const ara = new Date().getTime();
@@ -229,7 +297,6 @@ function generarSchemaGoogle(data) {
         });
     });
 
-    // Eliminamos scripts previos de schema si existieran (para evitar duplicados al recargar)
     const oldScript = document.getElementById('schema-eventos');
     if (oldScript) oldScript.remove();
 
@@ -238,12 +305,9 @@ function generarSchemaGoogle(data) {
     script.type = 'application/ld+json';
     script.text = JSON.stringify(todosLosEventos);
     document.head.appendChild(script);
-    
-    console.log("✅ Schema.org: " + todosLosEventos.length + " eventos listos para Google.");
 }
 
-
-// --- 7. NOTIFICACIONS PUSH ---
+// --- 8. NOTIFICACIONS PUSH ---
 async function inicializarNotificaciones() {
     const firebaseConfig = {
         apiKey: "AIzaSyCBRrz5GzVQ-eSGKyoiy-2DWoVU9msxPwA",
@@ -260,7 +324,7 @@ async function inicializarNotificaciones() {
     }
     
     const messaging = firebase.messaging();
-    const db = firebase.firestore(); // Esto ahora funcionará gracias al index.html nuevo
+    const db = firebase.firestore();
 
     try {
         const permission = await Notification.requestPermission();
@@ -272,14 +336,12 @@ async function inicializarNotificaciones() {
             });
             
             if (token) {
-                // GUARDAR EN FIRESTORE
                 await db.collection("usuarios_avisos").doc(token).set({
                     token: token,
                     pueblo: "Almassora",
                     fecha: new Date(),
                     plataforma: "web"
                 });
-                console.log("Token guardado con éxito en Firestore.");
             }
         }
     } catch (error) {
@@ -287,64 +349,56 @@ async function inicializarNotificaciones() {
     }
 }
 
-// --- 8. INICIALITZACIÓ GENERAL ---
+// --- 9. INICIALITZACIÓ GENERAL ---
 document.addEventListener("DOMContentLoaded", () => {
-    // ... (Mantén igual el registro del Service Worker y llamadas a funciones)
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('firebase-messaging-sw.js').then(reg => {
             inicializarNotificaciones();
         });
     }
 
-// --- 9. LÒGICA D'INSTAL·LACIÓ PWA ---
-let deferredPrompt;
-const installContainer = document.getElementById('install-container');
-const btnInstalar = document.getElementById('btn-instalar');
+    let deferredPrompt;
+    const installContainer = document.getElementById('install-container');
+    const btnInstalar = document.getElementById('btn-instalar');
 
-// Función para saber si ya estamos en la App instalada
-function isRunningStandalone() {
-    return (window.matchMedia('(display-mode: standalone)').matches) || 
-           (window.navigator.standalone) || 
-           document.referrer.includes('android-app://');
-}
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    // Solo actuar si es móvil/tablet y NO está ya instalado
-    const isMobile = window.innerWidth <= 1024;
-
-    if (isMobile && !isRunningStandalone()) {
-        e.preventDefault();
-        deferredPrompt = e;
-        // Mostrar el contenedor
-        if(installContainer) installContainer.style.display = 'block';
+    function isRunningStandalone() {
+        return (window.matchMedia('(display-mode: standalone)').matches) || 
+               (window.navigator.standalone) || 
+               document.referrer.includes('android-app://');
     }
-});
 
-if(btnInstalar) {
-    btnInstalar.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
-                if(installContainer) installContainer.style.display = 'none';
-            }
-            deferredPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        const isMobile = window.innerWidth <= 1024;
+        if (isMobile && !isRunningStandalone()) {
+            e.preventDefault();
+            deferredPrompt = e;
+            if(installContainer) installContainer.style.display = 'block';
         }
     });
-}
 
-// Si se instala correctamente, ocultamos todo
-window.addEventListener('appinstalled', () => {
-    if(installContainer) installContainer.style.display = 'none';
-    deferredPrompt = null;
-});
+    if(btnInstalar) {
+        btnInstalar.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    if(installContainer) installContainer.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+    }
+
+    window.addEventListener('appinstalled', () => {
+        if(installContainer) installContainer.style.display = 'none';
+        deferredPrompt = null;
+    });
 
     carregarAvisos();
     carregarTemps();
     actualitzarCompteEnrere();
 
     const ara = new Date();
-    // Formato YYYY-MM-DD
     const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
 
     fetch('programacion.json')
@@ -356,24 +410,21 @@ window.addEventListener('appinstalled', () => {
 
         if(!tabsCont) return;
 
-        let indexDiaSeleccionat = 0; // Por defecto el primero
+        let indexDiaSeleccionat = 0;
         generarSchemaGoogle(data);
 
         data.forEach((dia, index) => {
-            // Comprobamos si este día es hoy
             const esAvui = dia.data_iso === avuiISO;
             if (esAvui) {
                 indexDiaSeleccionat = index;
             }
 
             const btn = document.createElement("div");
-            // Quitamos el 'active' de aquí, lo pondremos luego dinámicamente
             btn.className = `day-tab`; 
             btn.innerText = dia.titol_curt;
             btn.onclick = () => selectDay(dia.dia_id, btn);
             tabsCont.appendChild(btn);
 
-            // Llenar scroll horizontal de inicio si es hoy
             if(esAvui && avuiScroll) {
                 dia.actes.forEach(acte => {
                     const mini = document.createElement("div");
@@ -385,35 +436,26 @@ window.addEventListener('appinstalled', () => {
             }
         });
 
-        // Mensaje si no hay nada hoy en el inicio
         if(avuiScroll && avuiScroll.innerHTML === "") {
             avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
         }
 
-        // --- EL TRUCO ESTÁ AQUÍ ---
-        // Seleccionamos el botón correspondiente al index encontrado (hoy o el primero)
         const botoPerDefecte = tabsCont.children[indexDiaSeleccionat];
         if(data.length > 0 && botoPerDefecte) {
             selectDay(data[indexDiaSeleccionat].dia_id, botoPerDefecte);
-            
-            // Opcional: Hacer scroll automático para que se vea el botón del día actual si hay muchos
             botoPerDefecte.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
         }
     });
 });
 
-// --- GESTIÓ DE FAVORITS ---
-
-// Obté la llista de IDs favorits del localStorage
+// --- FAVORITS & PUNT VIOLETA ---
 function getFavorits() {
     const favs = localStorage.getItem('festes_favs');
     return favs ? JSON.parse(favs) : [];
 }
 
-// Afegeix o lleva un acte de favorits
 function toggleFavorit(id, event) {
-    if (event) event.stopPropagation(); // Evita que s'òpiga el modal al fer clic en l'estrella
-    
+    if (event) event.stopPropagation();
     let favs = getFavorits();
     if (favs.includes(id)) {
         favs = favs.filter(favId => favId !== id);
@@ -422,35 +464,13 @@ function toggleFavorit(id, event) {
     }
     localStorage.setItem('festes_favs', JSON.stringify(favs));
     
-    // Refrescar la vista actual per a actualitzar les estrelles
     const activeTab = document.querySelector('.day-tab.active');
     if (activeTab) activeTab.click(); 
 }
 
-// Modifica la funció on renderitzes els actes (dins de selectDay) 
-// per a incloure el botó d'estrella:
-function crearCardActe(acte) {
-    const isFav = getFavorits().includes(acte.id);
-    return `
-        <div class="event-card" onclick="openActe('${acte.id}')">
-            <div class="event-info">
-                <span class="event-time">${acte.hora_inici}h</span>
-                <h3 class="event-title">${acte.titol}</h3>
-                <p class="event-location">📍 ${acte.ubicacio}</p>
-            </div>
-            <div class="fav-button ${isFav ? 'is-fav' : ''}" onclick="toggleFavorit('${acte.id}', event)">
-                ${isFav ? '★' : '☆'}
-            </div>
-        </div>
-    `;
-}
-
 function mostrarInfoVioleta() {
-    // Puedes personalizar la ubicación según donde se instale este año
     const ubicacioPunt = "Per determinar";
-    
     const missatge = `💜 PUNT VIOLETA\n\nEspai segur d'informació, prevenció i acompanyament.\n\n📍 Ubicació: ${ubicacioPunt}\n\nSi necessites ajuda immediata i no pots arribar-hi, prem d'acord per a trucar al 016 (Atenció 24h).`;
-
     if (confirm(missatge)) {
         window.location.href = "tel:016";
     }

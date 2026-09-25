@@ -20,8 +20,8 @@ messaging.onBackgroundMessage((payload) => {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
-    icon: 'icon-512.png',
-    badge: 'icon-512.png',
+    icon: 'iconofestes.png',
+    badge: 'iconofestes.png',
     // Guardamos la URL en los datos de la notificación por si queremos que sea dinámica
     data: {
       url: 'https://festesalmassora.vercel.app/'

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Santa Quiteria 2026</title>
-    <link rel="icon" href="icon-512.png" type="image/x-icon">
+    <title>FESTES DEL ROSER 2026</title>
+    <link rel="icon" href="iconofestes.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
       <link rel="manifest" href="manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="description" content="Programa Santa Quitèria Almassora 2026. Tots els esdeveniments, bous i festes de la teua ciutat actualitzats al moment.">
+  <meta name="description" content="Programa de les Festes del Roser Almassora 2026. Tots els esdeveniments, bous i festes actualitzats al moment.">
   <link rel="apple-touch-icon" href="icon-512.png">
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compat.js"></script>
@@ -23,9 +23,22 @@
     <main id="app">
         <section id="p-inici" class="page active">
             <header>
-                <p class="subtitle">SANTA QUITERIA 2026</p>
+                <p class="subtitle">FESTES DEL ROSER 2026</p>
                 <h1>Inici</h1>
             </header>
+
+            <div id="install-container" style="display: none;">
+                    <div class="glass-card install-card">
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <img src="icon-512.png" width="50" style="border-radius:12px;">
+                            <div style="flex-grow:1;">
+                                <b style="display:block; font-size:16px;">Instal·la l'App</b>
+                                <p style="margin:0; font-size:12px; color:var(--text-sec);">Accés ràpid i avisos en temps real.</p>
+                            </div>
+                            <button id="btn-instalar" class="btn-install-action">Instal·lar</button>
+                        </div>
+                    </div>
+                </div>
 
             <div class="glass-card countdown" id="timer-wrapper">
                 <div id="timer">
@@ -106,19 +119,6 @@
                     </div>
             </div>
             <center><a href="privacitat.html" style="color:#444; font-size:11px; text-decoration:none;">Política de Privacitat</a></center>
-
-            <div id="install-container" style="display: none;">
-    <div class="glass-card install-card">
-        <div style="display:flex; align-items:center; gap:15px;">
-            <img src="icon-512.png" width="50" style="border-radius:12px;">
-            <div style="flex-grow:1;">
-                <b style="display:block; font-size:16px;">Instal·la l'App</b>
-                <p style="margin:0; font-size:12px; color:var(--text-sec);">Accés ràpid i avisos en temps real.</p>
-            </div>
-            <button id="btn-instalar" class="btn-install-action">Instal·lar</button>
-        </div>
-    </div>
-</div>
 
         </section>
 
