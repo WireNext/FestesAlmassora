@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://festesalmassora.vercel.app/index.html</loc>
-    <lastmod>2026-04-14</lastmod>
+    <loc>https://festesalmassora.es/index.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <priority>1.00</priority>
   </url>
 
   <url>
-    <loc>https://festesalmassora.vercel.app/bus.html</loc>
-    <lastmod>2026-04-14</lastmod>
+    <loc>https://festesalmassora.es/bus.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <priority>0.80</priority>
   </url>
 
   <url>
-    <loc>https://festesalmassora.vercel.app/programa.html</loc>
-    <lastmod>2026-05-10</lastmod>
+    <loc>https://festesalmassora.es/programa.html</loc>
+    <lastmod>2026-10-26</lastmod>
     <priority>1.00</priority>
   </url>
 </urlset>

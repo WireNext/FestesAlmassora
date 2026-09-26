@@ -24,7 +24,7 @@ messaging.onBackgroundMessage((payload) => {
     badge: 'iconofestes.png',
     // Guardamos la URL en los datos de la notificación por si queremos que sea dinámica
     data: {
-      url: 'https://festesalmassora.vercel.app/'
+      url: 'https://festesalmassora.es'
     }
   };
 
@@ -35,7 +35,7 @@ messaging.onBackgroundMessage((payload) => {
 self.addEventListener('notificationclick', function(event) {
   event.notification.close(); // Cierra la notificación al pinchar
 
-  const urlToOpen = 'https://festesalmassora.vercel.app/';
+  const urlToOpen = 'https://festesalmassora.es';
 
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true })
