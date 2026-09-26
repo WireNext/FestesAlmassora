@@ -2,8 +2,7 @@
 // 1. Datos GTFS
 // =============================
 const gtfsData = {
-    almassora: {},
-
+    almassora: {}
 };
 
 // =============================
@@ -35,7 +34,7 @@ function updateIconSize(map, marker) {
 }
 
 // =============================
-// 3. Cargar GTFS
+// 3. Cargar GTFS (Archivos estrictos)
 // =============================
 async function loadGTFSData(agency) {
     const dataDir = `./data/${agency}/`;
@@ -48,11 +47,11 @@ async function loadGTFSData(agency) {
             const text = await response.text();
             const lines = text.split('\n').filter(line => line.trim() !== '');
             if (lines.length <= 1) continue;
-            const headers = lines[0].split(',');
+            const headers = lines[0].split(',').map(h => h.trim());
             const data = lines.slice(1).map(line => {
                 const values = line.split(',');
                 return headers.reduce((obj, header, i) => {
-                    obj[header.trim()] = values[i] ? values[i].trim() : '';
+                    obj[header] = values[i] ? values[i].trim() : '';
                     return obj;
                 }, {});
             });
@@ -67,108 +66,62 @@ async function loadGTFSData(agency) {
 // 4. Inicializar mapa
 // =============================
 function initMap() {
-    const map = L.map('map').setView([39.9479, -0.0634], 14);
+    const map = L.map('map', { zoomControl: false }).setView([39.9479, -0.0634], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
+
+    map.on('click', () => closeSheet());
     return map;
 }
 
 // =============================
-// 5. Helper: filtrar rutas por agencias y rutas
+// 5. Helpers de Fechas (Hora Local)
 // =============================
-function filterRoutes(agency, filter) {
-    const routes = gtfsData[agency].routes || [];
-    let filtered = routes;
-    if (filter?.agencies?.length) filtered = filtered.filter(r => filter.agencies.includes(r.agency_id));
-    if (filter?.routes?.length) filtered = filtered.filter(r => filter.routes.includes(r.route_id));
-    return filtered;
+function getYYYYMMDD(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}${month}${day}`;
+}
+
+function isServiceActiveOnDate(service, targetDate) {
+    if (!service) return false;
+
+    const yyyymmdd = getYYYYMMDD(targetDate);
+
+    // 1. Verificar rango start_date <= fecha <= end_date
+    if (yyyymmdd < service.start_date || yyyymmdd > service.end_date) {
+        return false;
+    }
+
+    // 2. Verificar día de la semana (0 = domingo, 1 = lunes, ..., 6 = sábado)
+    const dow = targetDate.getDay();
+    const weekdays = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+    return service[weekdays[dow]] === "1";
 }
 
 // =============================
-// 6. Dibujar paradas
+// 6. Dibujar Paradas y buscar 5 salidas futuras
 // =============================
-function drawStopsOnMap(map, agency, filter = {}) {
+function drawStopsOnMap(map, agency) {
     const stops = gtfsData[agency].stops || [];
     const trips = gtfsData[agency].trips || [];
     const stopTimes = gtfsData[agency].stop_times || [];
-    const filteredRoutes = filterRoutes(agency, filter);
-
-    // 👇 Filtrar trips activos según calendar
+    const routes = gtfsData[agency].routes || [];
     const calendar = gtfsData[agency].calendar || [];
-    const activeServiceIds = calendar
-        .filter(s => isServiceActive(s))
-        .map(s => s.service_id);
-
-    const allowedTrips = trips.filter(
-        t => filteredRoutes.some(r => r.route_id === t.route_id) &&
-             activeServiceIds.includes(t.service_id)
-    );
-
-    const allowedStopTimes = stopTimes.filter(st =>
-        allowedTrips.some(t => t.trip_id === st.trip_id)
-    );
 
     stops.forEach(stop => {
-        const stopTimesForStop = allowedStopTimes.filter(st => st.stop_id === stop.stop_id);
-        if ((filter?.agencies?.length || filter?.routes?.length) && stopTimesForStop.length === 0) return;
-
         const lat = parseFloat(stop.stop_lat?.replace(/["\s]/g, ''));
         const lon = parseFloat(stop.stop_lon?.replace(/["\s]/g, ''));
         if (isNaN(lat) || isNaN(lon)) return;
 
         const marker = L.marker([lat, lon], { icon: customStopIcon }).addTo(map);
-        marker.bindPopup("Cargando...");
-        marker.on('click', () => {
-            const ahora = new Date();
-            function horaAFecha(horaStr) {
-                const [hh, mm, ss] = horaStr.split(':').map(Number);
-                const fecha = new Date(ahora);
-                fecha.setHours(hh, mm, ss, 0);
-                return fecha;
-            }
 
-            const horarios = stopTimesForStop
-                .map(st => {
-                    const trip = allowedTrips.find(t => t.trip_id === st.trip_id);
-                    if (!trip) return null;
-                    const ruta = filteredRoutes.find(r => r.route_id === trip.route_id);
-                    if (!ruta) return null;
-                    return { linea: ruta.route_short_name || '', nombre: ruta.route_long_name || '', hora: st.departure_time };
-                })
-                .filter(h => h !== null);
-
-            const horariosConDiff = horarios.map(h => {
-                const fechaSalida = horaAFecha(h.hora);
-                let diffMin = (fechaSalida - ahora) / 60000;
-                if (diffMin < 0) diffMin += 24 * 60;
-                return { ...h, diffMin, fechaSalida };
-            });
-
-            horariosConDiff.sort((a, b) => a.diffMin - b.diffMin);
-            const futuros = horariosConDiff.filter(h => h.diffMin >= 0);
-
-            if (futuros.length === 0) {
-                marker.setPopupContent(`<strong>${stop.stop_name}</strong><br>No hi ha més serveis avuí.`);
-                return;
-            }
-
-            const proximosMinutos = futuros.slice(0, 2);
-            const siguientesHoras = futuros.slice(2, 5);
-
-            let html = `<strong>${stop.stop_name}</strong><br><ul>`;
-            proximosMinutos.forEach(h => {
-                if (h.diffMin <= 1) {
-                    html += `<li><b>${h.linea}</b> → ${h.nombre}: <span class="parpadeo" style="color:red;">en ${Math.round(h.diffMin)} min</span></li>`;
-                } else {
-                    html += `<li><b>${h.linea}</b> → ${h.nombre}: en ${Math.round(h.diffMin)} min</li>`;
-                }
-            });
-            siguientesHoras.forEach(h => {
-                html += `<li><b>${h.linea}</b> → ${h.nombre}: ${h.hora}</li>`;
-            });
-            html += '</ul>';
-            marker.setPopupContent(html);
+        marker.on('click', (e) => {
+            L.DomEvent.stopPropagation(e);
+            const nextDepartures = getNext5Departures(stop.stop_id, { trips, stopTimes, routes, calendar });
+            showBottomSheet(stop.stop_name, nextDepartures);
         });
 
         updateIconSize(map, marker);
@@ -176,15 +129,157 @@ function drawStopsOnMap(map, agency, filter = {}) {
     });
 }
 
+function getNext5Departures(stopId, { trips, stopTimes, routes, calendar }) {
+    const stopTimesForStop = stopTimes.filter(st => st.stop_id === stopId);
+    if (!stopTimesForStop.length) return [];
+
+    const now = new Date();
+    const departures = [];
+    const maxDaysToSearch = 60; // Busca hasta 60 días en el futuro
+
+    for (let dayOffset = 0; dayOffset < maxDaysToSearch; dayOffset++) {
+        if (departures.length >= 5) break;
+
+        // Fecha limpia en medianoche local
+        const checkDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + dayOffset);
+
+        // Filtrar service_ids activos en calendar.txt para esta fecha
+        const activeServiceIds = calendar
+            .filter(s => isServiceActiveOnDate(s, checkDate))
+            .map(s => s.service_id);
+
+        if (!activeServiceIds.length) continue;
+
+        const dailyDepartures = [];
+
+        stopTimesForStop.forEach(st => {
+            // Filtrar el trip correspondiente activo
+            const trip = trips.find(t => t.trip_id === st.trip_id && activeServiceIds.includes(t.service_id));
+            if (!trip) return;
+
+            const route = routes.find(r => r.route_id === trip.route_id);
+            if (!route) return;
+
+            const [hh, mm, ss] = st.departure_time.split(':').map(Number);
+
+            // Construir la fecha exacta de la salida
+            const depDate = new Date(checkDate.getFullYear(), checkDate.getMonth(), checkDate.getDate());
+
+            if (hh >= 24) {
+                depDate.setDate(depDate.getDate() + 1);
+                depDate.setHours(hh - 24, mm, ss || 0, 0);
+            } else {
+                depDate.setHours(hh, mm, ss || 0, 0);
+            }
+
+            // Solo añadir salidas futuras respecto al momento actual
+            if (depDate <= now) return;
+
+            dailyDepartures.push({
+                linea: route.route_short_name || 'Bus',
+                nombre: route.route_long_name || '',
+                horaStr: `${String(hh >= 24 ? hh - 24 : hh).padStart(2, '0')}:${String(mm).padStart(2, '0')}`,
+                fechaObj: depDate,
+                diffMin: Math.round((depDate - now) / 60000)
+            });
+        });
+
+        // Ordenar cronológicamente las salidas de este día
+        dailyDepartures.sort((a, b) => a.fechaObj - b.fechaObj);
+
+        // Añadir hasta llegar a las 5 necesarias
+        for (const dep of dailyDepartures) {
+            if (departures.length < 5) {
+                departures.push(dep);
+            } else {
+                break;
+            }
+        }
+    }
+
+    return departures;
+}
+
 // =============================
-// 7. Dibujar rutas (corregido para ambas direcciones)
+// 7. Renderizado Liquid Glass (Bottom Sheet)
 // =============================
-function drawRoutes(map, agency, filter = {}) {
+function showBottomSheet(stopName, departures) {
+    const sheet = document.getElementById('stop-sheet');
+    const titleEl = document.getElementById('sheet-stop-name');
+    const contentEl = document.getElementById('sheet-stop-content');
+
+    titleEl.textContent = stopName;
+
+    if (!departures.length) {
+        contentEl.innerHTML = `<div class="no-departures">No hi ha eixides programades.</div>`;
+        sheet.classList.add('active');
+        return;
+    }
+
+    // Agrupar salidas por etiqueta de fecha
+    const grouped = {};
+    departures.forEach(dep => {
+        const dateKey = formatDateHeader(dep.fechaObj);
+        if (!grouped[dateKey]) grouped[dateKey] = [];
+        grouped[dateKey].push(dep);
+    });
+
+    let html = '';
+    for (const [dateLabel, list] of Object.entries(grouped)) {
+        html += `<div class="date-group">`;
+        html += `<div class="date-header">${dateLabel}</div>`;
+
+        list.forEach(item => {
+            const isImminente = item.diffMin >= 0 && item.diffMin <= 5;
+            const timeDisplay = isImminente 
+                ? (item.diffMin <= 1 ? 'En parada' : `en ${item.diffMin} min`)
+                : item.horaStr;
+
+            html += `
+                <div class="departure-card">
+                    <div>
+                        <span class="departure-line">${item.linea}</span>
+                        <span class="departure-name">${item.nombre}</span>
+                    </div>
+                    <div class="departure-time ${isImminente ? 'imminente' : ''}">
+                        ${timeDisplay}
+                    </div>
+                </div>
+            `;
+        });
+        html += `</div>`;
+    }
+
+    contentEl.innerHTML = html;
+    sheet.classList.add('active');
+}
+
+function closeSheet() {
+    const sheet = document.getElementById('stop-sheet');
+    if (sheet) sheet.classList.remove('active');
+}
+
+function formatDateHeader(date) {
+    const today = new Date();
+    const tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+
+    if (date.toDateString() === today.toDateString()) return 'Hui';
+    if (date.toDateString() === tomorrow.toDateString()) return 'Demà';
+
+    const options = { weekday: 'long', day: 'numeric', month: 'long' };
+    const formatted = date.toLocaleDateString('ca-ES', options);
+    return formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
+
+// =============================
+// 8. Dibujar rutas (Shapes)
+// =============================
+function drawRoutes(map, agency) {
     const trips = gtfsData[agency].trips || [];
     const shapes = gtfsData[agency].shapes || [];
+    const routes = gtfsData[agency].routes || [];
     if (!shapes.length) return;
 
-    // Map shape_id → array de puntos
     const shapeMap = new Map();
     shapes.forEach(shape => {
         const shapeId = shape.shape_id?.trim();
@@ -192,16 +287,9 @@ function drawRoutes(map, agency, filter = {}) {
         shapeMap.get(shapeId).push([parseFloat(shape.shape_pt_lat), parseFloat(shape.shape_pt_lon)]);
     });
 
-    const filteredRoutes = filterRoutes(agency, filter);
-
-    filteredRoutes.forEach(route => {
-        const routeColor = `#${route.route_color || '28a745'}`;
-        const routeName = route.route_short_name || route.route_long_name;
-
-        // Todos los trips de esta ruta
+    routes.forEach(route => {
+        const routeColor = `#${route.route_color || '059600'}`;
         const routeTrips = trips.filter(t => t.route_id === route.route_id);
-
-        // Para evitar dibujar shapes duplicados
         const drawnShapes = new Set();
 
         routeTrips.forEach(trip => {
@@ -214,92 +302,15 @@ function drawRoutes(map, agency, filter = {}) {
                     color: routeColor,
                     weight: 4,
                     opacity: 0.8
-                }).addTo(map).bindPopup(`Línea: ${routeName} (Trip: ${trip.trip_id}, Dir: ${trip.direction_id})`);
+                }).addTo(map);
                 drawnShapes.add(shapeId);
             }
         });
     });
 }
 
-
 // =============================
-// 8. Mostrar info rutas
-// =============================
-function displayRoutesInfo(agency, filter = {}) {
-    const routesInfoDiv = document.getElementById('routes-info');
-    const filteredRoutes = filterRoutes(agency, filter);
-
-    if (!filteredRoutes.length) {
-        routesInfoDiv.innerHTML += `<p>No se han trobat rutes per a ${agency}.</p>`;
-        return;
-    }
-
-    const agencyTitle = document.createElement('h3');
-    agencyTitle.textContent = agency.charAt(0).toUpperCase() + agency.slice(1);
-    routesInfoDiv.appendChild(agencyTitle);
-
-    const routesList = document.createElement('ul');
-    filteredRoutes.forEach(route => {
-        const routeItem = document.createElement('li');
-        routeItem.className = 'route-item';
-        routeItem.dataset.routeId = route.route_id;
-        const routeNameSpan = document.createElement('span');
-        routeNameSpan.textContent = route.route_short_name;
-        routeNameSpan.style.color = `#${route.route_color || 'black'}`;
-        routeItem.appendChild(routeNameSpan);
-        routesList.appendChild(routeItem);
-        routeItem.addEventListener('click', () => {
-            const existingStopList = routeItem.querySelector('.stop-list');
-            document.querySelectorAll('.stop-list').forEach(list => { if (list !== existingStopList) list.style.display = 'none'; });
-            if (existingStopList) {
-                existingStopList.style.display = existingStopList.style.display === 'block' ? 'none' : 'block';
-            } else {
-                displayStopTimes(agency, route.route_id, routeItem);
-            }
-        });
-    });
-    routesInfoDiv.appendChild(routesList);
-}
-
-function displayStopTimes(agency, routeId, containerElement) {
-    const trips = gtfsData[agency].trips;
-    const stopTimes = gtfsData[agency].stop_times;
-    const stops = gtfsData[agency].stops;
-    const sampleTrip = trips.find(t => t.route_id === routeId);
-    if (!sampleTrip) return;
-    const tripStopTimes = stopTimes.filter(st => st.trip_id === sampleTrip.trip_id)
-        .sort((a, b) => a.stop_sequence - b.stop_sequence);
-    const stopList = document.createElement('ul');
-    stopList.className = 'stop-list';
-    tripStopTimes.forEach(st => {
-        const stop = stops.find(s => s.stop_id === st.stop_id);
-        if (stop) {
-            const stopItem = document.createElement('li');
-            stopItem.textContent = `${stop.stop_name} (Llegada: ${st.arrival_time})`;
-            stopList.appendChild(stopItem);
-        }
-    });
-    containerElement.appendChild(stopList);
-}
-
-function isServiceActive(service, fecha = new Date()) {
-    const yyyymmdd = fecha.toISOString().slice(0,10).replace(/-/g, ""); // YYYYMMDD
-
-    // Verificar rango de fechas
-    if (yyyymmdd < service.start_date || yyyymmdd > service.end_date) {
-        return false;
-    }
-
-    // Día de la semana (0=domingo, 1=lunes, ..., 6=sábado)
-    const dow = fecha.getDay();
-    const weekdays = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-
-    return service[weekdays[dow]] === "1";
-}
-
-
-// =============================
-// 11. Iniciar app
+// 9. Iniciar app
 // =============================
 async function startApp() {
     await loadGTFSData('almassora');
@@ -307,6 +318,5 @@ async function startApp() {
     drawStopsOnMap(map, 'almassora');
     drawRoutes(map, 'almassora');
 }
-
 
 startApp();

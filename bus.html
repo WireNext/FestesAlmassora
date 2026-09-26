@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     
     <style>
-        body { margin: 0; padding: 0; background: #000; font-family: -apple-system, sans-serif; overflow: hidden; }
+        body { margin: 0; padding: 0; background: #000; font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, sans-serif; overflow: hidden; }
         
         #map {
             height: 100vh;
@@ -22,49 +22,169 @@
             filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
         }
 
-        /* Panell Liquid Glass */
-        #routes-info {
+        /* Ocultar popups nativos de Leaflet */
+        .leaflet-popup { display: none !important; }
+
+        /* Liquid Glass Bottom Sheet */
+        .bottom-sheet {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            max-height: 70vh;
+            background: rgba(28, 28, 30, 0.75);
+            backdrop-filter: blur(25px) saturate(190%);
+            -webkit-backdrop-filter: blur(25px) saturate(190%);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+            z-index: 3000;
+            transition: bottom 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 90px; /* Espacio para la tab-bar */
+        }
+
+        .bottom-sheet.active {
+            bottom: 0;
+        }
+
+        .sheet-header {
+            padding: 12px 20px 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .sheet-drag-handle {
+            width: 36px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .sheet-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+            width: 100%;
+            text-align: left;
+            color: #ffffff;
+            letter-spacing: -0.4px;
+        }
+
+        .sheet-close {
             position: absolute;
-            bottom: 110px;
-            left: 15px;
-            right: 15px;
-            max-height: 30vh;
-            overflow-y: auto;
-            z-index: 1000;
-            background: rgba(25, 25, 25, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 0.5px solid rgba(255, 255, 255, 0.15);
-            border-radius: 24px;
-            padding: 20px;
-            color: white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        #routes-info h3 { color: #059600; margin: 0 0 10px; font-size: 16px; text-transform: uppercase; }
-
-        .stop-list { list-style: none; padding: 0; margin: 0; }
-        .stop-list li {
-            padding: 10px 0;
-            border-bottom: 0.5px solid rgba(255,255,255,0.1);
-            font-size: 13px;
+            right: 16px;
+            top: 14px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
             color: #ccc;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
 
-        /* CSS DE LA TAB-BAR (Molt important perquè es veja bé aquí també) */
+        .sheet-content {
+            padding: 16px 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        /* Estilos de Fechas y Salidas */
+        .date-group {
+            margin-bottom: 18px;
+        }
+
+        .date-header {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .departure-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .departure-line {
+            display: inline-block;
+            background: #059600;
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 8px;
+            margin-right: 8px;
+        }
+
+        .departure-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #eaeaea;
+        }
+
+        .departure-time {
+            font-size: 15px;
+            font-weight: 700;
+            color: #34c759;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .departure-time.imminente {
+            color: #ff453a;
+            animation: pulse 1.5s infinite;
+        }
+
+        .no-departures {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 20px 0;
+            font-size: 14px;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Tab Bar */
         .tab-bar {
-            position: fixed; bottom: 30px; left: 50%;
+            position: fixed; bottom: 25px; left: 50%;
             transform: translateX(-50%);
-            width: 210px; height: 65px;
-            background: rgba(30, 30, 30, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            width: 210px; height: 60px;
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border-radius: 35px;
             display: flex; justify-content: space-around; align-items: center;
             border: 0.5px solid rgba(255,255,255,0.15);
-            z-index: 2000;
+            z-index: 4000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .tab { background: none; border: none; font-size: 24px; opacity: 0.3; color: white; cursor: pointer; }
+        .tab { background: none; border: none; font-size: 22px; opacity: 0.4; color: white; cursor: pointer; }
         .tab.active { opacity: 1; filter: drop-shadow(0 0 8px #059600); }
 
         .leaflet-control-zoom { display: none; }
@@ -73,11 +193,17 @@
 <body>
 
     <div id="map"></div>
-    
-    <div id="routes-info">
-        <h3>Bus nocturn</h3>
-        <div id="lista-rutas">Pots demanar al conductor que pare en qualsevol punt del recorregut. <br>
-(Horaris aproximats)</div>
+
+    <!-- Liquid Glass Sheet -->
+    <div id="stop-sheet" class="bottom-sheet">
+        <div class="sheet-header">
+            <div class="sheet-drag-handle"></div>
+            <h2 id="sheet-stop-name" class="sheet-title">Nom de la parada</h2>
+            <button class="sheet-close" onclick="closeSheet()">✕</button>
+        </div>
+        <div id="sheet-stop-content" class="sheet-content">
+            <!-- Salidas dynamically populated -->
+        </div>
     </div>
 
     <nav class="tab-bar">
