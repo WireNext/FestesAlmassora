@@ -12,3 +12,5 @@
    "tipus": "important"
  }
 ]
+
+Color SQ:   "theme_color": "#ff3b30",

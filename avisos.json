@@ -1,8 +1,8 @@
 [
   {
-   "id": "av1",
-    "titol": "Programació",
-    "text": "Encara no se ha fet publica la programació per a les Festes del Roser 2026",
-   "tipus": "important"
- }
+    "id": "av1",
+    "titol": "Bus de la festa",
+    "text": "Horaris del tranpost públic nocturn no disponible per el moment.",
+    "tipus": "info"
+  }
 ]
