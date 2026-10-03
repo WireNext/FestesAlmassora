@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://festesalmassora.es/index.html</loc>
+    <loc>https://festesalmassora.es/</loc>
     <lastmod>2026-10-26</lastmod>
     <priority>1.00</priority>
   </url>
@@ -15,6 +15,6 @@
   <url>
     <loc>https://festesalmassora.es/programa.html</loc>
     <lastmod>2026-10-26</lastmod>
-    <priority>1.00</priority>
+    <priority>0.90</priority>
   </url>
 </urlset>
