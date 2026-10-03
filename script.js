@@ -1,9 +1,10 @@
 /**
- * ENGINE SANTA QUITÈRIA 2026 
+ * ENGINE FESTES DEL ROSER 2026
  * Gestió de JSON (Avisos + Programació) + Temps + Pantalla Completa + Buscador
  */
 
 let dadesProgramacio = []; 
+let dadesAvisos = []; // Guardem els avisos globalment
 
 // --- 1. NAVEGACIÓ ENTRE PESTANYES ---
 function showPage(id, btn) {
@@ -16,9 +17,10 @@ function showPage(id, btn) {
 
 // --- 2. GESTIÓ D'AVISOS DINÀMICS ---
 function carregarAvisos() {
-    fetch('avisos.json')
+    return fetch('avisos.json')
     .then(r => r.json())
     .then(avisos => {
+        dadesAvisos = avisos || []; // Emmagatzemem els avisos
         const container = document.getElementById("seccio-avisos");
         if (!container) return; 
         if (!avisos || avisos.length === 0) {
@@ -30,7 +32,7 @@ function carregarAvisos() {
         avisos.forEach(a => {
             htmlAvisos += `
                 <div class="avís-card ${a.tipus}">
-                    <div class="avís-icon">${a.tipus === 'important' ? '⚠️' : 'ℹ️'}</div>
+                    <div class="avís-icon">${a.tipus === 'important' ? '⚠️️' : 'ℹ️'}</div>
                     <div class="avís-contingut">
                         <b>${a.titol}</b>
                         <p>${a.text}</p>
@@ -40,10 +42,23 @@ function carregarAvisos() {
         container.innerHTML = htmlAvisos;
     })
     .catch(() => {
+        dadesAvisos = [];
         if(document.getElementById("seccio-avisos")) {
             document.getElementById("seccio-avisos").innerHTML = "";
         }
     });
+}
+
+// Funció d'ajuda per a obtindre la badge d'avís segons l'ID de l'acte
+function getAvisBadgeHtml(idActe) {
+    const avisosActe = dadesAvisos.filter(a => a.actes_afectats && a.actes_afectats.includes(idActe));
+    if (avisosActe.length === 0) return '';
+    
+    // Si té algun avís 'important', prima el cercle roig; si no, groc
+    const téImportant = avisosActe.some(a => a.tipus === 'important');
+    const colorClass = téImportant ? 'badge-important' : 'badge-info';
+    
+    return `<span class="badge-exclamacio ${colorClass}" title="Aquest acte té un avís d'última hora">!</span>`;
 }
 
 // --- 3. PANTALLA COMPLETA DE DETALL D'ACTE ---
@@ -59,11 +74,46 @@ function openActe(idActe) {
         document.getElementById("modal-titol").innerText = acte.titol;
         document.getElementById("modal-info").innerText = `${acte.hora_inici}h - ${acte.hora_fi}h`;
         document.getElementById("modal-desc").innerText = acte.descripcio || '';
+
+        // --- GESTIÓ DEL BANNER D'AVÍS DINS DEL MODAL ---
+        const avisosActe = dadesAvisos.filter(a => a.actes_afectats && a.actes_afectats.includes(idActe));
+        let bannerContainer = document.getElementById("modal-avis-banner");
+        
+        // Si no existeix el contenidor al modal, el creem dinàmicament
+        if (!bannerContainer) {
+            bannerContainer = document.createElement("div");
+            bannerContainer.id = "modal-avis-banner";
+            const modalBody = document.querySelector(".modal-body");
+            if (modalBody) modalBody.insertBefore(bannerContainer, modalBody.firstChild);
+        }
+
+        if (avisosActe.length > 0) {
+            let htmlBanners = '';
+            avisosActe.forEach(a => {
+                htmlBanners += `
+                    <div class="avís-card ${a.tipus}" style="margin-bottom: 15px;">
+                        <div class="avís-icon">${a.tipus === 'important' ? '⚠️' : 'ℹ️'}</div>
+                        <div class="avís-contingut">
+                            <b>${a.titol}</b>
+                            <p>${a.text}</p>
+                        </div>
+                    </div>`;
+            });
+            bannerContainer.innerHTML = htmlBanners;
+        } else {
+            bannerContainer.innerHTML = '';
+        }
         
         // Mapa interactiu
         const query = encodeURIComponent((acte.ubicacio || '') + ", Almassora");
         const mapUrl = `https://maps.google.com/maps?q=${query}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
         document.getElementById("modal-map-frame").src = mapUrl;
+        
+        // Actualització de l'enllaç per a obrir en l'App de Mapes
+        const mapLink = document.getElementById("modal-map-link");
+        if (mapLink) {
+            mapLink.href = `https://www.google.com/maps/search/?api=1&query=${query}`;
+        }
         
         document.getElementById("event-modal").style.display = "block";
         document.body.style.position = 'fixed';
@@ -86,9 +136,8 @@ function buscarActes(text) {
     
     if (!container) return;
 
-    // Si el cercador està buit, tornem al dia actiu
     if (query === "") {
-        if(tabsCont) tabsCont.style.display = "flex"; // Mostrem les pestanyes de dies
+        if(tabsCont) tabsCont.style.display = "flex";
         const activeTab = document.querySelector('.day-tab.active') || tabsCont?.children[0];
         if (activeTab) {
             activeTab.click();
@@ -96,7 +145,6 @@ function buscarActes(text) {
         return;
     }
 
-    // Amaguem pestanyes de dies durant la cerca
     if(tabsCont) tabsCont.style.display = "none";
     document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
 
@@ -115,6 +163,7 @@ function buscarActes(text) {
 
             if (titol.includes(query) || desc.includes(query) || ubica.includes(query)) {
                 trobats++;
+                const avisBadge = getAvisBadgeHtml(acte.id);
                 const card = document.createElement("div");
                 card.className = "glass-card";
                 card.style.marginBottom = "15px";
@@ -122,7 +171,9 @@ function buscarActes(text) {
                 card.innerHTML = `
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <div>
-                            <b style="font-size:17px; display:block;">${acte.titol}</b>
+                            <b style="font-size:17px; display:flex; align-items:center;">
+                                ${acte.titol} ${avisBadge}
+                            </b>
                             <span style="font-size:13px; color:var(--red); font-weight:700;">
                                 📅 ${fechaFormateada} - 🕒 ${acte.hora_inici}h
                             </span>
@@ -144,7 +195,6 @@ function buscarActes(text) {
 function selectDay(diaID, element) {
     if(!element) return;
 
-    // Si cliquem un dia, netegem el cercador si tenia text
     const searchInput = document.getElementById("search-input");
     if (searchInput && searchInput.value !== "") {
         searchInput.value = "";
@@ -168,6 +218,7 @@ function selectDay(diaID, element) {
         const fechaFormateada = fechaObj.toLocaleDateString('ca-ES', opciones); 
 
         diaSeleccionat.actes.forEach(acte => {
+            const avisBadge = getAvisBadgeHtml(acte.id);
             const card = document.createElement("div");
             card.className = "glass-card";
             card.style.marginBottom = "15px";
@@ -175,10 +226,13 @@ function selectDay(diaID, element) {
             card.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div>
-                        <b style="font-size:17px; display:block;">${acte.titol}</b>
+                        <b style="font-size:17px; display:flex; align-items:center;">
+                            ${acte.titol} ${avisBadge}
+                        </b>
                         <span style="font-size:13px; color:var(--red); font-weight:700;">
                             📅 ${fechaFormateada} - 🕒 ${acte.hora_inici}h
                         </span>
+                        ${acte.ubicacio ? `<span style="display:block; font-size:12px; opacity:0.7;">📍 ${acte.ubicacio}</span>` : ''}
                     </div>
                     <span style="opacity:0.3;">〉</span>
                 </div>`;
@@ -193,7 +247,7 @@ function carregarTemps() {
     fetch("https://api.open-meteo.com/v1/forecast?latitude=39.94&longitude=-0.06&current_weather=true&hourly=temperature_2m,weather_code,precipitation_probability,relative_humidity_2m&daily=uv_index_max&timezone=auto")
     .then(r => r.json()).then(d => {
         const h = ara.getHours();
-        const icons = { 0: "☀️", 1: "🌤️", 2: "🌤️", 3: "☁️", 45: "🌫️", 61: "🌧️", 80: "🌦️" };
+        const icons = { 0: "☀️️", 1: "🌤️", 2: "🌤️", 3: "☁️", 45: "🌫️", 61: "🌧️", 80: "🌦️" };
         const iconActual = icons[d.current_weather.weathercode] || "☁️";
 
         const weatherMain = document.getElementById("weather-main");
@@ -394,57 +448,60 @@ document.addEventListener("DOMContentLoaded", () => {
         deferredPrompt = null;
     });
 
-    carregarAvisos();
-    carregarTemps();
-    actualitzarCompteEnrere();
+    // Carreguem els avisos primer per a tindre'ls disponibles al carregar la programació
+    carregarAvisos().then(() => {
+        carregarTemps();
+        actualitzarCompteEnrere();
 
-    const ara = new Date();
-    const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
+        const ara = new Date();
+        const avuiISO = `${ara.getFullYear()}-${String(ara.getMonth()+1).padStart(2,'0')}-${String(ara.getDate()).padStart(2,'0')}`;
 
-    fetch('programacion.json')
-    .then(r => r.json())
-    .then(data => {
-        dadesProgramacio = data;
-        const tabsCont = document.getElementById("days-tabs");
-        const avuiScroll = document.getElementById("avui-scroll");
+        fetch('programacion.json')
+        .then(r => r.json())
+        .then(data => {
+            dadesProgramacio = data;
+            const tabsCont = document.getElementById("days-tabs");
+            const avuiScroll = document.getElementById("avui-scroll");
 
-        if(!tabsCont) return;
+            if(!tabsCont) return;
 
-        let indexDiaSeleccionat = 0;
-        generarSchemaGoogle(data);
+            let indexDiaSeleccionat = 0;
+            generarSchemaGoogle(data);
 
-        data.forEach((dia, index) => {
-            const esAvui = dia.data_iso === avuiISO;
-            if (esAvui) {
-                indexDiaSeleccionat = index;
+            data.forEach((dia, index) => {
+                const esAvui = dia.data_iso === avuiISO;
+                if (esAvui) {
+                    indexDiaSeleccionat = index;
+                }
+
+                const btn = document.createElement("div");
+                btn.className = `day-tab`; 
+                btn.innerText = dia.titol_curt;
+                btn.onclick = () => selectDay(dia.dia_id, btn);
+                tabsCont.appendChild(btn);
+
+                if(esAvui && avuiScroll) {
+                    dia.actes.forEach(acte => {
+                        const avisBadge = getAvisBadgeHtml(acte.id);
+                        const mini = document.createElement("div");
+                        mini.className = "event-mini-card";
+                        mini.onclick = () => openActe(acte.id);
+                        mini.innerHTML = `<b>${acte.hora_inici}h ${avisBadge}</b><p>${acte.titol}</p>`;
+                        avuiScroll.appendChild(mini);
+                    });
+                }
+            });
+
+            if(avuiScroll && avuiScroll.innerHTML === "") {
+                avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
             }
 
-            const btn = document.createElement("div");
-            btn.className = `day-tab`; 
-            btn.innerText = dia.titol_curt;
-            btn.onclick = () => selectDay(dia.dia_id, btn);
-            tabsCont.appendChild(btn);
-
-            if(esAvui && avuiScroll) {
-                dia.actes.forEach(acte => {
-                    const mini = document.createElement("div");
-                    mini.className = "event-mini-card";
-                    mini.onclick = () => openActe(acte.id);
-                    mini.innerHTML = `<b>${acte.hora_inici}h</b><p>${acte.titol}</p>`;
-                    avuiScroll.appendChild(mini);
-                });
+            const botoPerDefecte = tabsCont.children[indexDiaSeleccionat];
+            if(data.length > 0 && botoPerDefecte) {
+                selectDay(data[indexDiaSeleccionat].dia_id, botoPerDefecte);
+                botoPerDefecte.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             }
         });
-
-        if(avuiScroll && avuiScroll.innerHTML === "") {
-            avuiScroll.innerHTML = "<p style='color:#666; padding:20px;'>No hi ha actes per a hui.</p>";
-        }
-
-        const botoPerDefecte = tabsCont.children[indexDiaSeleccionat];
-        if(data.length > 0 && botoPerDefecte) {
-            selectDay(data[indexDiaSeleccionat].dia_id, botoPerDefecte);
-            botoPerDefecte.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-        }
     });
 });
 

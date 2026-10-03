@@ -3,6 +3,7 @@
     "id": "av1",
     "titol": "Mojinos Escozíos: Canvi de localització",
     "text": "Davant la previsió meteorològica es trasllada al Recinte Fester",
-    "tipus": "info"
+    "tipus": "info",
+    "actes_afectats": ["a29"]
   }
 ]

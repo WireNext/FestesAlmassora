@@ -565,3 +565,32 @@ section {
     background: rgba(255, 255, 255, 0.12);
     box-shadow: 0 0 12px rgba(5, 150, 0, 0.3);
 }
+
+/* Cercle amb exclamació per als actes amb avís */
+.badge-exclamacio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: sans-serif;
+    color: #fff;
+    margin-left: 6px;
+    flex-shrink: 0;
+}
+
+/* Color roig per a "important" */
+.badge-exclamacio.badge-important {
+    background-color: #e53e3e; /* Roig */
+    box-shadow: 0 0 6px rgba(229, 62, 62, 0.4);
+}
+
+/* Color groc per a "info" */
+.badge-exclamacio.badge-info {
+    background-color: #d69e2e; /* Groc / Daurat */
+    color: #000; /* Lletra negra per a millor contrast en groc */
+    box-shadow: 0 0 6px rgba(214, 158, 46, 0.4);
+}
