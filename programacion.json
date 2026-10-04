@@ -1069,14 +1069,340 @@
         "ubicacio": "Casal del Vi"
       },
       {
-        "id": "a112",
-        "titol": "Tombet de bou al carrer de la Trinitat",
-        "hora_inici": "21:00",
-        "hora_fi": "",
-        "descripcio": "Tombet de bou al carrer de la Trinitat. Patrocina: CaixAlmassora.",
-        "imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
-        "ubicacio": "Carrer de la Trinitat"
-      }
-    ]
-  }
+"id": "a112",
+"titol": "Tombet de bou al carrer de la Trinitat",
+"hora_inici": "21:00",
+"hora_fi": "",
+"descripcio": "Tombet de bou al carrer de la Trinitat. Patrocina: CaixAlmassora.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Carrer de la Trinitat"
+},
+{
+"id": "a113",
+"titol": "DJ en directe a la Zona Latina",
+"hora_inici": "22:00",
+"hora_fi": "",
+"descripcio": "DJ en directe a la Zona Latina. Lloc: plaça de la Molineta.",
+"imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+"ubicacio": "Plaça de la Molineta"
+},
+{
+"id": "a114",
+"titol": "Repartiment de cremaet",
+"hora_inici": "22:30",
+"hora_fi": "",
+"descripcio": "Repartiment de cremaet per a majors de 18 anys. Lloc: Junta Local de Festes.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Junta Local de Festes"
+},
+{
+"id": "a115",
+"titol": "Gran Parrandón Vallenato a la Zona Latina",
+"hora_inici": "23:00",
+"hora_fi": "",
+"descripcio": "Gran Parrandón Vallenato a la Zona Latina. Lloc: plaça de la Molineta.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça de la Molineta"
+},
+{
+"id": "a116",
+"titol": "Concentració de les penyes i colles a la Casa de la Cultura",
+"hora_inici": "23:00",
+"hora_fi": "",
+"descripcio": "Concentració de les penyes i colles a la Casa de la Cultura per a traslladar-se a la Vila, amb la xaranga Banana Boom.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Casa de la Cultura"
+},
+{
+"id": "a117",
+"titol": "Bous embolats",
+"hora_inici": "23:30",
+"hora_fi": "",
+"descripcio": "Bous embolats de la penya Aficionades Taurines i el de les penyes El Caragol i El Trasto amb eixides des de la plaça Major.",
+"imatge": "https://www.castelloninformacion.com/wp-content/uploads/2022/04/almassora-bous-al-carrer.jpg",
+"ubicacio": "Plaça Major"
+},
+{
+"id": "a118",
+"titol": "Actuació del grup Vudú davant del Pub Leos",
+"hora_inici": "24:00",
+"hora_fi": "",
+"descripcio": "Actuació del grup Vudú davant del Pub Leos. Patrocina: ACT Aficionades Taurines. Col·labora: Pub Leos.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Davant del Pub Leos"
+},
+{
+"id": "a119",
+"titol": "Tribut a El Barrio",
+"hora_inici": "24:00",
+"hora_fi": "",
+"descripcio": "Tribut a El Barrio. Lloc: plaça d'Espanya.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça d'Espanya"
+},
+{
+"id": "a120",
+"titol": "Actuació d'orquestra espectacle de gran format",
+"hora_inici": "01:00",
+"hora_fi": "",
+"descripcio": "Actuació d'orquestra espectacle de gran format. Lloc: aparcament de la piscina municipal.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Aparcament de la piscina municipal"
+},
+{
+"id": "a121",
+"titol": "Actuació al Recinte Fester",
+"hora_inici": "03:00",
+"hora_fi": "",
+"descripcio": "Al Recinte Fester, actuació de Diego Marza, DJ Monty i Roberto Anglès.",
+"imatge": "https://cdn.sanity.io/images/4z8uxx4p/production/c047578a581283ef12b6f14268fc905a1fad5a7e-1200x630.jpg?w=1200&h=630&q=60",
+"ubicacio": "Recinte Fester"
+}
+]
+},
+{
+"dia_id": "dia10",
+"data_iso": "2026-10-11",
+"titol_curt": "Dg 11",
+"titol_llarg": "Diumenge 11 d'Octubre",
+"actes": [
+{
+"id": "a122",
+"titol": "Concurs Social de Pesca",
+"hora_inici": "07:00",
+"hora_fi": "",
+"descripcio": "Concurs Social de Pesca. Concentració i inscripcions al Bar Les Goles a les 06.00 h. Lliurament de trofeus a les 14.00 h. Organitza: Club de Pesca Esportiva Almassora. Lloc: platja d'Almassora.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Platja d'Almassora"
+},
+{
+"id": "a123",
+"titol": "Gran Sancochada Colombiana",
+"hora_inici": "14:00",
+"hora_fi": "",
+"descripcio": "Gran Sancochada Colombiana, dia d'activitats recreatives per a tota la família, a la Zona Latina. Lloc: plaça de la Molineta.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça de la Molineta"
+},
+{
+"id": "a124",
+"titol": "Dia del Xiquet (edats de 3 a 12 anys)",
+"hora_inici": "17:00",
+"hora_fi": "",
+"descripcio": "Dia del Xiquet (edats de 3 a 12 anys), activitats infantils a càrrec de Làser Combat, Monitors, Viunatura, i berenar per als xiquets inscrits prèviament. Inscripcions fins al dia 2 d'octubre a la recepció de l'Ajuntament. Col·labora: Cooperativa Agrícola Sant Josep. Lloc: pàrquing de la piscina municipal.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Pàrquing de la piscina municipal"
+},
+{
+"id": "a125",
+"titol": "Actuació al Casal del Vi del grup Los Sueters",
+"hora_inici": "20:00",
+"hora_fi": "",
+"descripcio": "Actuació al Casal del Vi del grup Los Sueters. Lloc: plaça Espanya.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça d'Espanya"
+},
+{
+"id": "a126",
+"titol": "Actuació final de festes Tribut a Alejandro Sanz i castell de focs artificials",
+"hora_inici": "23:00",
+"hora_fi": "",
+"descripcio": "Actuació final de festes Tribut a Alejandro Sanz. Lloc: plaça d'Espanya. A continuació, castell de focs artificials de fi de festes. Lloc: esplanada del c/ Sant Pere.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça d'Espanya / Esplanada del c/ Sant Pere"
+}
+]
+},
+{
+"dia_id": "dia11",
+"data_iso": "2026-10-12",
+"titol_curt": "Dl 12",
+"titol_llarg": "Dilluns 12 d'Octubre",
+"actes": [
+{
+"id": "a127",
+"titol": "Missa en honor a la Mare de Déu del Pilar",
+"hora_inici": "12:00",
+"hora_fi": "",
+"descripcio": "Missa en honor a la Mare de Déu del Pilar, patrona de la Guàrdia Civil.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": ""
+},
+{
+"id": "a128",
+"titol": "Concert de l'Orquestra de Cambra de la Societat Filharmònica de València",
+"hora_inici": "19:00",
+"hora_fi": "",
+"descripcio": "Concert de l'Orquestra de Cambra de la Societat Filharmònica de València. Lloc: Casa de la Cultura.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Casa de la Cultura"
+}
+]
+},
+{
+"dia_id": "dia12",
+"data_iso": "2026-10-16",
+"titol_curt": "Dv 16",
+"titol_llarg": "Divendres 16 d'Octubre",
+"actes": [
+{
+"id": "a129",
+"titol": "Actuació del grup Santi de Santiago",
+"hora_inici": "23:00",
+"hora_fi": "",
+"descripcio": "Actuació del grup Santi de Santiago. Lugar: Recinte Fester.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Recinte Fester"
+}
+]
+},
+{
+"dia_id": "dia13",
+"data_iso": "2026-10-18",
+"titol_curt": "Dg 18",
+"titol_llarg": "Diumenge 18 d'Octubre",
+"actes": [
+{
+"id": "a130",
+"titol": "Rosari de l'aurora in memoriam Rosarito la Llebra",
+"hora_inici": "08:30",
+"hora_fi": "",
+"descripcio": "Rosari de l'aurora in memoriam Rosarito la Llebra. Eixida des de la plaça de l'església de la Nativitat. Seguidament, es resarà el rosari pels carrers de la Vila. En finalitzar, xocolatada. Organitza: Lluïsos Almassora. Col·labora: Parròquia de la Nativitat de Ntra. Sra.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça de l'església de la Nativitat"
+}
+]
+},
+{
+"dia_id": "dia14",
+"data_iso": "2026-10-23",
+"titol_curt": "Dv 23",
+"titol_llarg": "Divendres 23 d'Octubre",
+"actes": [
+{
+"id": "a131",
+"titol": "Mistery Puzzle: Activitat benèfica a favor de l'AECC",
+"hora_inici": "18:00",
+"hora_fi": "",
+"descripcio": "Mistery Puzzle. Activitat benèfica a favor de l'AECC (Associació Espanyola Contra el Càncer). La recaptació es destinarà íntegrament a la lluita contra el càncer. Lloc: Recinte Fester. En finalitzar, lliurament de premis. Inscripcions: a través del web aepuzz.es, en la secció de Campionats.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Recinte Fester"
+}
+]
+},
+{
+"dia_id": "dia15",
+"data_iso": "2026-10-24",
+"titol_curt": "Ds 24",
+"titol_llarg": "Dissabte 24 d'Octubre",
+"actes": [
+{
+"id": "a132",
+"titol": "VII Fira Flamenca, eixida de la romeria",
+"hora_inici": "09:30",
+"hora_fi": "",
+"descripcio": "VII Fira Flamenca, eixida de la romeria. Lloc: esplanada del c/ Sant Pere.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Esplanada del c/ Sant Pere"
+},
+{
+"id": "a133",
+"titol": "Concurs de puzzle en modalitat individual",
+"hora_inici": "10:00",
+"hora_fi": "",
+"descripcio": "Concurs de puzzle en modalitat individual: categoria adulta i categories infantils de 100 i 200 peces.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": ""
+},
+{
+"id": "a134",
+"titol": "Esmorzar dels romers",
+"hora_inici": "10:30",
+"hora_fi": "",
+"descripcio": "Esmorzar dels romers. Lloc: plaça de Pere Cornell.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Plaça de Pere Cornell"
+},
+{
+"id": "a135",
+"titol": "Continua la romeria cap al paratge de Santa Quitèria",
+"hora_inici": "11:00",
+"hora_fi": "",
+"descripcio": "Continua la romeria cap al paratge de Santa Quitèria.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Paratge de Santa Quitèria"
+},
+{
+"id": "a136",
+"titol": "Puzzle Chess",
+"hora_inici": "12:30",
+"hora_fi": "",
+"descripcio": "Puzzle Chess.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": ""
+},
+{
+"id": "a137",
+"titol": "Actuació del grup de rumbes i sevillanes Cuerda pa rato",
+"hora_inici": "13:00",
+"hora_fi": "",
+"descripcio": "Actuació del grup de rumbes i sevillanes Cuerda pa rato. Lloc: paratge de Santa Quitèria.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Paratge de Santa Quitèria"
+},
+{
+"id": "a138",
+"titol": "Tardeo del grup de rumbes i sevillanes Cuerda pa rato",
+"hora_inici": "16:00",
+"hora_fi": "",
+"descripcio": "Tardeo del grup de rumbes i sevillanes Cuerda pa rato. Lloc: paratge de Santa Quitèria.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Paratge de Santa Quitèria"
+},
+{
+"id": "a139",
+"titol": "Continuació de Puzzle Chess",
+"hora_inici": "16:30",
+"hora_fi": "",
+"descripcio": "Continuació de Puzzle Chess.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": ""
+},
+{
+"id": "a140",
+"titol": "Puzzle per parelles i lliurament de premis",
+"hora_inici": "18:00",
+"hora_fi": "",
+"descripcio": "Puzzle per parelles. En finalitzar, lliurament de premis. Lloc: Recinte Fester. Activitats benèfiques a favor de l'AECC (Associació Espanyola Contra el Càncer). La recaptació es destinarà íntegrament a la lluita contra el càncer. Inscripcions: aepuzz.es, secció Campionats.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Recinte Fester"
+},
+{
+"id": "a141",
+"titol": "Tornada de la romeria cap al poble",
+"hora_inici": "19:30",
+"hora_fi": "",
+"descripcio": "Tornada de la romeria cap al poble.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": ""
+}
+]
+},
+{
+"dia_id": "dia16",
+"data_iso": "2026-10-25",
+"titol_curt": "Dg 25",
+"titol_llarg": "Diumenge 25 d'Octubre",
+"actes": [
+{
+"id": "a142",
+"titol": "Concurs de puzzle per equips",
+"hora_inici": "10:00",
+"hora_fi": "",
+"descripcio": "Concurs de puzzle per equips. Activitat benèfica a favor de l'AECC (Associació Espanyola Contra el Càncer). La recaptació es destinarà íntegrament a la lluita contra el càncer. Lloc: Recinte Fester. Inscripcions: a través del web aepuzz.es, en la secció de Campionats.",
+"imatge": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTilQyKbmoXg2seSnA047E2m9RUd5U6qJcCjg&s",
+"ubicacio": "Recinte Fester"
+}
+]
+}
 ]
